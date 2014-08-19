@@ -53,7 +53,10 @@ namespace ProcAirships
                 }
             }
 
-            vesselNetBuoyancy = (float)(vesselBuoyancy - FlightGlobals.Bodies[1].GeeASL * vesselMass);
+            vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass);
+
+            Debug.Log("geeASL: " + FlightGlobals.Bodies[1].GeeASL);
+            
         }
 
         public override void OnFixedUpdate()
@@ -80,6 +83,7 @@ namespace ProcAirships
             vesselNetBuoyancy = (float)(vesselBuoyancy - FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass).magnitude * vesselMass);
             //part.vessel.worl
 
+           
         }
 
     }

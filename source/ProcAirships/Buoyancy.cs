@@ -115,6 +115,8 @@ namespace ProcAirships
             guiGravPull = GravForce.magnitude;
 
             part.Rigidbody.AddForceAtPosition(buoyantForce, part.rigidbody.worldCenterOfMass, ForceMode.Force);
+
+            
         }
 
         public Vector3 getBuoyancyForce()
@@ -122,6 +124,13 @@ namespace ProcAirships
             float airDensity = (float)athmosphere.getAirDensity();
             return (-FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
         }
+
+        /*
+        public float getBuoyancy()
+        {
+            if()
+        }
+         */
 
     }
 }
