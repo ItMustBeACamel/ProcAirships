@@ -1,0 +1,7 @@
+*.dll
+*.suo
+*.exe
+*.pdb
+
+./source/ProcAirships/bin/bin/*
+./source/ProcAirships/obj/*
