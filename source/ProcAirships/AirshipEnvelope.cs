@@ -11,13 +11,6 @@ namespace ProcAirships
 {
     public class AirshipEnvelope : PartModule
     {
-        /*
-        [KSPEvent(guiActive = true, guiName = "toggle gas dumping")]
-        public void toggleGasDump()
-        {
-            if (dumpingGas == true) dumpingGas = false; else dumpingGas = true;
-        }
-         */
 
         //[KSPField(isPersistant = true, guiActive = false, guiActiveEditor = true, guiName = "Volume", guiUnits = "m³", guiFormat = "F2")]
         public float tankVolume = 0;
@@ -29,7 +22,7 @@ namespace ProcAirships
        
         public override void OnAwake()
         {
-            Debug.Log("Envelope Awake");
+            Log.post(this.ClassName + " OnAwake-callback: ");
 
             base.OnAwake();
             PartMessageService.Register(this);   
@@ -37,8 +30,7 @@ namespace ProcAirships
 
         public override void OnStart(StartState state)
         {
-            // Add stuff to the log
-            print("Envelope Start");
+            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
         }
 
         public override void OnFixedUpdate()
@@ -47,7 +39,7 @@ namespace ProcAirships
             PartResource air = part.Resources.Get("Air".GetHashCode());
             if (air == null)
             {
-                Debug.LogError("no air on part");
+                Log.post("No Air resource on part", LogLevel.LOG_ERROR);
                 return;
             }
             else
@@ -56,7 +48,7 @@ namespace ProcAirships
 
                 if(hydrogen == null)
                 {
-                    Debug.LogError("no Hydrogen on part");
+                    Log.post("No hydrogen resource on part", LogLevel.LOG_ERROR);
                     return;
                 }
 
@@ -70,20 +62,20 @@ namespace ProcAirships
         [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
         public void ChangeVolume(string volumeName, float volume)
         {
-            
+            Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
             if (volumeName != PartVolumes.Tankage.ToString())
                 return;
 
             if (volume <= 0f)
                 throw new ArgumentOutOfRangeException("volume");
-            Debug.Log("Envelope changed volume to" + volume);
+            Log.post("tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
             tankVolume = volume;
         }
 
         [PartMessageListener(typeof(PartResourceInitialAmountChanged), scenes: GameSceneFilter.Flight)]
         public void ChangeInitResource(PartResource resource, double amount)
         {
-            Debug.Log("Envelope changed init resource " + resource.resourceName + " to " + amount);
+            Log.post("Envelope changed init resource " + resource.resourceName + " to " + amount);
         }
          
     }

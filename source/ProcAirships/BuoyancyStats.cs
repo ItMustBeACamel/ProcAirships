@@ -21,8 +21,7 @@ namespace ProcAirships
 
         public override void OnStart(StartState state)
         {
-            // Add stuff to the log
-            print("BuoyancyStats Start");
+            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
             if (state != StartState.Editor)
             {
@@ -32,7 +31,7 @@ namespace ProcAirships
 
         void Update()
         {
-            if (HighLogic.LoadedScene != GameScenes.EDITOR)
+            if (!(HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH))
                 return;
             vesselBuoyancy = 0;
             vesselMass = 0;

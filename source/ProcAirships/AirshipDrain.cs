@@ -34,16 +34,20 @@ namespace ProcAirships
 
         public override void OnAwake()
         {
+            Log.post(this.ClassName + " awake-callback");
             base.OnAwake();
             PartMessageService.Register(this);   
         }
 
         public override void OnStart(StartState state)
         {
-            print("Drain Start");
+            Log.post(this.ClassName + " start-callback: " + state.ToString());
+
             if (HighLogic.LoadedScene == GameScenes.FLIGHT)
             {
                 part.force_activate();
+
+                Log.post("Searching for drainable resources");
                 List<string> drainResourceNames = new List<string>();
                 foreach (AirshipDrainResource dr in GetComponents<AirshipDrainResource>())
                 {
@@ -51,34 +55,40 @@ namespace ProcAirships
                     {
                         drainResources.Add(dr);
                         drainResourceNames.Add(dr.displayName);
-                        Debug.Log("added drain resource: " + dr.displayName);
+                        Log.post("Found drainable resource: " + dr.displayName, LogLevel.LOG_INFORMATION);
                     }
-                }
-                Debug.Log("finished adding");
+                    else
+                        Log.post("Found drainable resource: " + dr.displayName + " but resource is not available on part", LogLevel.LOG_INFORMATION);
 
+                }
+                Log.post("Finished searching for drainable resources");
+
+                Log.post("adding drainable resources to tweakable choose field");
                 BaseField field = Fields["drainResource"];
                 if (field != null)
                 {
-                    Debug.Log("field != null");
-                    UI_ChooseOption range = (UI_ChooseOption)field.uiControlFlight;
-                    
-                    if (range != null)
+                    UI_ChooseOption options = (UI_ChooseOption)field.uiControlFlight;
+
+                    if (options != null)
                     {
                         if (drainResourceNames.Count > 0)
                         {
-                            range.options = drainResourceNames.ToArray();
+                            options.options = drainResourceNames.ToArray();
                             drainResource = drainResourceNames[0];
                         }
                         else
-                            range.controlEnabled = false;
+                        {
+                            Log.post("No drainable resources. tweakable disabled.", LogLevel.LOG_INFORMATION);
+                            options.controlEnabled = false;
+                        }
                         
                     }
                     else
-                        Debug.LogError("range == null");
+                        Log.post("Field 'drainResource' does not have a UI_ChooseOption attribute", LogLevel.LOG_ERROR);
 
                 }
                 else
-                    Debug.LogError("field == null");
+                    Log.post("Field 'drainResource' does not exist", LogLevel.LOG_ERROR);
             }
             
 
@@ -89,6 +99,7 @@ namespace ProcAirships
         {
             if(drainResource != drainResourceOld)
             {
+                Log.post("Drain resource selection changed");
                 drainChanged(drainResource);
                 drainResourceOld = drainResource;
             }

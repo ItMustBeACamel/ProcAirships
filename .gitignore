@@ -3,5 +3,5 @@
 *.exe
 *.pdb
 
-./source/ProcAirships/bin
-./source/ProcAirships/obj
+./source/ProcAirships/bin/*
+./source/ProcAirships/obj/*

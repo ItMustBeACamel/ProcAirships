@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Threading.Tasks;
 using KSP;
 
 namespace ProcAirships
@@ -11,6 +10,7 @@ namespace ProcAirships
     {
         public override double getAirDensity()
         {
+            //Log.post("Getting air density from stock athmosphere");
             double pressure = FlightGlobals.getStaticPressure();
             return FlightGlobals.getAtmDensity(pressure);
         }  
