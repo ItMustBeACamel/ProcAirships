@@ -41,22 +41,16 @@ namespace ProcAirships
             {
                 foreach(Buoyancy module in p.Modules.OfType<Buoyancy>())
                 {
-                    //Debug.Log(module.moduleName);
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
-
                 }
 
                 if (p.GetComponent<LaunchClamp>() == null)
                 {
                     vesselMass += (p.mass + p.GetResourceMass());
-
                 }
             }
 
-            vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass);
-
-            Debug.Log("geeASL: " + FlightGlobals.Bodies[1].GeeASL);
-            
+            vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass); 
         }
 
         public override void OnFixedUpdate()
@@ -68,22 +62,16 @@ namespace ProcAirships
             {
                 foreach (Buoyancy module in p.Modules.OfType<Buoyancy>())
                 {
-                    //Debug.Log(module.moduleName);
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
-
                 }
 
                 if (p.GetComponent<LaunchClamp>() == null)
                 {
                     vesselMass += (p.mass + p.GetResourceMass());
-
                 }
             }
 
             vesselNetBuoyancy = (float)(vesselBuoyancy - FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass).magnitude * vesselMass);
-            //part.vessel.worl
-
-           
         }
 
     }

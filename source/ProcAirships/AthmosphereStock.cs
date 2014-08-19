@@ -13,8 +13,6 @@ namespace ProcAirships
         {
             double pressure = FlightGlobals.getStaticPressure();
             return FlightGlobals.getAtmDensity(pressure);
-        }
-
-        
+        }  
     }
 }

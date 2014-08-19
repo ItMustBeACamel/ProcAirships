@@ -13,12 +13,8 @@ namespace ProcAirships
 
         public override double getAirDensity()
         {
-            //Debug.LogWarning("GetAirDensity " + FlightGlobals.Bodies[1].bodyName);
-            //double pressure = FlightGlobals.Bodies[1].staticPressureASL;
-            double pressure = FlightGlobals.getStaticPressure(0, FlightGlobals.Bodies[1]);
-            //Debug.LogWarning("GetAirDensity ende " + pressure);
+            double pressure = FlightGlobals.getStaticPressure(73.0, FlightGlobals.Bodies[1]); 
             return FlightGlobals.getAtmDensity(pressure);
-           
         }
 
        
