@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Reflection;
 
 namespace ProcAirships
 {
@@ -26,16 +27,18 @@ namespace ProcAirships
         {
             if (level <= logLevel)
             {
+                string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                string assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 switch (level)
                 {
                     case LogLevel.LOG_ERROR:
-                        Debug.LogError("[ProcAirships]" + message);
+                        Debug.LogError("[" + assemblyName + "|" + assemblyVersion +"] " + message);
                         break;
                     case LogLevel.LOG_WARNING:
-                        Debug.LogWarning("[ProcAirships]" + message);
+                        Debug.LogWarning("[" + assemblyName + "|" + assemblyVersion + "] " + message);
                         break;
                     default:
-                        Debug.Log("[ProcAirships]" + message);
+                        Debug.Log("[" + assemblyName + "|" + assemblyVersion + "] " + message);
                         break;
                 }
 
