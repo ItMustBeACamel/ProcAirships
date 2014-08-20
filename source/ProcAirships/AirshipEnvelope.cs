@@ -18,6 +18,9 @@ namespace ProcAirships
         //[KSPField(isPersistant = false, guiActive = false, guiActiveEditor = true, guiName = "dry mass", guiUnits = "t", guiFormat = "F2")]
         //public float guiDryMass = 0;
 
+        [KSPField]
+        public string fillEmptySpaceWith = "Air";
+
         
        
         public override void OnAwake()
@@ -35,15 +38,26 @@ namespace ProcAirships
 
         public override void OnFixedUpdate()
         {
-         
-            PartResource air = part.Resources.Get("Air".GetHashCode());
-            if (air == null)
+
+            PartResource fillResource = part.Resources.Get(fillEmptySpaceWith.GetHashCode());
+            if (fillResource == null)
             {
-                Log.post("No Air resource on part", LogLevel.LOG_ERROR);
+                Log.post("No fillResource on part", LogLevel.LOG_ERROR);
                 return;
             }
             else
             {
+                float emptySpace = 0;
+                foreach(PartResource r  in this.part.Resources)
+                {
+                    if (r.resourceName != fillEmptySpaceWith)
+                        emptySpace += (float)(r.maxAmount - r.amount);   
+                }
+
+                fillResource.amount = fillResource.maxAmount = emptySpace;
+
+
+                /*
                 PartResource hydrogen = part.Resources.Get("Hydrogen".GetHashCode());
 
                 if(hydrogen == null)
@@ -54,6 +68,7 @@ namespace ProcAirships
 
                 air.maxAmount = hydrogen.maxAmount - hydrogen.amount;
                 air.amount = air.maxAmount;
+                 */
             }
         }
 
