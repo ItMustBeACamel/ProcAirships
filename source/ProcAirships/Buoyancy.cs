@@ -24,19 +24,16 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
         public float guiGravPull = 0;
 
-        [KSPField(guiActive = true, guiName = "temperature", guiUnits = "celsius", guiFormat = "F2")]
-        public float guiTemperature = 0;
-
         private float buoyancyMultiplicator = 1.0f;
 
         public override void OnActive()
         {
-            Debug.Log("Buoyancy Active");
+            Log.post(this.ClassName + " OnActive-callback: ");
         }
 
         public override void OnAwake()
         {
-            Debug.Log("Buoyancy Awake");
+            Log.post(this.ClassName + " OnAwake-callback: ");
 
             base.OnAwake();
             PartMessageService.Register(this);
@@ -45,18 +42,18 @@ namespace ProcAirships
         public override void OnStart(StartState state)
         {
             // Add stuff to the log
-            print("Buoyancy Start");
+            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
             
             athmosphere = Factory.getAthmosphere();
 
             if (state != StartState.Editor)
             {
+                Log.post("force activate envelope");
                 part.force_activate();
-                print("Buoyancy force activate");
-
             }
 
+            Log.post("get configuration. memo for me: PUT CONFIG STUFF IN A DEDICATED CLASS LATER.");
             ConfigNode[] nodes = GameDatabase.Instance.GetConfigNodes("PROC_AIRSHIPS_CONFIG");
 
             if (nodes.GetLength(0) == 0)
@@ -70,42 +67,28 @@ namespace ProcAirships
 
 
             buoyancyMultiplicator = config.buoyancyMultiplicator;
-            Debug.Log("buoyancy multiplicator: " + buoyancyMultiplicator);
+            Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
         }
 
 
         [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
         public void ChangeVolume(string volumeName, float volume)
         {
-            Debug.Log("Buoyancy received volume change message" + volume);
+            Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
+            
             if (volumeName != PartVolumes.Tankage.ToString())
                 return;
 
             if (volume <= 0f)
                 throw new ArgumentOutOfRangeException("volume");
-            Debug.Log("Buoyancy changed volume to" + volume);
+            Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
             tankVolume = volume;
         }
 
-        public override void OnUpdate()
-        {
-          
-           
-
-        }
-
-
-
         public override void OnFixedUpdate()
         {
-            //float airDensity = 0.0f;
             
-            
-
-            //airDensity = (float)athmosphere.getAirDensity();
-
-            guiTemperature = part.temperature;
-
+          
             buoyantForce = getBuoyancyForce();
 
             Vector3 GravForce = -FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
@@ -115,6 +98,8 @@ namespace ProcAirships
             guiGravPull = GravForce.magnitude;
 
             part.Rigidbody.AddForceAtPosition(buoyantForce, part.rigidbody.worldCenterOfMass, ForceMode.Force);
+
+            
         }
 
         public Vector3 getBuoyancyForce()

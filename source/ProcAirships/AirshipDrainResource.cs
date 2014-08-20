@@ -40,19 +40,22 @@ namespace ProcAirships
 
         [KSPAction(guiName:"toggle dumping")]
         public void toggleDump(KSPActionParam ap)
-        { 
+        {
+            Log.post("ACTION: toggle dumping '" + displayName + "'.", LogLevel.LOG_INFORMATION);
             dumping = (dumping == true) ? false : true;
         }
 
         [KSPAction(guiName:"start dumping")]
         public void startDumping(KSPActionParam ap)
         {
+            Log.post("ACTION: start dumping '" + displayName + "'.", LogLevel.LOG_INFORMATION);
             dumping = true;
         }
 
         [KSPAction(guiName:"stop dumping")]
         public void stopDumping(KSPActionParam ap)
         {
+            Log.post("ACTION: stop dumping '" + displayName + "'.", LogLevel.LOG_INFORMATION);
             dumping = false;
         }
 
@@ -72,12 +75,16 @@ namespace ProcAirships
         [PartMessageListener(typeof(AirshipDrainSelected), scenes:GameSceneFilter.Flight, relations:PartRelationship.Self)]
         public void AirshipDrainSelected(string displayName)
         {
+            Log.post("Received Part message 'AirshipDrainSelected' for resource: " + displayName, LogLevel.LOG_INFORMATION);
             if(this.displayName == displayName)
             {
+                Log.post("activate tweakable ui for resource: " + displayName, LogLevel.LOG_INFORMATION);
                 activateGui();
+                
             }
             else
             {
+                Log.post("deactivate tweakable ui for resource: " + displayName, LogLevel.LOG_INFORMATION);
                 deactivateGui();
             }
 
@@ -90,12 +97,15 @@ namespace ProcAirships
 
         public override void OnAwake()
         {
+            Log.post(this.ClassName + " OnAwake-callback: ");
             base.OnAwake();
             PartMessageService.Register(this);
         }
 
         public override void OnStart(StartState state)
         {
+            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
+
             Actions["toggleDump"].guiName = "toggle " + resourceName + " dumping";
             Actions["startDumping"].guiName = "dump " + resourceName;
             Actions["stopDumping"].guiName = "stop dumping " + resourceName;
@@ -110,7 +120,10 @@ namespace ProcAirships
         {
             if (dumping)
             {
-                part.RequestResource(resourceName, dumpRate * TimeWarp.deltaTime);
+                float amountDumped;
+                Log.post("dumping: " + resourceName + " at rate " + dumpRate);
+                amountDumped = part.RequestResource(resourceName, dumpRate * TimeWarp.deltaTime);
+                Log.post("dumped: " + amountDumped + " of " + resourceName);
             }
         }
 

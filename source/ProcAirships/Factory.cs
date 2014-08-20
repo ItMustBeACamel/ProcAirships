@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
-//using ferram4;
 using System.Reflection;
 
 
@@ -14,22 +13,43 @@ namespace ProcAirships
 
         public static Athmosphere getAthmosphere()
         {
-            bool isFarLoaded = AssemblyLoader.loadedAssemblies.Any(a => a.assembly.GetName().Name == "FerramAerospaceResearch");
+            bool isFARLoaded = AssemblyLoader.loadedAssemblies.Any(a => a.assembly.GetName().Name == "FerramAerospaceResearch");
 
-            if (isFarLoaded)
+            isFARLoaded = false; // force stock behaviour because FAR does not seem to work right yet.
+            
+
+            if (isFARLoaded)
             {
-                Debug.Log("FAR detected.");
-                return new AthmosphereFAR();
-            }
-            else
-            {
-                Debug.Log("No FAR detected. Fallback to Stock behaviour.");
-                if (HighLogic.LoadedScene == GameScenes.EDITOR)
+                Log.post("FAR detected", LogLevel.LOG_INFORMATION);
+
+                AssemblyLoader.LoadedAssembly FAR = AssemblyLoader.loadedAssemblies.FirstOrDefault(a => a.assembly.GetName().Name == "FerramAerospaceResearch");
+                Log.post("FAR Version: " + FAR.assembly.GetName().Version.ToString(), LogLevel.LOG_INFORMATION);
+
+                if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
                 {
+                    Log.post("create Athmosphere for Editor.", LogLevel.LOG_INFORMATION);
                     return new AthmosphereStockEditor();
                 }
                 else
+                {
+                    Log.post("create Athmosphere for Flight.", LogLevel.LOG_INFORMATION);
+                    return new AthmosphereFAR();
+                }
+            }
+            else
+            {
+                Log.post("No FAR detected. Fallback to Stock behaviour.", LogLevel.LOG_INFORMATION);
+                if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+                {
+                    
+                    Log.post("create Athmosphere for Editor.", LogLevel.LOG_INFORMATION);
+                    return new AthmosphereStockEditor();
+                }
+                else
+                {
+                    Log.post("create Athmosphere for Flight.", LogLevel.LOG_INFORMATION);
                     return new AthmosphereStock();
+                }
             }
         }
 

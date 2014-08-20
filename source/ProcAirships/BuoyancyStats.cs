@@ -21,8 +21,7 @@ namespace ProcAirships
 
         public override void OnStart(StartState state)
         {
-            // Add stuff to the log
-            print("BuoyancyStats Start");
+            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
             if (state != StartState.Editor)
             {
@@ -32,7 +31,7 @@ namespace ProcAirships
 
         void Update()
         {
-            if (HighLogic.LoadedScene != GameScenes.EDITOR)
+            if (!(HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH))
                 return;
             vesselBuoyancy = 0;
             vesselMass = 0;
@@ -41,19 +40,16 @@ namespace ProcAirships
             {
                 foreach(Buoyancy module in p.Modules.OfType<Buoyancy>())
                 {
-                    //Debug.Log(module.moduleName);
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
-
                 }
 
                 if (p.GetComponent<LaunchClamp>() == null)
                 {
                     vesselMass += (p.mass + p.GetResourceMass());
-
                 }
             }
 
-            vesselNetBuoyancy = (float)(vesselBuoyancy - FlightGlobals.Bodies[1].GeeASL * vesselMass);
+            vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass); 
         }
 
         public override void OnFixedUpdate()
@@ -65,21 +61,16 @@ namespace ProcAirships
             {
                 foreach (Buoyancy module in p.Modules.OfType<Buoyancy>())
                 {
-                    //Debug.Log(module.moduleName);
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
-
                 }
 
                 if (p.GetComponent<LaunchClamp>() == null)
                 {
                     vesselMass += (p.mass + p.GetResourceMass());
-
                 }
             }
 
             vesselNetBuoyancy = (float)(vesselBuoyancy - FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass).magnitude * vesselMass);
-            //part.vessel.worl
-
         }
 
     }

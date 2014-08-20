@@ -13,12 +13,13 @@ namespace ProcAirships
 
         public override double getAirDensity()
         {
-            //Debug.LogWarning("GetAirDensity " + FlightGlobals.Bodies[1].bodyName);
-            //double pressure = FlightGlobals.Bodies[1].staticPressureASL;
-            double pressure = FlightGlobals.getStaticPressure(73, FlightGlobals.Bodies[1]);
-            //Debug.LogWarning("GetAirDensity ende " + pressure);
+            double pressure = 0;
+            if(HighLogic.LoadedScene == GameScenes.EDITOR)
+                pressure = FlightGlobals.getStaticPressure(72.5, FlightGlobals.Bodies[1]);
+            else
+                pressure = FlightGlobals.getStaticPressure(69.0, FlightGlobals.Bodies[1]);
+
             return FlightGlobals.getAtmDensity(pressure);
-           
         }
 
        

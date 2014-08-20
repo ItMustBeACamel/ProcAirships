@@ -23,7 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
+    <DebugType>none</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
@@ -66,11 +66,11 @@
     <Compile Include="AthmosphereFAR.cs" />
     <Compile Include="AthmosphereStock.cs" />
     <Compile Include="AthmosphereStockEditor.cs" />
-    <Compile Include="BallastTank.cs" />
     <Compile Include="Buoyancy.cs" />
     <Compile Include="BuoyancyStats.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

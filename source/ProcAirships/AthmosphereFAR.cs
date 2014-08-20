@@ -11,7 +11,17 @@ namespace ProcAirships
 
         public override double getAirDensity()
         {
-            return ferram4.FARAPI.GetActiveControlSys_AirDensity();
-        }
-    }
-}
+            try
+            {
+                return ferram4.FARAPI.GetActiveControlSys_AirDensity();
+            }
+            catch (Exception e)
+            {
+                Log.postException(e);
+                return 0;
+            }
+        }// getAirDensity
+
+    } // class
+
+} // namespace
