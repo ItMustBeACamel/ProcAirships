@@ -22,6 +22,11 @@ namespace ProcAirships
             }
         }// getAirDensity
 
+        public override double getAirPressure()
+        {
+            return 0.0d; // not yet implemented 
+        }
+
     } // class
 
 } // namespace

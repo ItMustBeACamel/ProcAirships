@@ -1,0 +1,6 @@
+Version 0.2.0.0
+-Envelopes have ballonets now
+-changed lifting gas definitions from kL/unit to kg/unit
+
+Version 0.1.0.0
+	- initial pre release

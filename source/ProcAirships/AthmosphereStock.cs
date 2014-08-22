@@ -13,6 +13,14 @@ namespace ProcAirships
             //Log.post("Getting air density from stock athmosphere");
             double pressure = FlightGlobals.getStaticPressure();
             return FlightGlobals.getAtmDensity(pressure);
-        }  
+        }
+
+        public override double getAirPressure()
+        {
+            return FlightGlobals.getStaticPressure();
+        }
+
     }
+
+    
 }

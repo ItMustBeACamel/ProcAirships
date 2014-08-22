@@ -15,10 +15,10 @@ namespace ProcAirships
 
         private Vector3 buoyantForce;
 
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = false, guiName = "Volume", guiUnits = "m³", guiFormat = "F2")]
+        [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = false, guiName = "Volume", guiUnits = "m³", guiFormat = "F2")]
         public float tankVolume = 0;
 
-        [KSPField(guiActive = true, guiName = "Buoyancy", guiUnits = "kN", guiFormat = "F2")]
+        [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Buoyancy", guiUnits = "kN", guiFormat = "F2")]
         public float guiBuoyancy = 0;
 
         [KSPField(guiActive = true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
@@ -74,38 +74,93 @@ namespace ProcAirships
         [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
         public void ChangeVolume(string volumeName, float volume)
         {
-            Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
+            //Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
             
-            if (volumeName != PartVolumes.Tankage.ToString())
-                return;
+            //if (volumeName != PartVolumes.Tankage.ToString())
+            //    return;
 
-            if (volume <= 0f)
-                throw new ArgumentOutOfRangeException("volume");
-            Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
-            tankVolume = volume;
+            //if (volume <= 0f)
+            //    throw new ArgumentOutOfRangeException("volume");
+            //Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
+            //tankVolume = volume;
+        }
+
+        void Update()
+        {
+
+            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            {
+                updateVolume();
+                updateBuoyancyEditor();
+            }
         }
 
         public override void OnFixedUpdate()
         {
+            updateVolume();
+            updateBuoyancy();
+
+            applyBuoyancyForce();
             
-          
-            buoyantForce = getBuoyancyForce();
+  
+        }
+
+        public void updateVolume()
+        {
+            tankVolume = 0.0f;
+            foreach (AirshipEnvelope envelope in part.Modules.OfType<AirshipEnvelope>())
+            {
+                tankVolume += (float)envelope.envelopeVolumeNet;
+            }
+        }
+
+        public void updateBuoyancy()
+        {
+            if (tankVolume > 0.0f)
+                buoyantForce = getBuoyancyForce();
+            else
+                buoyantForce = Vector3.zero;
 
             Vector3 GravForce = -FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
 
-
-            guiBuoyancy = buoyantForce.magnitude - GravForce.magnitude;
             guiGravPull = GravForce.magnitude;
 
-            part.Rigidbody.AddForceAtPosition(buoyantForce, part.rigidbody.worldCenterOfMass, ForceMode.Force);
+            guiBuoyancy = buoyantForce.magnitude - GravForce.magnitude;
+        }
 
+        public void updateBuoyancyEditor()
+        {
+            if (tankVolume > 0.0f)
+                buoyantForce = getBuoyancyForce();
+            else
+                buoyantForce = Vector3.zero;
+
+            Vector3 GravForce = Vector3.down * 9.8f * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
+
+            guiGravPull = GravForce.magnitude;
+
+            guiBuoyancy = buoyantForce.magnitude - GravForce.magnitude;
             
+
+        }
+
+        private void applyBuoyancyForce()
+        {
+            part.Rigidbody.AddForceAtPosition(buoyantForce, part.rigidbody.worldCenterOfMass, ForceMode.Force);
         }
 
         public Vector3 getBuoyancyForce()
         {
-            float airDensity = (float)athmosphere.getAirDensity();
-            return (-FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
+            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            {
+                float airDensity = (float)athmosphere.getAirDensity();
+                return (-Vector3.down * 9.8f * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
+            }
+            else
+            {
+                float airDensity = (float)athmosphere.getAirDensity();
+                return (-FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
+            }
         }
 
     }
