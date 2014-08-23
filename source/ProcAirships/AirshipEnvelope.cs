@@ -18,7 +18,7 @@ namespace ProcAirships
 
 
         //[KSPField(guiActive = true, guiActiveEditor = true, guiName = "envelope net vol.", guiUnits = "m³", guiFormat = "F3")]
-        public double envelopeVolumeNet = 0; // no save // ui as string
+        private double envelopeVolumeNet = 0; // no save // ui as string
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "envelope net. vol.")]
         private string envelopeVolumeNetUI;
 
@@ -47,11 +47,11 @@ namespace ProcAirships
 
 
         [KSPField]
-        public float ballonetInflationRate = 1.0f; // m³ per second - KSPField // no persistence
+        public float ballonetInflationRate = 0.1f; // m³ per second per m³ volume - KSPField // no persistence
 
 
         [KSPField]
-        public float ballonetInflationRateEditor = 1.0f; // m³ per second - KSPField // no persistence
+        public float ballonetInflationRateEditor = 1.0f; // m³ per second per m³ volume - KSPField // no persistence
 
 
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "ballonet max vol.", guiFormat = "F3")]
@@ -77,10 +77,10 @@ namespace ProcAirships
         public float temperature; // gas temperature
 
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "abs. pressure", guiFormat = "F6", guiUnits="bar")]
-        public float absolutePressure; // ui
+        private float absolutePressure; // ui // calsulated
 
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "rel. pressure", guiFormat = "F6", guiUnits = "bar")]
-        public float relativePressure; // ui
+        public float relativePressure; // ui // calculated
 
         [KSPField]
         public float dryMassPerQubicMeter; // KSPField float
@@ -89,8 +89,26 @@ namespace ProcAirships
 
         [KSPField(guiName = "autofill", guiActive = false, guiActiveEditor = true),
             UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.Editor)]
-        bool autofill = false; // ui
+        bool autofill = true; // ui
 
+
+        public double EnvelopeVolumeNet
+        {
+            get { return envelopeVolumeNet; }
+            protected set { envelopeVolumeNet = value; }
+        }
+
+        public float AbsolutePressure
+        {
+            get { return absolutePressure; }
+            protected set { absolutePressure = value; }
+        }
+
+        public float LiftingGasAmount
+        {
+            get { return liftingGasAmount; }
+            protected set { liftingGasAmount = value; }
+        }
         
         List<LiftingGas> liftingGasOptions;
         
@@ -98,6 +116,12 @@ namespace ProcAirships
 
         //----------------------------------------------------------------------------------------------
         #region Actions 
+
+        [KSPAction(guiName: "Ballonet - 10.0%")]
+        public void ballonetMinusMinusMinusMinus(KSPActionParam ap)
+        {
+            ballonetTargetInflation -= 10.0f;
+        }
 
         [KSPAction(guiName: "Ballonet - 1.0%")]
         public void ballonetMinusMinusMinus(KSPActionParam ap)
@@ -132,7 +156,13 @@ namespace ProcAirships
         [KSPAction(guiName: "Ballonet + 1.0%")]
         public void ballonetPlusPlusPlus(KSPActionParam ap)
         {
-            ballonetTargetInflation += 0.1f;
+            ballonetTargetInflation += 1.0f;
+        }
+
+        [KSPAction(guiName: "Ballonet + 10.0%")]
+        public void ballonetPlusPlusPlusPlus(KSPActionParam ap)
+        {
+            ballonetTargetInflation += 10.0f;
         }
 
         #endregion
@@ -210,18 +240,13 @@ namespace ProcAirships
             return 20.0d;
         }
 
-        double CelsiusToKelvin(double T)
-        {
-            return T + 273.15d;
-        }
-
         double getAbsolutePressure()
         {
             LiftingGas gas = getCurrentLiftingGas();
             
             double n = liftingGasAmount / (gas.molarMass / 1000.0d);
-            double R = 8.3144621;
-            double T = CelsiusToKelvin(getTemperature());
+            double R = util.GasConstant;
+            double T = util.celsiusToKelvin(getTemperature());
             double V = envelopeVolumeNet;
 
             double p = (n * R * T) / V;
@@ -229,27 +254,79 @@ namespace ProcAirships
             return p / 1000.0d / 101.325d;
         }
 
+        double getGasAmount(double pressure)
+        {
+
+            LiftingGas gas = getCurrentLiftingGas();
+            double m;
+            double p = pressure * 1000.0d * 101.325d;
+            double M = gas.molarMass / 1000.0d;
+            double V = envelopeVolumeNet;
+            double T = util.celsiusToKelvin(getTemperature());
+            double R = util.GasConstant;
+
+            m = M * ((p * V) / (R * T));
+
+            return m;
+        }
+
+        public float transferGas(float amount)
+        {
+            liftingGasAmount += amount;
+            return amount;
+        }
+
+        private void pressureEqualization()
+        {
+            Dictionary<AirshipEnvelope, float> pressureVectors = new Dictionary<AirshipEnvelope, float>();
+
+            foreach(AttachNode node in part.attachNodes)
+            {
+                
+                foreach(AirshipEnvelope other in node.attachedPart.Modules.OfType<AirshipEnvelope>())
+                {
+                    pressureVectors.Add(other, this.AbsolutePressure - other.AbsolutePressure);
+                }
+            }
+
+            foreach(KeyValuePair<AirshipEnvelope, float> v in pressureVectors.Where(x => x.Value > 0))
+            {
+                liftingGasAmount -= v.Key.transferGas(v.Value * 0.1f);
+            }
+
+            
+
+
+            //part.attachNodes.Where<AttachNode>(x => x.attachedPart.type)
+
+        }
+
         
-        private LiftingGas getCurrentLiftingGas()
+        public LiftingGas getCurrentLiftingGas()
         {
             return liftingGasOptions.First<LiftingGas>(x => x.displayName == liftingGas);
         }
 
+        
         public double requestBallonetAir(double amount)
         {
+            float inflationRate = util.editorActive() ? ballonetInflationRateEditor : ballonetInflationRate;
+
+            inflationRate *= envelopeVolume;
+
             float deltaTime = 0;
             if (HighLogic.LoadedScene == GameScenes.FLIGHT)
                 deltaTime = TimeWarp.deltaTime;
             else
                 deltaTime = Time.deltaTime;
 
-            if(Math.Abs(amount) <= ballonetInflationRate * deltaTime)
+            if (Math.Abs(amount) <= inflationRate * deltaTime)
             {
                 return amount;
             }
             else
             {
-                return Math.Sign(amount) * ballonetInflationRate * deltaTime;
+                return Math.Sign(amount) * inflationRate * deltaTime;
             }
         }
 
@@ -276,20 +353,23 @@ namespace ProcAirships
 
             temperature = (float)getTemperature();
 
+            if(autofill && util.editorActive())
+                autoFill();
+         
             absolutePressure = (float)getAbsolutePressure();
 
             relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
 
-            part.mass = dryMassPerQubicMeter * envelopeVolume + liftingGasAmount / 1000.0f;
-            
-            if(autofill)
-            {
-                if (relativePressure > 0.001f)
-                    liftingGasAmount -= 0.0001f;
-                else if (relativePressure < -0.001f)
-                    liftingGasAmount += 0.0001f;
-            }
+            if (!util.editorActive())
+                pressureEqualization();
 
+            part.mass = dryMassPerQubicMeter * envelopeVolume + liftingGasAmount / 1000.0f;
+
+        }
+
+        void autoFill()
+        {
+            liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + 0.5d);
         }
 
      
@@ -407,7 +487,7 @@ namespace ProcAirships
 
 
         [Serializable]
-        class LiftingGas : IConfigNode
+        public class LiftingGas : IConfigNode
         {
             [SerializeField]
             public string displayName;

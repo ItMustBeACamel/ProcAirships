@@ -110,7 +110,7 @@ namespace ProcAirships
             tankVolume = 0.0f;
             foreach (AirshipEnvelope envelope in part.Modules.OfType<AirshipEnvelope>())
             {
-                tankVolume += (float)envelope.envelopeVolumeNet;
+                tankVolume += (float)envelope.EnvelopeVolumeNet;
             }
         }
 
