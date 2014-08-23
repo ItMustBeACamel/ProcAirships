@@ -22,6 +22,15 @@ namespace ProcAirships
             return FlightGlobals.getAtmDensity(pressure);
         }
 
+        public override double getAirPressure()
+        {
+
+            if (HighLogic.LoadedScene == GameScenes.EDITOR)
+                return FlightGlobals.getStaticPressure(72.5, FlightGlobals.Bodies[1]);
+            else
+                return FlightGlobals.getStaticPressure(69.0, FlightGlobals.Bodies[1]);
+        }
+
        
     }
 }

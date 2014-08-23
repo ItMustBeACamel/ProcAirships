@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using System.Reflection;
 
 namespace ProcAirships
 {
@@ -22,20 +23,35 @@ namespace ProcAirships
 
         
 
-        public static void post(string message, LogLevel level = LogLevel.LOG_DEBUG)
+        public static void post(object message, LogLevel level = LogLevel.LOG_DEBUG, UnityEngine.Object context = null)
         {
             if (level <= logLevel)
             {
+                string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
+                string assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 switch (level)
                 {
                     case LogLevel.LOG_ERROR:
-                        Debug.LogError("[ProcAirships]" + message);
+
+                        if(context == null)
+                            Debug.LogError("[" + assemblyName + "|" + assemblyVersion +"] " + message);
+                        else
+                            Debug.LogError("[" + assemblyName + "|" + assemblyVersion + "] " + message, context);
                         break;
+
                     case LogLevel.LOG_WARNING:
-                        Debug.LogWarning("[ProcAirships]" + message);
+
+                        if (context == null)
+                            Debug.LogWarning("[" + assemblyName + "|" + assemblyVersion + "] " + message);
+                        else
+                            Debug.LogWarning("[" + assemblyName + "|" + assemblyVersion + "] " + message, context);
                         break;
+
                     default:
-                        Debug.Log("[ProcAirships]" + message);
+                        if (context == null)
+                            Debug.Log("[" + assemblyName + "|" + assemblyVersion + "] " + message);
+                        else
+                            Debug.Log("[" + assemblyName + "|" + assemblyVersion + "] " + message, context);
                         break;
                 }
 
@@ -46,7 +62,10 @@ namespace ProcAirships
         public static void postException(Exception e)
         {
             Debug.LogException(e);
+            //Debug.Log()
         }
+
+
 
 
 
