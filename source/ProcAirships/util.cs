@@ -27,6 +27,16 @@ namespace ProcAirships
             return T - 273.15d;
         }
 
+        public static double pascalToBar(double p)
+        {
+            return p / 101325.0d;
+        }
+
+        public static double barToPascal(double p)
+        {
+            return p * 101325.0d;
+        }
+
         public const double GasConstant = 8.3144621d;
     }
 }

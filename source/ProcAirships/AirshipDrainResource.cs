@@ -27,7 +27,7 @@ namespace ProcAirships
         public float maxDumpRate;
 
         [KSPField(isPersistant = true, guiName = "dump rate", guiActive = false, guiActiveEditor = false, category = "dump resource", guiFormat="S6+3", guiUnits="L"),
-            UI_FloatEdit(scene = UI_Scene.Flight, incrementLarge = 1.0f, incrementSmall = 0.1f, incrementSlide = 0.1f )]
+            UI_FloatEdit(scene = UI_Scene.Flight, incrementLarge = 1.0f, incrementSmall = 0.1f, incrementSlide = 0.01f )]
         public float dumpRate;
 
         [KSPField(guiName="dump", guiActive=false, guiActiveEditor=false, category="dump resource"),
@@ -112,6 +112,7 @@ namespace ProcAirships
 
             ((UI_FloatEdit)Fields["dumpRate"].uiControlFlight).minValue = minDumpRate;
             ((UI_FloatEdit)Fields["dumpRate"].uiControlFlight).maxValue = maxDumpRate;
+            //((UI_FloatEdit)Fields["dumpRate"].uiControlFlight).maxValue = maxDumpRate;
             
            
         }

@@ -70,27 +70,48 @@ namespace ProcAirships
 
         [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "lifting gas", guiFormat = "F3", guiUnits="kg"),
             UI_FloatEdit(scene = UI_Scene.Editor, minValue = 0.0f, maxValue = float.PositiveInfinity, incrementLarge = 1.0f, incrementSmall = 0.1f, incrementSlide = 0.001f)]
-        public float liftingGasAmount; // kg
+        private float liftingGasAmount; // kg
 
 
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "temperature", guiFormat = "F4", guiUnits = "°C")]
         public float temperature; // gas temperature
 
+        [UI_Label(controlEnabled=true,scene=UI_Scene.All)]
+        private string athPressureUI = "0";
+
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "abs. pressure", guiFormat = "F6", guiUnits="bar")]
         private float absolutePressure; // ui // calsulated
+
 
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "rel. pressure", guiFormat = "F6", guiUnits = "bar")]
         public float relativePressure; // ui // calculated
 
+
         [KSPField]
         public float dryMassPerQubicMeter; // KSPField float
 
+        [KSPField]
+        private float idealRelPressure = 0.005f;
 
+        [KSPField]
+        private float pressureTolerance = 0.05f;
 
-        [KSPField(guiName = "autofill", guiActive = false, guiActiveEditor = true),
+        [KSPField(isPersistant=true)]
+        private double gasFlow = 0.5;
+
+        [KSPField(isPersistant=true, guiName = "autofill", guiActive = false, guiActiveEditor = true),
             UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.Editor)]
-        bool autofill = true; // ui
+        private bool autofill = true; // ui
 
+        [KSPField(isPersistant=true, guiName = "pressureControl", guiActive = true, guiActiveEditor = true),
+            UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.All)]
+        private bool pressureControl = true; // ui
+
+        public float EnvelopeVolume
+        {
+            get { return envelopeVolume; }
+            protected set { envelopeVolume = value; }
+        }
 
         public double EnvelopeVolumeNet
         {
@@ -114,8 +135,12 @@ namespace ProcAirships
         
         Athmosphere athmosphere;
 
-        //----------------------------------------------------------------------------------------------
-        #region Actions 
+        //Dictionary<AirshipEnvelope, float> pressureVectors;
+
+        float gasAmountDelta=0.0f;
+
+//----------------------------------------------------------------------------------------------
+#region Actions 
 
         [KSPAction(guiName: "Ballonet - 10.0%")]
         public void ballonetMinusMinusMinusMinus(KSPActionParam ap)
@@ -165,8 +190,8 @@ namespace ProcAirships
             ballonetTargetInflation += 10.0f;
         }
 
-        #endregion
-        //----------------------------------------------------------------------------------------------
+#endregion
+//----------------------------------------------------------------------------------------------
 
 
 
@@ -211,7 +236,30 @@ namespace ProcAirships
 
             if (HighLogic.LoadedScene == GameScenes.FLIGHT)
                 part.force_activate();
-          
+         
+            
+        }
+
+        void Update()
+        {
+
+            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+                updateEnvelope();
+        }
+
+        public override void OnFixedUpdate()
+        {
+            updateEnvelope();
+
+        }
+
+        public void LateUpdate()
+        {
+            if (!util.editorActive())
+            {
+               
+                pressureEqualization();
+            }    
         }
 
         public override void OnLoad(ConfigNode node)
@@ -224,9 +272,7 @@ namespace ProcAirships
         public override void OnSave(ConfigNode node)
         {
             node.AddValue("ballonetVolume", ballonetVolume);
-            //node.AddValue("testf", 0.003f);
-            //node.AddValue("testd", 0.00000000003d);
-            //node.AddValue("envelopeVolume", envelopeVolume);
+            
         }
 
         double getTemperature()
@@ -254,7 +300,7 @@ namespace ProcAirships
             return p / 1000.0d / 101.325d;
         }
 
-        double getGasAmount(double pressure)
+        double getGasAmount(double pressure) // returns the gas amount thats needed to achieve a given pressure value in this envelope
         {
 
             LiftingGas gas = getCurrentLiftingGas();
@@ -276,29 +322,55 @@ namespace ProcAirships
             return amount;
         }
 
+        public double requestLiftingGas(double amount)
+        {
+            double transferRate = gasFlow;
+
+            transferRate *= envelopeVolume;
+
+            float deltaTime = 0;
+            if (HighLogic.LoadedScene == GameScenes.FLIGHT)
+                deltaTime = TimeWarp.deltaTime;
+            else
+                deltaTime = Time.deltaTime;
+
+            if (Math.Abs(amount) > transferRate * deltaTime)
+            {
+                amount = Math.Sign(amount) * transferRate * deltaTime; 
+            }
+            
+            liftingGasAmount -= (float)amount;
+            return amount;
+
+
+        }
+
+
         private void pressureEqualization()
         {
             Dictionary<AirshipEnvelope, float> pressureVectors = new Dictionary<AirshipEnvelope, float>();
-
+            
             foreach(AttachNode node in part.attachNodes)
             {
                 
                 foreach(AirshipEnvelope other in node.attachedPart.Modules.OfType<AirshipEnvelope>())
                 {
-                    pressureVectors.Add(other, this.AbsolutePressure - other.AbsolutePressure);
+                        pressureVectors.Add(other, this.AbsolutePressure - other.AbsolutePressure);
                 }
             }
+              
+             
+            //if (pressureVectors == null) return;
 
-            foreach(KeyValuePair<AirshipEnvelope, float> v in pressureVectors.Where(x => x.Value > 0))
+            //foreach(KeyValuePair<AirshipEnvelope, float> v in pressureVectors.Where(x => x.Value > 0))
+            //{
+            //    liftingGasAmount -= v.Key.transferGas(v.Value * 0.1f);
+            //}
+            gasAmountDelta = 0.0f;
+            foreach (KeyValuePair<AirshipEnvelope, float> v in pressureVectors)
             {
-                liftingGasAmount -= v.Key.transferGas(v.Value * 0.1f);
+                gasAmountDelta -= v.Value * (float)gasFlow * Math.Min(this.EnvelopeVolume, v.Key.EnvelopeVolume);
             }
-
-            
-
-
-            //part.attachNodes.Where<AttachNode>(x => x.attachedPart.type)
-
         }
 
         
@@ -332,6 +404,9 @@ namespace ProcAirships
 
         private void updateEnvelope()
         {
+            athPressureUI = athmosphere.getAirPressure().ToString();
+
+            liftingGasAmount += gasAmountDelta;
             ballonetVolumeMax = (envelopeVolume / 100.0d) * (double)ballonetPercentage;
 
             ballonetInflation = (float)(ballonetVolume / (ballonetVolumeMax / 100.0f));
@@ -360,31 +435,30 @@ namespace ProcAirships
 
             relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
 
-            if (!util.editorActive())
-                pressureEqualization();
-
             part.mass = dryMassPerQubicMeter * envelopeVolume + liftingGasAmount / 1000.0f;
+
+            if(pressureControl && !util.editorActive())
+            {
+                if(relativePressure > idealRelPressure)
+                {
+                    ballonetTargetInflation -= 0.01f;
+                }
+                else if(relativePressure < idealRelPressure)
+                {
+                    ballonetTargetInflation += 0.01f;
+                }
+
+            }
 
         }
 
         void autoFill()
         {
-            liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + 0.5d);
+            liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
         }
 
      
-        void Update()
-        {
-
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
-                updateEnvelope();
-        }
-
-        public override void OnFixedUpdate()
-        {
-            updateEnvelope();
-         
-        }
+        
 
         // message receiving
 
