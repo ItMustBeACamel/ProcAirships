@@ -43,7 +43,7 @@ namespace ProcAirships
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
                 }
 
-                if (p.GetComponent<LaunchClamp>() == null)
+                if (p.GetComponent<LaunchClamp>() == null && p.physicalSignificance == Part.PhysicalSignificance.FULL)
                 {
                     vesselMass += (p.mass + p.GetResourceMass());
                 }

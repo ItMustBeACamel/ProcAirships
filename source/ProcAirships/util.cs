@@ -16,6 +16,11 @@ namespace ProcAirships
             else return val;
         }
 
+        public static bool Toggle(this bool val)
+        {
+            return val == true ? false : true;
+        }
+
         public static bool editorActive()
         {
             if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)

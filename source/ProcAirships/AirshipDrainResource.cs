@@ -26,8 +26,8 @@ namespace ProcAirships
         [KSPField]
         public float maxDumpRate;
 
-        [KSPField(isPersistant = true, guiName = "dump rate", guiActive = false, guiActiveEditor = false, category = "dump resource", guiFormat="S6+3", guiUnits="L"),
-            UI_FloatEdit(scene = UI_Scene.Flight, incrementLarge = 1.0f, incrementSmall = 0.1f, incrementSlide = 0.01f )]
+        [KSPField(isPersistant = true, guiName = "dump rate", guiActive = true, guiActiveEditor = false, category = "dump resource", guiFormat="F4", guiUnits="L/s"),
+            UI_FloatEdit(scene = UI_Scene.Flight, incrementLarge = 100.0f, incrementSmall = 10.0f, incrementSlide = 1.0f )]
         public float dumpRate;
 
         [KSPField(guiName="dump", guiActive=false, guiActiveEditor=false, category="dump resource"),
@@ -42,7 +42,7 @@ namespace ProcAirships
         public void toggleDump(KSPActionParam ap)
         {
             Log.post("ACTION: toggle dumping '" + displayName + "'.", LogLevel.LOG_INFORMATION);
-            dumping = (dumping == true) ? false : true;
+            dumping.Toggle();
         }
 
         [KSPAction(guiName:"start dumping")]
@@ -59,6 +59,42 @@ namespace ProcAirships
             dumping = false;
         }
 
+        [KSPAction(guiName: "dumping rate - 100 L/s")]
+        public void dumpingRateMinusMinusMinus(KSPActionParam ap)
+        {
+            DumpRate -= 100.0f;
+        }
+
+        [KSPAction(guiName: "dumping rate - 10 L/s")]
+        public void dumpingRateMinusMinus(KSPActionParam ap)
+        {
+            DumpRate -= 10.0f;
+        }
+
+        [KSPAction(guiName: "dumping rate - 1 L/s")]
+        public void dumpingRateMinus(KSPActionParam ap)
+        {
+            DumpRate -= 1.0f;
+        }
+
+        [KSPAction(guiName: "dumping rate + 1 L/s")]
+        public void dumpingRatePlus(KSPActionParam ap)
+        {
+            DumpRate += 1.0f;
+        }
+
+        [KSPAction(guiName: "dumping rate + 10 L/s")]
+        public void dumpingRatePlusPlus(KSPActionParam ap)
+        {
+            DumpRate += 10.0f;
+        }
+
+        [KSPAction(guiName: "dumping rate + 100 L/s")]
+        public void dumpingRatePlusPlusPlus(KSPActionParam ap)
+        {
+            DumpRate += 100.0f;
+        }
+
 #endregion
 //------------------------------------------------------------------------------------------------------------------------
 #region propeties
@@ -66,6 +102,16 @@ namespace ProcAirships
         public  PartResource Resource
         {
             get { return part.Resources.Get(resourceName.GetHashCode()); }
+        }
+
+        public float DumpRate
+        {
+            get { return dumpRate; }
+            set
+            {
+                value.Clamp(minDumpRate, maxDumpRate);
+                dumpRate = value;
+            }
         }
 
 #endregion
