@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using UnityEngine;
 using KSP;
+using RCSBuildAid;
 
 namespace ProcAirships
 {
@@ -43,9 +44,10 @@ namespace ProcAirships
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
                 }
 
-                if (p.GetComponent<LaunchClamp>() == null && p.physicalSignificance == Part.PhysicalSignificance.FULL)
+                //if (p.GetComponent<LaunchClamp>() == null && part.has /* && p.physicalSignificance == Part.PhysicalSignificance.FULL*/)
+                if(p.hasPhysicsEnabled())
                 {
-                    vesselMass += (p.mass + p.GetResourceMass());
+                    vesselMass += (p.GetTotalMass());
                 }
             }
 
@@ -64,9 +66,9 @@ namespace ProcAirships
                     vesselBuoyancy += module.getBuoyancyForce().magnitude;
                 }
 
-                if (p.GetComponent<LaunchClamp>() == null)
+                if (p.hasPhysicsEnabled())
                 {
-                    vesselMass += (p.mass + p.GetResourceMass());
+                    vesselMass += (p.GetTotalMass());
                 }
             }
 
