@@ -178,9 +178,7 @@ namespace ProcAirships
         
         Athmosphere athmosphere;
 
-        //Dictionary<AirshipEnvelope, float> pressureVectors;
-
-        //float gasAmountDelta=0.0f;
+        float damageTimer = 0.0f;
 
         bool updateFlag = false;
 
@@ -344,6 +342,8 @@ namespace ProcAirships
                 if(getCurrentLiftingGas().combustible)
                 part.maxTemp = getCurrentLiftingGas().maxTemperature;
             }
+
+            damageTimer = -10.0f;
 
             Log.post("AirshipEnvelope Module started", LogLevel.LOG_INFORMATION);
             
@@ -512,6 +512,27 @@ namespace ProcAirships
         
         }
 
+        private void updatePressureDamage()
+        {
+            damageTimer += TimeWarp.fixedDeltaTime;
+            if (damageTimer >= 1.0f)
+            {
+                float overpressure = Math.Abs((relativePressure - idealRelPressure)) - pressureTolerance;
+
+                if (overpressure > 0)
+                {
+                    float randomNumber = UnityEngine.Random.Range(0.0f, pressureTolerance);
+                    if (randomNumber < overpressure)
+                    {
+                        part.explode();
+                        FlightLogger.eventLog.Add("envelope destroyed due to too high or low pressure");
+                    }
+                }
+
+                damageTimer -= 1.0f;
+            }
+        }
+
         private void updateEnvelope()
         {
 
@@ -570,6 +591,9 @@ namespace ProcAirships
             {
                 LiftingGasAmount -= ventingRate * TimeWarp.fixedDeltaTime;
             }
+
+            if (!util.editorActive())
+                updatePressureDamage();
             
         }
 
