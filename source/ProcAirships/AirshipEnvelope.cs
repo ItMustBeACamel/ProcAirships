@@ -334,20 +334,18 @@ namespace ProcAirships
 
             }
                 
-            setupUI();
-
-            Log.post("AirshipEnvelope Module started", LogLevel.LOG_INFORMATION);
-            
-            foreach(BaseField f in Fields)
-            {
-                //Log.post(f.name + ": " + f.GetValue(this).ToString(), LogLevel.LOG_INFORMATION);
-            }
+            setupUI(); 
 
             athmosphere = Factory.getAthmosphere();
 
-            if (HighLogic.LoadedScene == GameScenes.FLIGHT)
+            if (!util.editorActive())
+            {
                 part.force_activate();
-         
+                if(getCurrentLiftingGas().combustible)
+                part.maxTemp = getCurrentLiftingGas().maxTemperature;
+            }
+
+            Log.post("AirshipEnvelope Module started", LogLevel.LOG_INFORMATION);
             
         }
 
@@ -716,6 +714,12 @@ namespace ProcAirships
             [SerializeField]
             public double molarMass;
 
+            [SerializeField]
+            public bool combustible;
+
+            [SerializeField]
+            public float maxTemperature;
+
             public void Load(ConfigNode node)
             {
                 //ConfigNode.LoadObjectFromConfig(this, node);
@@ -729,6 +733,16 @@ namespace ProcAirships
                 if (!node.TryGetValue("molarMass", out molarMass))
                     Log.post("Could not read molarMass from ConfigNode", LogLevel.LOG_ERROR);
 
+                if (!node.TryGetValue("combustible", out combustible))
+                    Log.post("Could not read combustible from ConfigNode", LogLevel.LOG_ERROR);
+
+                if (!node.TryGetValue("maxTemperature", out maxTemperature))
+                {
+                    if (combustible)
+                        Log.post("Could not read maxTemperature from ConfigNode", LogLevel.LOG_ERROR);
+                    else
+                        maxTemperature = 0.0f;
+                }
 
             }
             public void Save(ConfigNode node)
