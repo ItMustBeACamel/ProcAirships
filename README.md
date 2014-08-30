@@ -15,4 +15,4 @@ Unfortunately it's only possible to save while the ship touches the ground and i
 
 additional notes:
 
-+ This mod contains code from m4v's RCS Build Aid plugin, published under LGPLv3. It's a great plugin, give it a [try](http://forum.kerbalspaceprogram.com/threads/35996-0-24-x-RCS-Build-Aid-v0-5) if you like.
++ This mod contains code from m4v's RCS Build Aid plugin, published under LGPLv3. It's a great plugin, please give it a [try](http://forum.kerbalspaceprogram.com/threads/35996-0-24-x-RCS-Build-Aid-v0-5) if you like.
