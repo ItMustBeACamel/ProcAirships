@@ -13,7 +13,7 @@ namespace ProcAirships
     public class AirshipEnvelope : PartModule
     {
 
-        [KSPField(isPersistant = true, guiActive = true, guiActiveEditor = true, guiName = "envelope vol.", guiUnits = "m³", guiFormat = "F3")]
+        [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = false, guiName = "envelope vol.", guiUnits = "m³", guiFormat = "F3")]
         private float envelopeVolume = 0;
 
 
@@ -54,13 +54,13 @@ namespace ProcAirships
         public float ballonetInflationRateEditor = 1.0f; // m³ per second per m³ volume - KSPField // no persistence
 
 
-        [KSPField(guiActive = true, guiActiveEditor = true, guiName = "ballonet max vol.", guiFormat = "F3")]
+        [KSPField(guiActive = false, guiActiveEditor = false, guiName = "ballonet max vol.", guiFormat = "F3")]
         public double ballonetVolumeMax; // m³ maximum possible volume of the ballonet // KSPField
 
 
         //[KSPField(isPersistant=true, guiActive = true, guiActiveEditor = true, guiName = "ballonet vol.", guiFormat="F3")]
         public double ballonetVolume = 0; // m³ // save // ui as string
-        [KSPField(guiActive = true, guiActiveEditor = true, guiName = "ballonet vol.")]
+        [KSPField(guiActive = false, guiActiveEditor = false, guiName = "ballonet vol.")]
         private string ballonetVolumeUI;
 
 
@@ -76,8 +76,6 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "temperature", guiFormat = "F4", guiUnits = "°C")]
         public float temperature = 0.0f; // gas temperature
 
-        [UI_Label(controlEnabled=true,scene=UI_Scene.All)]
-        private string athPressureUI = "0";
 
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "abs. pressure", guiFormat = "F6", guiUnits="bar")]
         private float absolutePressure; // ui // calsulated
@@ -574,7 +572,7 @@ namespace ProcAirships
                 }
             }
 
-            athPressureUI = athmosphere.getAirPressure().ToString();
+           
             temperature = (float)getTemperature();
 
             //absolutePressure = (float)getAbsolutePressure();
