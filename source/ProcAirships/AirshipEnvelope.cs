@@ -25,7 +25,7 @@ namespace ProcAirships
 
         [KSPField( isPersistant=true, guiActive=true, guiActiveEditor=true, guiName="lifting gas"),
             UI_ChooseOption(scene = UI_Scene.Editor, controlEnabled = true)]
-        public string liftingGas; // type of lifting gas // KSPField peristent
+        public string liftingGas=""; // type of lifting gas // KSPField peristent
 
 
         [KSPField]
@@ -434,6 +434,7 @@ namespace ProcAirships
 
         public LiftingGas getCurrentLiftingGas()
         {
+            if (liftingGas == "") return null;
             return liftingGasOptions.First<LiftingGas>(x => x.displayName == liftingGas);
         }
 
@@ -742,6 +743,9 @@ namespace ProcAirships
             [SerializeField]
             public float maxTemperature;
 
+            [SerializeField]
+            public float cost;
+
             public void Load(ConfigNode node)
             {
                 //ConfigNode.LoadObjectFromConfig(this, node);
@@ -766,6 +770,9 @@ namespace ProcAirships
                         maxTemperature = 0.0f;
                 }
 
+                if (!node.TryGetValue("cost", out cost))
+                    Log.post("Could not read cost from ConfigNode", LogLevel.LOG_ERROR);
+
             }
             public void Save(ConfigNode node)
             {
@@ -774,9 +781,10 @@ namespace ProcAirships
                 node.SetValue("displayName", displayName);
                 node.SetValue("resourceName", resourceName);
                 node.SetValue("molarMass", molarMass.ToString());
+                node.SetValue("cost", cost.ToString());
             }
 
         }
-         
+
     } // class
 }

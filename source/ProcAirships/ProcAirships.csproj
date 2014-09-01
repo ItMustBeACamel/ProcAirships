@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirshipCost.cs" />
     <Compile Include="AirshipDrain.cs" />
     <Compile Include="AirshipDrainResource.cs" />
     <Compile Include="AirshipEnvelope.cs" />
