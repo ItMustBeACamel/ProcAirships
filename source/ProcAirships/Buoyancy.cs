@@ -11,7 +11,7 @@ namespace ProcAirships
 {
     public class Buoyancy : PartModule
     {
-        private Athmosphere athmosphere = null;
+        //private Athmosphere athmosphere = null;
 
         private Vector3 buoyantForce;
 
@@ -21,7 +21,7 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Buoyancy", guiUnits = "kN", guiFormat = "F2")]
         public float guiBuoyancy = 0;
 
-        [KSPField(guiActive = true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
+        [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
         public float guiGravPull = 0;
 
         private float buoyancyMultiplicator = 1.0f;
@@ -45,7 +45,7 @@ namespace ProcAirships
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
             
-            athmosphere = Factory.getAthmosphere();
+            //athmosphere = Factory.getAthmosphere();
 
             if (state != StartState.Editor)
             {
@@ -151,14 +151,16 @@ namespace ProcAirships
 
         public Vector3 getBuoyancyForce()
         {
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            if (util.editorActive())
             {
-                float airDensity = (float)athmosphere.getAirDensity();
+                //float airDensity = (float)athmosphere.getAirDensity();
+                float airDensity = (float)Athmosphere.fetch().getAirDensity(part.rigidbody.worldCenterOfMass);
                 return (-Vector3.down * 9.8f * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
             }
             else
             {
-                float airDensity = (float)athmosphere.getAirDensity();
+                //float airDensity = (float)athmosphere.getAirDensity();
+                float airDensity = (float)Athmosphere.fetch().getAirDensity(part.rigidbody.worldCenterOfMass);
                 return (-FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
             }
         }

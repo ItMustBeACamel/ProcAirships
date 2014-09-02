@@ -29,6 +29,22 @@ namespace ProcAirships
                 return false;   
         }
 
+        public static bool vabActive()
+        {
+            if (HighLogic.LoadedScene == GameScenes.EDITOR)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool sphActive()
+        {
+            if (HighLogic.LoadedScene == GameScenes.SPH)
+                return true;
+            else
+                return false;
+        }
+
         public static double celsiusToKelvin(double T)
         {
             return T + 273.15d;

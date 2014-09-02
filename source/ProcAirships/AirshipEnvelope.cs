@@ -174,7 +174,7 @@ namespace ProcAirships
         
         List<LiftingGas> liftingGasOptions;
         
-        Athmosphere athmosphere;
+        //Athmosphere athmosphere;
 
         float damageTimer = 0.0f;
 
@@ -351,7 +351,7 @@ namespace ProcAirships
 
             setupUI(); 
 
-            athmosphere = Factory.getAthmosphere();
+            //athmosphere = Factory.getAthmosphere();
 
             if (!util.editorActive())
             {
@@ -371,6 +371,8 @@ namespace ProcAirships
 
             if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
                 updateEnvelope();
+
+            //Log.post("world position: " + part.rigidbody.worldCenterOfMass.ToString());
         }
 
         public override void OnFixedUpdate()
@@ -596,7 +598,8 @@ namespace ProcAirships
             temperature = (float)getTemperature();
 
             //absolutePressure = (float)getAbsolutePressure();
-            relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
+            //relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
+            relativePressure = (float)(absolutePressure - Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass));
 
             pStatus = (relativePressure-idealRelPressure).Clamp(-pressureTolerance, pressureTolerance);
 
@@ -613,11 +616,26 @@ namespace ProcAirships
             if (!util.editorActive())
                 updatePressureDamage();
             
+            
+            //if (!util.editorActive())
+            //{
+            //    Vector3 pos = part.rigidbody.worldCenterOfMass;
+            //    double alt = FlightGlobals.getAltitudeAtPos(pos);
+
+            //    Log.post("altitude of pos: " + alt);
+            //    Log.post("density  at alt: " + ferram4.FARAeroUtil.GetCurrentDensity(FlightGlobals.currentMainBody, alt));
+            //    Log.post("density  at pos: " + ferram4.FARAeroUtil.GetCurrentDensity(FlightGlobals.currentMainBody, pos));
+            //    Log.post("density     ASL: " + ferram4.FARAeroUtil.GetCurrentDensity(FlightGlobals.currentMainBody, 0.0));
+            //    Log.post("temp at pos: " + FlightGlobals.getExternalTemperature(pos));
+            //    Log.post("temp at alt: " + FlightGlobals.getExternalTemperature((float)alt, FlightGlobals.currentMainBody));
+            //}
+
         }
 
         void autoFill()
         {
-            liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
+            //liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
+            liftingGasAmount = (float)getGasAmount(Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass) + idealRelPressure);
         }
 
      
