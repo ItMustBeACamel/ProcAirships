@@ -307,12 +307,30 @@ namespace ProcAirships
             Log.post(this.ClassName + " OnAwake-callback: ");
           
             base.OnAwake();
-            PartMessageService.Register(this);   
+            PartMessageService.Register(this);
+   
+            loadLiftingGasOptions();
+
+            // check liftingGas validity. If invalid: set to default
+            if (!liftingGasOptions.Any(a => a.displayName == liftingGas))
+            {
+                Log.post("no valid lifting gas selected. Set to default", LogLevel.LOG_WARNING);
+                if (liftingGasOptions.Count > 0)
+                {
+                    liftingGas = liftingGasOptions.First<LiftingGas>().displayName;
+                    Log.post("liftinggas set to: " + liftingGas, LogLevel.LOG_INFORMATION);
+                }
+                else
+                    Log.post("no valid lifting gas option found.", LogLevel.LOG_ERROR);
+            }
+
         }
 
         public override void OnStart(StartState state)
         {
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
+
+            /*
 
             loadLiftingGasOptions();
 
@@ -328,8 +346,9 @@ namespace ProcAirships
                 else
                     Log.post("no valid lifting gas option found.", LogLevel.LOG_ERROR);
 
-            }
-                
+            }   
+            */
+
             setupUI(); 
 
             athmosphere = Factory.getAthmosphere();

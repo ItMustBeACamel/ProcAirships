@@ -13,7 +13,7 @@ namespace ProcAirships
         {
             try
             {
-                return ferram4.FARAPI.GetActiveControlSys_AirDensity();
+                return 0;// ferram4.FARAPI.GetActiveControlSys_AirDensity();
             }
             catch (Exception e)
             {
