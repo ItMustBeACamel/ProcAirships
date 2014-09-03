@@ -15,7 +15,7 @@ namespace ProcAirships
 
         private getAirDensityAltFunc getAirDensityAlt;
         private getAirDensityPosFunc getAirDensityPos;
-        private updateCurrentActivelBodyFunc updateCurrentActiveBody;
+        //private updateCurrentActivelBodyFunc updateCurrentActiveBody;
 
   
 
@@ -57,8 +57,8 @@ namespace ProcAirships
                 getAirDensityPos = (getAirDensityPosFunc)Delegate.CreateDelegate(typeof(getAirDensityPosFunc), null,
                     aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(Vector3) }));
 
-                updateCurrentActiveBody = (updateCurrentActivelBodyFunc)Delegate.CreateDelegate(typeof(updateCurrentActivelBodyFunc), null,
-                    aeroUtilType.GetMethod("UpdateCurrentActiveBody", new Type[] { typeof(CelestialBody)}));
+                //updateCurrentActiveBody = (updateCurrentActivelBodyFunc)Delegate.CreateDelegate(typeof(updateCurrentActivelBodyFunc), null,
+                //    aeroUtilType.GetMethod("UpdateCurrentActiveBody", new Type[] { typeof(CelestialBody)}));
 
                 
                
@@ -92,6 +92,7 @@ namespace ProcAirships
         // FAR does not seem to have a function for this so I copied this out of it's AeroUtil class
         public double getAirPressure(double altitude, CelestialBody body)
         {
+            /*
             //ferram4.FARAeroUtil.UpdateCurrentActiveBody(body);
             updateCurrentActiveBody(body);
 
@@ -108,11 +109,16 @@ namespace ProcAirships
                 pressure = (pressure - currentBodyAtmPressureOffset);
 
             return pressure;
+             * 
+             */
+
+            return FlightGlobals.getStaticPressure(altitude, body);
         }
 
         // FAR does not seem to have a function for this so I copied this out of it's AeroUtil class
         public double getAirPressure(UnityEngine.Vector3 worldPosition, CelestialBody body)
         {
+            /*
             //ferram4.FARAeroUtil.UpdateCurrentActiveBody(body);
             updateCurrentActiveBody(body);
 
@@ -127,6 +133,8 @@ namespace ProcAirships
                 pressure = (pressure - currentBodyAtmPressureOffset);
 
             return pressure;
+             */
+            return FlightGlobals.getStaticPressure(worldPosition, body);
         }
 
         
