@@ -61,7 +61,7 @@ namespace ProcAirships
                 Debug.LogWarning("'PROC_AIRSHIPS_CONFIG' not detected. Using standard values.");
                 return;
             }
-
+            
             Config config = new Config();
             config.Load(nodes[0]);
 

@@ -62,7 +62,12 @@ namespace ProcAirships
         public static void postException(Exception e)
         {
             Debug.LogException(e);
-            //Debug.Log()
+        }
+
+        public static void postException(object message, Exception e)
+        {
+            Debug.LogError(message);
+            Debug.LogException(e);
         }
 
 

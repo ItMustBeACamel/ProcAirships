@@ -104,6 +104,7 @@ namespace ProcAirships
         {
             if (currentModel == null)
             {
+
                 bool isFARLoaded = AssemblyLoader.loadedAssemblies.Any(a => a.assembly.GetName().Name == "FerramAerospaceResearch");
 
                 //isFARLoaded = false;
@@ -117,15 +118,25 @@ namespace ProcAirships
                     Log.post("FAR Version: " + FAR.assembly.GetName().Version.ToString(), LogLevel.LOG_INFORMATION);
 
                     currentModel = new AthmosphereModelFAR();
+                    if (!currentModel.init())
+                        fallBackToStock();
                 }
                 else
                 {
-                    Log.post("No FAR detected. Fallback to Stock behaviour.", LogLevel.LOG_INFORMATION);
+                    Log.post("No FAR detected...", LogLevel.LOG_INFORMATION);
 
-                    currentModel = new AthmosphereModelStock();
+                    fallBackToStock();
                 }
             }
 
+        }
+
+        private void fallBackToStock()
+        {
+            Log.post("Falling back to stock athmosphere model.", LogLevel.LOG_INFORMATION);
+            currentModel = new AthmosphereModelStock();
+            if (!currentModel.init())
+                Log.post("Could not init stock athmosphere model", LogLevel.LOG_ERROR);
         }
 
         private void updateBody()

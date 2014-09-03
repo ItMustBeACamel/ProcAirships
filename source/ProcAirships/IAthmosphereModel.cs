@@ -9,6 +9,8 @@ namespace ProcAirships
     interface  IAthmosphereModel
     {
 
+        bool init();
+
         double getAirDensity(double altitude, CelestialBody body);
         double getAirDensity(Vector3 worldPosition, CelestialBody body);
 

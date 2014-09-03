@@ -1,4 +1,25 @@
-﻿using System;
+﻿/*
+ * Procedural Airships
+ *   Copyright (C) 2014  Tobias Knappe <mindconductor@googlemail.com>
+ * 
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software Foundation,
+ *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ *
+ */
+ 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -98,8 +119,6 @@ namespace ProcAirships
         [KSPField]
         private float pressureTolerance = 0.05f;
 
-        //[KSPField(isPersistant=true)]
-        //private double gasFlow = 0.5;
 
         [KSPField(isPersistant=true, guiName = "autofill", guiActive = false, guiActiveEditor = true),
             UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.Editor)]
@@ -107,7 +126,7 @@ namespace ProcAirships
 
         [KSPField(isPersistant=true, guiName = "pressureControl", guiActive = true, guiActiveEditor = true),
             UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.All)]
-        private bool pressureControl = true; // ui
+        private bool pressureControl = false; // ui
 
         [KSPField(guiActive = true, guiActiveEditor = false, guiName = "venting rate", guiUnits = "kg/s", guiFormat = "F4"),
             UI_FloatEdit(scene = UI_Scene.Flight, minValue = 0.01f, maxValue = float.PositiveInfinity, incrementLarge = 1.0f, incrementSmall = 0.1f, incrementSlide = 0.001f)]
@@ -330,28 +349,8 @@ namespace ProcAirships
         {
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
-            /*
-
-            loadLiftingGasOptions();
-
-            // check liftingGas validity. If invalid: set to default
-            if (!liftingGasOptions.Any(a => a.displayName == liftingGas))
-            {
-                Log.post("no valid lifting gas selected. Set to default", LogLevel.LOG_WARNING);
-                if (liftingGasOptions.Count > 0)
-                {
-                    liftingGas = liftingGasOptions.First <LiftingGas>().displayName;
-                    Log.post("liftinggas set to: " + liftingGas, LogLevel.LOG_INFORMATION);
-                }
-                else
-                    Log.post("no valid lifting gas option found.", LogLevel.LOG_ERROR);
-
-            }   
-            */
-
             setupUI(); 
 
-            //athmosphere = Factory.getAthmosphere();
 
             if (!util.editorActive())
             {

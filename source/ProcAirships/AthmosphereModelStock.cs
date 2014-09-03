@@ -8,6 +8,11 @@ namespace ProcAirships
     class AthmosphereModelStock : IAthmosphereModel
     {
 
+        public bool init()
+        {
+            return true;
+        }
+
         public double getAirDensity(double altitude, CelestialBody body)
         {
             return FlightGlobals.getAtmDensity(getAirPressure(altitude, body));
