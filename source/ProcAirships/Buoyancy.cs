@@ -24,6 +24,10 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
         public float guiGravPull = 0;
 
+        [KSPField(isPersistant = true, guiName = "COL", guiActive = false, guiActiveEditor = true),
+            UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.Editor)]
+        private bool colActive = false;
+
         private float buoyancyMultiplicator = 1.0f;
 
         public override void OnActive()
@@ -45,7 +49,7 @@ namespace ProcAirships
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
             
-            //athmosphere = Factory.getAthmosphere();
+            
 
             if (state != StartState.Editor)
             {
@@ -53,21 +57,24 @@ namespace ProcAirships
                 part.force_activate();
             }
 
-            Log.post("get configuration. memo for me: PUT CONFIG STUFF IN A DEDICATED CLASS LATER.");
-            ConfigNode[] nodes = GameDatabase.Instance.GetConfigNodes("PROC_AIRSHIPS_CONFIG");
+            buoyancyMultiplicator = Preferences.buoyancyMultiplicator;
 
-            if (nodes.GetLength(0) == 0)
-            {
-                Debug.LogWarning("'PROC_AIRSHIPS_CONFIG' not detected. Using standard values.");
-                return;
-            }
-            
-            Config config = new Config();
-            config.Load(nodes[0]);
-
-
-            buoyancyMultiplicator = config.buoyancyMultiplicator;
             Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
+
+            setupUI();
+        }
+
+        public void OnCenterOfLiftQuery(CenterOfLiftQuery col)
+        {
+            if (colActive)
+            {
+            Log.post("COL Query");
+            col.dir = Vector3.up;
+            col.lift = tankVolume;
+            col.pos = transform.position;
+      
+                
+            }
         }
 
 
@@ -165,5 +172,25 @@ namespace ProcAirships
             }
         }
 
-    }
-}
+        private void setupUI()
+        {
+            BaseField field = Fields["guiBuoyancy"];
+
+            if (field != null)
+            {
+                field.guiActiveEditor = Preferences.showBuoyancyInEditor;
+                field.guiActive = Preferences.showBuoyancyInFlight;
+            }
+
+            field = Fields["guiGravPull"];
+            if (field != null)
+            {
+                field.guiActiveEditor = Preferences.showGravPullInEditor;
+                field.guiActive = Preferences.showGravPullInFlight;
+            }
+
+
+        }
+
+    } // class
+} // namespace

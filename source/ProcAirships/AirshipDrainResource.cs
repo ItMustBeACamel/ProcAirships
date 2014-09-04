@@ -114,6 +114,12 @@ namespace ProcAirships
             }
         }
 
+        public bool isControllable
+        {
+            get { return part.isControllable && !Preferences.alwaysControllable; }
+
+        }
+
 #endregion
 //------------------------------------------------------------------------------------------------------------------------
 #region Message receiving
@@ -165,7 +171,7 @@ namespace ProcAirships
 
         public override void OnFixedUpdate()
         {
-            if (dumping)
+            if (dumping && isControllable)
             {
                 float amountDumped;
                 Log.post("dumping: " + resourceName + " at rate " + dumpRate);

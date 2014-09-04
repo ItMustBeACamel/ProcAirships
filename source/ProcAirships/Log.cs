@@ -19,13 +19,13 @@ namespace ProcAirships
 
     public class Log
     {
-        public static LogLevel logLevel = LogLevel.LOG_ALL; // the highest debug level to show in logs
+        //public static LogLevel logLevel = LogLevel.LOG_ALL; // the highest debug level to show in logs
 
         
 
         public static void post(object message, LogLevel level = LogLevel.LOG_DEBUG, UnityEngine.Object context = null)
         {
-            if (level <= logLevel)
+            if ((uint)level <= Preferences.debugLevel)
             {
                 string assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
                 string assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();

@@ -40,6 +40,7 @@ namespace ProcAirships
 
         //[KSPField(guiActive = true, guiActiveEditor = true, guiName = "envelope net vol.", guiUnits = "m³", guiFormat = "F3")]
         private double envelopeVolumeNet = 0; // no save // ui as string
+        
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "envelope net. vol.")]
         private string envelopeVolumeNetUI;
 
@@ -187,6 +188,12 @@ namespace ProcAirships
             }
         }
 
+        public bool isControllable
+        {
+            get { return part.isControllable && !Preferences.alwaysControllable; }
+           
+        }
+
         
 
 #endregion
@@ -316,6 +323,24 @@ namespace ProcAirships
             ventingRate += 1.0f;
         }
 
+        [KSPAction(guiName: "PControl On")]
+        public void PControlOn(KSPActionParam ap)
+        {
+            pressureControl = true;
+        }
+
+        [KSPAction(guiName: "PControl Off")]
+        public void PControlOff(KSPActionParam ap)
+        {
+            pressureControl = false;
+        }
+
+        [KSPAction(guiName: " toggle PControl")]
+        public void PControlToggle(KSPActionParam ap)
+        {
+            pressureControl.Toggle();
+        }
+
 #endregion
 //----------------------------------------------------------------------------------------------
 
@@ -384,7 +409,7 @@ namespace ProcAirships
         {
             updateFlag = false;
 
-            if (pressureControl && !util.editorActive())
+            if (pressureControl && !util.editorActive() && isControllable)
             {
                 if (relativePressure > idealRelPressure)
                 {
@@ -461,6 +486,10 @@ namespace ProcAirships
         
         public double requestBallonetAir(double amount)
         {
+            
+            if (!util.editorActive() && !isControllable)
+                    return 0;
+
             float inflationRate = util.editorActive() ? ballonetInflationRateEditor : ballonetInflationRate;
 
             inflationRate *= envelopeVolume;
@@ -514,12 +543,17 @@ namespace ProcAirships
             
             double volumeDelta = (ballonetTargetInflation - ballonetInflation) * ballonetVolumeMax / 100.0d;
 
-            if (volumeDelta > 0.01)
-                ballonetStatus = "inflating";
-            else if (volumeDelta < -0.01)
-                ballonetStatus = "deflating";
+            if (isControllable)
+            {
+                if (volumeDelta > 0.01)
+                    ballonetStatus = "inflating";
+                else if (volumeDelta < -0.01)
+                    ballonetStatus = "deflating";
+                else
+                    ballonetStatus = "idle";
+            }
             else
-                ballonetStatus = "idle";
+                ballonetStatus = "--no signal--";
 
             ballonetVolume += requestBallonetAir(volumeDelta);
             ballonetVolumeUI = ballonetVolume.ToStringExt("F3") + "m³";
@@ -543,8 +577,11 @@ namespace ProcAirships
                     float randomNumber = UnityEngine.Random.Range(0.0f, pressureTolerance);
                     if (randomNumber < overpressure)
                     {
-                        part.explode();
-                        FlightLogger.eventLog.Add("envelope destroyed due to too high or low pressure");
+                        if (Preferences.pressureDestruction)
+                        {
+                            part.explode();
+                            FlightLogger.eventLog.Add("envelope destroyed due to too high or low pressure");
+                        }
                     }
                 }
 
@@ -568,6 +605,7 @@ namespace ProcAirships
                 double connectedVolume = 0.0;
                 double connectedGas = 0.0;
                 double connectedTemperature = 0.0;
+                
                 
                 foreach(AirshipEnvelope envelope in connectedEnvelopes)
                 {
@@ -607,7 +645,7 @@ namespace ProcAirships
             if (autofill && util.editorActive())
                 autoFill();
 
-            if(ventGas)
+            if(ventGas && isControllable)
             {
                 LiftingGasAmount -= ventingRate * TimeWarp.fixedDeltaTime;
             }
@@ -615,19 +653,6 @@ namespace ProcAirships
             if (!util.editorActive())
                 updatePressureDamage();
             
-            
-            //if (!util.editorActive())
-            //{
-            //    Vector3 pos = part.rigidbody.worldCenterOfMass;
-            //    double alt = FlightGlobals.getAltitudeAtPos(pos);
-
-            //    Log.post("altitude of pos: " + alt);
-            //    Log.post("density  at alt: " + ferram4.FARAeroUtil.GetCurrentDensity(FlightGlobals.currentMainBody, alt));
-            //    Log.post("density  at pos: " + ferram4.FARAeroUtil.GetCurrentDensity(FlightGlobals.currentMainBody, pos));
-            //    Log.post("density     ASL: " + ferram4.FARAeroUtil.GetCurrentDensity(FlightGlobals.currentMainBody, 0.0));
-            //    Log.post("temp at pos: " + FlightGlobals.getExternalTemperature(pos));
-            //    Log.post("temp at alt: " + FlightGlobals.getExternalTemperature((float)alt, FlightGlobals.currentMainBody));
-            //}
 
         }
 
@@ -751,6 +776,44 @@ namespace ProcAirships
                 }
 
             }
+
+            field = Fields["envelopeVolume"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showVolumeInfoInFlight;
+                field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
+            }
+
+            field = Fields["envelopeVolumeNetUI"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showVolumeInfoInFlight;
+                field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
+            }
+            
+            field = Fields["ballonetVolumeMax"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showVolumeInfoInFlight;
+                field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
+            }
+
+            field = Fields["temperature"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showTemperatureInFlight;
+                field.guiActiveEditor = Preferences.showTemperatureInEditor;
+            }
+
+            field = Fields["absolutePressure"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showAbsPressureInFlight;
+                field.guiActiveEditor = Preferences.showAbsPressureInEditor;
+            }
+            
+            
+
            
             
         }

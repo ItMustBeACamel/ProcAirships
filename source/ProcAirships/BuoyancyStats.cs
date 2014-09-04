@@ -24,6 +24,8 @@ namespace ProcAirships
         {
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
+            setupUI();
+
             if (state != StartState.Editor)
             {
                 part.force_activate();
@@ -73,6 +75,27 @@ namespace ProcAirships
             }
 
             vesselNetBuoyancy = (float)(vesselBuoyancy - FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass).magnitude * vesselMass);
+        }
+
+
+        private void setupUI()
+        {
+            BaseField field = Fields["vesselBuoyancy"];
+
+            if (field != null)
+            {
+                field.guiActiveEditor = Preferences.showVesselBuoyancyInEditor;
+                field.guiActive = Preferences.showVesselBuoyancyInFlight;
+            }
+
+            field = Fields["vesselMass"];
+            if (field != null)
+            {
+                field.guiActiveEditor = Preferences.showVesselMassInEditor;
+                field.guiActive = Preferences.showVesselMassInFlight;
+            }
+
+
         }
 
     }

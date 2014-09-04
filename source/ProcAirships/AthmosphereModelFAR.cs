@@ -11,7 +11,7 @@ namespace ProcAirships
     {
         private delegate double getAirDensityAltFunc(CelestialBody body, double altitude);
         private delegate double getAirDensityPosFunc(CelestialBody body, Vector3 worldPosition);
-        private delegate void updateCurrentActivelBodyFunc(CelestialBody body);
+        //private delegate void updateCurrentActivelBodyFunc(CelestialBody body);
 
         private getAirDensityAltFunc getAirDensityAlt;
         private getAirDensityPosFunc getAirDensityPos;
