@@ -55,18 +55,18 @@ namespace ProcAirships
         {
             if (util.editorActive())
             {
-                Log.post(this.ClassName + " getModuleCost");
+                //Log.post(this.ClassName + " getModuleCost");
                 float cost = costPerCubicMeter * envelopeVolume;
 
-                Log.post(this.ClassName + " volume: " + envelopeVolume);
-                Log.post(this.ClassName + " cost per m³: " + costPerCubicMeter);
-                Log.post(this.ClassName + " volume costs: " + cost);
+                //Log.post(this.ClassName + " volume: " + envelopeVolume);
+                //Log.post(this.ClassName + " cost per m³: " + costPerCubicMeter);
+                //Log.post(this.ClassName + " volume costs: " + cost);
 
                 foreach (PartResource resource in part.Resources)
                 {
                     cost += (float)(resource.info.unitCost * resource.amount);
                 }
-                Log.post(this.ClassName + " cost after resource costs: " + cost);
+                //Log.post(this.ClassName + " cost after resource costs: " + cost);
 
                 foreach (AirshipEnvelope e in part.Modules.OfType<AirshipEnvelope>())
                 {
@@ -74,9 +74,9 @@ namespace ProcAirships
                     if (lg != null)
                         cost += e.getCurrentLiftingGas().cost * e.LiftingGasAmount;
                 }
-                Log.post(this.ClassName + " cost after lifting gas costs: " + cost);
+                //Log.post(this.ClassName + " cost after lifting gas costs: " + cost);
 
-                Log.post(this.ClassName + " end of getModuleCost");
+                //Log.post(this.ClassName + " end of getModuleCost");
                 overallCost = cost;
             }
 

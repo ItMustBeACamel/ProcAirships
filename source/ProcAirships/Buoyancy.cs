@@ -24,10 +24,6 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
         public float guiGravPull = 0;
 
-        [KSPField(isPersistant = true, guiName = "COL", guiActive = false, guiActiveEditor = true),
-            UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.Editor)]
-        private bool colActive = false;
-
         private float buoyancyMultiplicator = 1.0f;
 
         public override void OnActive()
@@ -64,18 +60,18 @@ namespace ProcAirships
             setupUI();
         }
 
-        public void OnCenterOfLiftQuery(CenterOfLiftQuery col)
-        {
-            if (colActive)
-            {
-            Log.post("COL Query");
-            col.dir = Vector3.up;
-            col.lift = tankVolume;
-            col.pos = transform.position;
+        //public void OnCenterOfLiftQuery(CenterOfLiftQuery col)
+        //{
+        //    if (colActive)
+        //    {
+        //    Log.post("COL Query");
+        //    col.dir = Vector3.up;
+        //    col.lift = tankVolume;
+        //    col.pos = transform.position;
       
                 
-            }
-        }
+        //    }
+        //}
 
 
         [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
