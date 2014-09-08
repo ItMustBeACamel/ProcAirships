@@ -1,12 +1,12 @@
 Procedural Airships
 ===================
 
-ver. 0.3.0.0 - experimental
+ver. 0.4.0.0 - beta
 
 This plugin adds procedural airship envelopes to Kerbal Space Program
 
 **!!!WORK IN PROGRESS!!!**
-**This will most certainly be full of bugs and breaks savegames/crafts. Only use it for test purposes**
+**This is a beta version. It may contain bugs**
 
 Dependencies:
 * swamp_ig's great ProceduralParts mod. Get it [here](http://forum.kerbalspaceprogram.com/threads/70676-0-24-2WIP-Procedural-Parts-Parts-the-way-you-want-em-0-9-18-Aug-6 "ProceduralParts mod").

@@ -42,7 +42,7 @@ namespace ProcAirships
         public void toggleDump(KSPActionParam ap)
         {
             Log.post("ACTION: toggle dumping '" + displayName + "'.", LogLevel.LOG_INFORMATION);
-            dumping.Toggle();
+            dumping = dumping.Toggle();
         }
 
         [KSPAction(guiName:"start dumping")]

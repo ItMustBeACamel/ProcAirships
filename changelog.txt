@@ -1,3 +1,9 @@
+Version 0.4.0.0
+-Feature: FAR compatibility
+-Feature: procedural cost handling
+-Feature: Parts are no longer controllable without a pod or probecore
+-Feature: Center of Buoyancy marker in editor (activates with CoL marker)
+
 Version 0.3.0.0
 -Feature: envelopes containing combustrogen will explode when exposed to high temperatures
 -Feature: envelopes will explode when their gas pressure exceeds the tolerance

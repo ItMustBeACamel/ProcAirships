@@ -18,7 +18,7 @@ namespace ProcAirships
 
         public static bool Toggle(this bool val)
         {
-            return val == true ? false : true;
+            return (val == true ? false : true);  
         }
 
         public static bool editorActive()

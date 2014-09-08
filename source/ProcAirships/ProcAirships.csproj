@@ -40,7 +40,7 @@
     </Reference>
     <Reference Include="KSPAPIExtensions, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\KSPAPIExtensionsDLL\KSPAPIExtensions.dll</HintPath>
+      <HintPath>..\..\..\..\KSP\KSPAPIExtensionsDLL\v1.7.0\KSPAPIExtensions.dll</HintPath>
     </Reference>
     <Reference Include="ProceduralParts">
       <HintPath>..\..\..\..\..\Kerbal Space Program\0.24.2_dev\GameData\ProceduralParts\Plugins\ProceduralParts.dll</HintPath>
@@ -76,7 +76,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy $(TargetDir)$(TargetFileName) $(ProjectDir)..\..\GameData\ProcAirships\Plugins</PostBuildEvent>
+    <PostBuildEvent>copy $(TargetDir)$(TargetFileName) $(ProjectDir)..\..\GameData\ProcAirships\Plugins
+copy $(TargetDir)KSPAPIExtensions.dll $(ProjectDir)..\..\GameData\ProcAirships\Plugins</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

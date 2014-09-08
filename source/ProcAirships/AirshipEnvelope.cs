@@ -260,7 +260,7 @@ namespace ProcAirships
         [KSPAction(guiName: "toggle venting")]
         public void toggleVenting(KSPActionParam ap)
         {
-            ventGas.Toggle();
+            ventGas = ventGas.Toggle();
         }
 
         [KSPAction(guiName: "vent gas")]
@@ -338,7 +338,7 @@ namespace ProcAirships
         [KSPAction(guiName: " toggle PControl")]
         public void PControlToggle(KSPActionParam ap)
         {
-            pressureControl.Toggle();
+            pressureControl = pressureControl.Toggle();
         }
 
 #endregion

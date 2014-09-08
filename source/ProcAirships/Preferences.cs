@@ -17,7 +17,7 @@ namespace ProcAirships
         public static bool showVolumeInfoInEditor       = false;
         public static bool showVolumeInfoInFlight       = false;
         public static bool showTemperatureInEditor      = false;
-        public static bool showTemperatureInFlight      = false;
+        public static bool showTemperatureInFlight      = true;
         public static bool showAbsPressureInEditor      = false;
         public static bool showAbsPressureInFlight      = false;
         public static bool showBuoyancyInEditor         = false;
