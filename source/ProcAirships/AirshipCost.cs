@@ -41,10 +41,16 @@ namespace ProcAirships
                 return;
 
             if (volume <= 0f)
-                throw new ArgumentOutOfRangeException("volume");
-            Log.post("AirshipCost - tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
+            {
+                Log.post("volume is: " + volume.ToString() + " thats odd... setting volume to 1 instead");
+                envelopeVolume = 1.0f;
+            }
+            else
+            {
+                Log.post("tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
 
-            envelopeVolume = volume;
+                envelopeVolume = volume;
+            }
             
         }
 

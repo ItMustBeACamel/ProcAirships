@@ -74,19 +74,19 @@ namespace ProcAirships
         //}
 
 
-        [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
-        public void ChangeVolume(string volumeName, float volume)
-        {
-            //Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
+        //[PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
+        //public void ChangeVolume(string volumeName, float volume)
+        //{
+        //    //Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
             
-            //if (volumeName != PartVolumes.Tankage.ToString())
-            //    return;
+        //    //if (volumeName != PartVolumes.Tankage.ToString())
+        //    //    return;
 
-            //if (volume <= 0f)
-            //    throw new ArgumentOutOfRangeException("volume");
-            //Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
-            //tankVolume = volume;
-        }
+        //    //if (volume <= 0f)
+        //    //    throw new ArgumentOutOfRangeException("volume");
+        //    //Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
+        //    //tankVolume = volume;
+        //}
 
         void Update()
         {

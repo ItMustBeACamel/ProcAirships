@@ -40,10 +40,7 @@
     </Reference>
     <Reference Include="KSPAPIExtensions, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\KSP\KSPAPIExtensionsDLL\v1.7.0\KSPAPIExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="ProceduralParts">
-      <HintPath>..\..\..\..\..\Kerbal Space Program\0.24.2_dev\GameData\ProceduralParts\Plugins\ProceduralParts.dll</HintPath>
+      <HintPath>..\..\..\..\KSP\KSPAPIExtensionsDLL\from PP\KSPAPIExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

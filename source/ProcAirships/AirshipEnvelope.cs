@@ -670,22 +670,38 @@ namespace ProcAirships
         [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
         public void ChangeVolume(string volumeName, float volume)
         {
+            if(float.IsInfinity(volume) || float.IsNaN(volume))
+            {
+                Log.post("received Volume change message, but volume is not a valid number", LogLevel.LOG_ERROR);
+                return;
+            }
+
             Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
             if (volumeName != PartVolumes.Tankage.ToString())
                 return;
 
             if (volume <= 0f)
-                throw new ArgumentOutOfRangeException("volume");
-            Log.post("tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
+            {
+                Log.post("volume is: " + volume.ToString() + " thats odd... setting volume to 1 instead");
+                envelopeVolume = 1.0f;
+            }
+            else
+            {
+                Log.post("tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
+
+                envelopeVolume = volume;
+            }
+
             
-            envelopeVolume = volume;
         }
 
+        /*
         [PartMessageListener(typeof(PartResourceInitialAmountChanged), scenes: GameSceneFilter.Flight)]
         public void ChangeInitResource(PartResource resource, double amount)
         {
             Log.post("Envelope changed init resource " + resource.resourceName + " to " + amount);
         }
+         */
 
 
 
