@@ -11,7 +11,7 @@ namespace ProcAirships
 {
     public class Buoyancy : PartModule
     {
-        private Athmosphere athmosphere = null;
+        //private Athmosphere athmosphere = null;
 
         private Vector3 buoyantForce;
 
@@ -21,7 +21,7 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Buoyancy", guiUnits = "kN", guiFormat = "F2")]
         public float guiBuoyancy = 0;
 
-        [KSPField(guiActive = true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
+        [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
         public float guiGravPull = 0;
 
         private float buoyancyMultiplicator = 1.0f;
@@ -45,7 +45,7 @@ namespace ProcAirships
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
             
-            athmosphere = Factory.getAthmosphere();
+            
 
             if (state != StartState.Editor)
             {
@@ -53,37 +53,40 @@ namespace ProcAirships
                 part.force_activate();
             }
 
-            Log.post("get configuration. memo for me: PUT CONFIG STUFF IN A DEDICATED CLASS LATER.");
-            ConfigNode[] nodes = GameDatabase.Instance.GetConfigNodes("PROC_AIRSHIPS_CONFIG");
+            buoyancyMultiplicator = Preferences.buoyancyMultiplicator;
 
-            if (nodes.GetLength(0) == 0)
-            {
-                Debug.LogWarning("'PROC_AIRSHIPS_CONFIG' not detected. Using standard values.");
-                return;
-            }
-
-            Config config = new Config();
-            config.Load(nodes[0]);
-
-
-            buoyancyMultiplicator = config.buoyancyMultiplicator;
             Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
+
+            setupUI();
         }
 
+        //public void OnCenterOfLiftQuery(CenterOfLiftQuery col)
+        //{
+        //    if (colActive)
+        //    {
+        //    Log.post("COL Query");
+        //    col.dir = Vector3.up;
+        //    col.lift = tankVolume;
+        //    col.pos = transform.position;
+      
+                
+        //    }
+        //}
 
-        [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
-        public void ChangeVolume(string volumeName, float volume)
-        {
-            //Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
+
+        //[PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
+        //public void ChangeVolume(string volumeName, float volume)
+        //{
+        //    //Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
             
-            //if (volumeName != PartVolumes.Tankage.ToString())
-            //    return;
+        //    //if (volumeName != PartVolumes.Tankage.ToString())
+        //    //    return;
 
-            //if (volume <= 0f)
-            //    throw new ArgumentOutOfRangeException("volume");
-            //Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
-            //tankVolume = volume;
-        }
+        //    //if (volume <= 0f)
+        //    //    throw new ArgumentOutOfRangeException("volume");
+        //    //Log.post("Buoyancy changed volume to" + volume, LogLevel.LOG_INFORMATION);
+        //    //tankVolume = volume;
+        //}
 
         void Update()
         {
@@ -151,17 +154,39 @@ namespace ProcAirships
 
         public Vector3 getBuoyancyForce()
         {
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            if (util.editorActive())
             {
-                float airDensity = (float)athmosphere.getAirDensity();
+                //float airDensity = (float)athmosphere.getAirDensity();
+                float airDensity = (float)Athmosphere.fetch().getAirDensity(part.rigidbody.worldCenterOfMass);
                 return (-Vector3.down * 9.8f * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
             }
             else
             {
-                float airDensity = (float)athmosphere.getAirDensity();
+                //float airDensity = (float)athmosphere.getAirDensity();
+                float airDensity = (float)Athmosphere.fetch().getAirDensity(part.rigidbody.worldCenterOfMass);
                 return (-FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
             }
         }
 
-    }
-}
+        private void setupUI()
+        {
+            BaseField field = Fields["guiBuoyancy"];
+
+            if (field != null)
+            {
+                field.guiActiveEditor = Preferences.showBuoyancyInEditor;
+                field.guiActive = Preferences.showBuoyancyInFlight;
+            }
+
+            field = Fields["guiGravPull"];
+            if (field != null)
+            {
+                field.guiActiveEditor = Preferences.showGravPullInEditor;
+                field.guiActive = Preferences.showGravPullInFlight;
+            }
+
+
+        }
+
+    } // class
+} // namespace

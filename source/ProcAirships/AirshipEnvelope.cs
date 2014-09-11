@@ -1,4 +1,25 @@
-﻿using System;
+﻿/*
+ * Procedural Airships
+ *   Copyright (C) 2014  Tobias Knappe <mindconductor@googlemail.com>
+ * 
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ * 
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ * 
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program; if not, write to the Free Software Foundation,
+ *  Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+ *
+ */
+ 
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +40,14 @@ namespace ProcAirships
 
         //[KSPField(guiActive = true, guiActiveEditor = true, guiName = "envelope net vol.", guiUnits = "m³", guiFormat = "F3")]
         private double envelopeVolumeNet = 0; // no save // ui as string
+        
         [KSPField(guiActive = true, guiActiveEditor = true, guiName = "envelope net. vol.")]
         private string envelopeVolumeNetUI;
 
 
         [KSPField( isPersistant=true, guiActive=true, guiActiveEditor=true, guiName="lifting gas"),
             UI_ChooseOption(scene = UI_Scene.Editor, controlEnabled = true)]
-        public string liftingGas; // type of lifting gas // KSPField peristent
+        public string liftingGas=""; // type of lifting gas // KSPField peristent
 
 
         [KSPField]
@@ -98,8 +120,6 @@ namespace ProcAirships
         [KSPField]
         private float pressureTolerance = 0.05f;
 
-        //[KSPField(isPersistant=true)]
-        //private double gasFlow = 0.5;
 
         [KSPField(isPersistant=true, guiName = "autofill", guiActive = false, guiActiveEditor = true),
             UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.Editor)]
@@ -107,7 +127,7 @@ namespace ProcAirships
 
         [KSPField(isPersistant=true, guiName = "pressureControl", guiActive = true, guiActiveEditor = true),
             UI_Toggle(controlEnabled = true, enabledText = "", disabledText = "", scene = UI_Scene.All)]
-        private bool pressureControl = true; // ui
+        private bool pressureControl = false; // ui
 
         [KSPField(guiActive = true, guiActiveEditor = false, guiName = "venting rate", guiUnits = "kg/s", guiFormat = "F4"),
             UI_FloatEdit(scene = UI_Scene.Flight, minValue = 0.01f, maxValue = float.PositiveInfinity, incrementLarge = 1.0f, incrementSmall = 0.1f, incrementSlide = 0.001f)]
@@ -168,13 +188,19 @@ namespace ProcAirships
             }
         }
 
+        public bool isControllable
+        {
+            get { return part.isControllable && !Preferences.alwaysControllable; }
+           
+        }
+
         
 
 #endregion
         
         List<LiftingGas> liftingGasOptions;
         
-        Athmosphere athmosphere;
+        //Athmosphere athmosphere;
 
         float damageTimer = 0.0f;
 
@@ -234,7 +260,7 @@ namespace ProcAirships
         [KSPAction(guiName: "toggle venting")]
         public void toggleVenting(KSPActionParam ap)
         {
-            ventGas.Toggle();
+            ventGas = ventGas.Toggle();
         }
 
         [KSPAction(guiName: "vent gas")]
@@ -297,6 +323,24 @@ namespace ProcAirships
             ventingRate += 1.0f;
         }
 
+        [KSPAction(guiName: "PControl On")]
+        public void PControlOn(KSPActionParam ap)
+        {
+            pressureControl = true;
+        }
+
+        [KSPAction(guiName: "PControl Off")]
+        public void PControlOff(KSPActionParam ap)
+        {
+            pressureControl = false;
+        }
+
+        [KSPAction(guiName: " toggle PControl")]
+        public void PControlToggle(KSPActionParam ap)
+        {
+            pressureControl = pressureControl.Toggle();
+        }
+
 #endregion
 //----------------------------------------------------------------------------------------------
 
@@ -307,13 +351,8 @@ namespace ProcAirships
             Log.post(this.ClassName + " OnAwake-callback: ");
           
             base.OnAwake();
-            PartMessageService.Register(this);   
-        }
-
-        public override void OnStart(StartState state)
-        {
-            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
-
+            PartMessageService.Register(this);
+   
             loadLiftingGasOptions();
 
             // check liftingGas validity. If invalid: set to default
@@ -322,17 +361,21 @@ namespace ProcAirships
                 Log.post("no valid lifting gas selected. Set to default", LogLevel.LOG_WARNING);
                 if (liftingGasOptions.Count > 0)
                 {
-                    liftingGas = liftingGasOptions.First <LiftingGas>().displayName;
+                    liftingGas = liftingGasOptions.First<LiftingGas>().displayName;
                     Log.post("liftinggas set to: " + liftingGas, LogLevel.LOG_INFORMATION);
                 }
                 else
                     Log.post("no valid lifting gas option found.", LogLevel.LOG_ERROR);
-
             }
-                
+
+        }
+
+        public override void OnStart(StartState state)
+        {
+            Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
+
             setupUI(); 
 
-            athmosphere = Factory.getAthmosphere();
 
             if (!util.editorActive())
             {
@@ -352,6 +395,8 @@ namespace ProcAirships
 
             if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
                 updateEnvelope();
+
+            //Log.post("world position: " + part.rigidbody.worldCenterOfMass.ToString());
         }
 
         public override void OnFixedUpdate()
@@ -364,7 +409,7 @@ namespace ProcAirships
         {
             updateFlag = false;
 
-            if (pressureControl && !util.editorActive())
+            if (pressureControl && !util.editorActive() && isControllable)
             {
                 if (relativePressure > idealRelPressure)
                 {
@@ -434,12 +479,17 @@ namespace ProcAirships
 
         public LiftingGas getCurrentLiftingGas()
         {
+            if (liftingGas == "") return null;
             return liftingGasOptions.First<LiftingGas>(x => x.displayName == liftingGas);
         }
 
         
         public double requestBallonetAir(double amount)
         {
+            
+            if (!util.editorActive() && !isControllable)
+                    return 0;
+
             float inflationRate = util.editorActive() ? ballonetInflationRateEditor : ballonetInflationRate;
 
             inflationRate *= envelopeVolume;
@@ -493,12 +543,17 @@ namespace ProcAirships
             
             double volumeDelta = (ballonetTargetInflation - ballonetInflation) * ballonetVolumeMax / 100.0d;
 
-            if (volumeDelta > 0.01)
-                ballonetStatus = "inflating";
-            else if (volumeDelta < -0.01)
-                ballonetStatus = "deflating";
+            if (isControllable)
+            {
+                if (volumeDelta > 0.01)
+                    ballonetStatus = "inflating";
+                else if (volumeDelta < -0.01)
+                    ballonetStatus = "deflating";
+                else
+                    ballonetStatus = "idle";
+            }
             else
-                ballonetStatus = "idle";
+                ballonetStatus = "--no signal--";
 
             ballonetVolume += requestBallonetAir(volumeDelta);
             ballonetVolumeUI = ballonetVolume.ToStringExt("F3") + "m³";
@@ -522,8 +577,11 @@ namespace ProcAirships
                     float randomNumber = UnityEngine.Random.Range(0.0f, pressureTolerance);
                     if (randomNumber < overpressure)
                     {
-                        part.explode();
-                        FlightLogger.eventLog.Add("envelope destroyed due to too high or low pressure");
+                        if (Preferences.pressureDestruction)
+                        {
+                            part.explode();
+                            FlightLogger.eventLog.Add("envelope destroyed due to too high or low pressure");
+                        }
                     }
                 }
 
@@ -547,6 +605,7 @@ namespace ProcAirships
                 double connectedVolume = 0.0;
                 double connectedGas = 0.0;
                 double connectedTemperature = 0.0;
+                
                 
                 foreach(AirshipEnvelope envelope in connectedEnvelopes)
                 {
@@ -576,7 +635,8 @@ namespace ProcAirships
             temperature = (float)getTemperature();
 
             //absolutePressure = (float)getAbsolutePressure();
-            relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
+            //relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
+            relativePressure = (float)(absolutePressure - Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass));
 
             pStatus = (relativePressure-idealRelPressure).Clamp(-pressureTolerance, pressureTolerance);
 
@@ -585,7 +645,7 @@ namespace ProcAirships
             if (autofill && util.editorActive())
                 autoFill();
 
-            if(ventGas)
+            if(ventGas && isControllable)
             {
                 LiftingGasAmount -= ventingRate * TimeWarp.fixedDeltaTime;
             }
@@ -593,11 +653,13 @@ namespace ProcAirships
             if (!util.editorActive())
                 updatePressureDamage();
             
+
         }
 
         void autoFill()
         {
-            liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
+            //liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
+            liftingGasAmount = (float)getGasAmount(Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass) + idealRelPressure);
         }
 
      
@@ -608,22 +670,38 @@ namespace ProcAirships
         [PartMessageListener(typeof(PartVolumeChanged), scenes: ~GameSceneFilter.Flight)]
         public void ChangeVolume(string volumeName, float volume)
         {
+            if(float.IsInfinity(volume) || float.IsNaN(volume))
+            {
+                Log.post("received Volume change message, but volume is not a valid number", LogLevel.LOG_ERROR);
+                return;
+            }
+
             Log.post("received ChangeVolume message for " + volumeName + " Volume: " + volume);
             if (volumeName != PartVolumes.Tankage.ToString())
                 return;
 
             if (volume <= 0f)
-                throw new ArgumentOutOfRangeException("volume");
-            Log.post("tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
+            {
+                Log.post("volume is: " + volume.ToString() + " thats odd... setting volume to 1 instead");
+                envelopeVolume = 1.0f;
+            }
+            else
+            {
+                Log.post("tank Volume Changed to " + volume, LogLevel.LOG_INFORMATION);
+
+                envelopeVolume = volume;
+            }
+
             
-            envelopeVolume = volume;
         }
 
+        /*
         [PartMessageListener(typeof(PartResourceInitialAmountChanged), scenes: GameSceneFilter.Flight)]
         public void ChangeInitResource(PartResource resource, double amount)
         {
             Log.post("Envelope changed init resource " + resource.resourceName + " to " + amount);
         }
+         */
 
 
 
@@ -714,6 +792,44 @@ namespace ProcAirships
                 }
 
             }
+
+            field = Fields["envelopeVolume"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showVolumeInfoInFlight;
+                field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
+            }
+
+            field = Fields["envelopeVolumeNetUI"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showVolumeInfoInFlight;
+                field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
+            }
+            
+            field = Fields["ballonetVolumeMax"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showVolumeInfoInFlight;
+                field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
+            }
+
+            field = Fields["temperature"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showTemperatureInFlight;
+                field.guiActiveEditor = Preferences.showTemperatureInEditor;
+            }
+
+            field = Fields["absolutePressure"];
+            if (field != null)
+            {
+                field.guiActive = Preferences.showAbsPressureInFlight;
+                field.guiActiveEditor = Preferences.showAbsPressureInEditor;
+            }
+            
+            
+
            
             
         }
@@ -742,6 +858,9 @@ namespace ProcAirships
             [SerializeField]
             public float maxTemperature;
 
+            [SerializeField]
+            public float cost;
+
             public void Load(ConfigNode node)
             {
                 //ConfigNode.LoadObjectFromConfig(this, node);
@@ -766,6 +885,9 @@ namespace ProcAirships
                         maxTemperature = 0.0f;
                 }
 
+                if (!node.TryGetValue("cost", out cost))
+                    Log.post("Could not read cost from ConfigNode", LogLevel.LOG_ERROR);
+
             }
             public void Save(ConfigNode node)
             {
@@ -774,9 +896,10 @@ namespace ProcAirships
                 node.SetValue("displayName", displayName);
                 node.SetValue("resourceName", resourceName);
                 node.SetValue("molarMass", molarMass.ToString());
+                node.SetValue("cost", cost.ToString());
             }
 
         }
-         
+
     } // class
 }

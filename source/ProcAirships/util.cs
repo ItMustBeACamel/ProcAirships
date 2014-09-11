@@ -18,7 +18,7 @@ namespace ProcAirships
 
         public static bool Toggle(this bool val)
         {
-            return val == true ? false : true;
+            return (val == true ? false : true);  
         }
 
         public static bool editorActive()
@@ -27,6 +27,22 @@ namespace ProcAirships
                 return true;
             else
                 return false;   
+        }
+
+        public static bool vabActive()
+        {
+            if (HighLogic.LoadedScene == GameScenes.EDITOR)
+                return true;
+            else
+                return false;
+        }
+
+        public static bool sphActive()
+        {
+            if (HighLogic.LoadedScene == GameScenes.SPH)
+                return true;
+            else
+                return false;
         }
 
         public static double celsiusToKelvin(double T)
