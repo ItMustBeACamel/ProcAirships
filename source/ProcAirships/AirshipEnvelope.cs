@@ -204,6 +204,8 @@ namespace ProcAirships
 
         float damageTimer = 0.0f;
 
+        float prevLiftingGasAmount = 0.0f;
+
         bool updateFlag = false;
 
 //----------------------------------------------------------------------------------------------
@@ -421,6 +423,7 @@ namespace ProcAirships
                 }
 
             }
+
         }
 
         public override void OnLoad(ConfigNode node)
@@ -652,6 +655,13 @@ namespace ProcAirships
 
             if (!util.editorActive())
                 updatePressureDamage();
+
+            if(util.editorActive() && liftingGasAmount != prevLiftingGasAmount)
+            {
+                prevLiftingGasAmount = liftingGasAmount;
+
+                GameEvents.onEditorShipModified.Fire(EditorLogic.fetch.ship); 
+            }
             
 
         }

@@ -1,3 +1,7 @@
+Version 0.4.2.0
+-Bugfix: Fixed a bug that causes unsensible procedural costs
+-Enhancement: Better cost generation
+
 Version 0.4.1.0
 -Bugfix: Fixed a major bug that prevents Procedural Airships from function properly in career mode
 
