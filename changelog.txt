@@ -1,5 +1,5 @@
 Version 0.4.2.0
--Bugfix: Fixed a bug that causes unsensible procedural costs
+-Bugfix: Fixed a bug that causes insensible procedural costs
 -Enhancement: Better cost generation
 
 Version 0.4.1.0
