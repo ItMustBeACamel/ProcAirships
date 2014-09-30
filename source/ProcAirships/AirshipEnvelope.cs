@@ -446,7 +446,16 @@ namespace ProcAirships
                 return 20.0d;
             }
             else
-                return part.temperature;
+            {
+                if(vessel.isActiveVessel)
+                    return part.temperature;
+                else
+                {
+                    float alt = FlightGlobals.getAltitudeAtPos(part.rigidbody.worldCenterOfMass);
+                    return FlightGlobals.getExternalTemperature(alt, FlightGlobals.currentMainBody);
+                }
+            }
+                
             //return 20.0d;
         }
 
