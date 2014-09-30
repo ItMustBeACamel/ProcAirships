@@ -1,3 +1,6 @@
+Version 0.4.3.0
+-Bugfix: Fixed a bug that causes envelopes on currently uncontrolled vessels to explode due to a bug in KSP (incorrect temperature)
+
 Version 0.4.2.0
 -Bugfix: Fixed a bug that causes insensible procedural costs
 -Enhancement: Better cost generation

@@ -446,7 +446,16 @@ namespace ProcAirships
                 return 20.0d;
             }
             else
-                return part.temperature;
+            {
+                if(vessel.isActiveVessel)
+                    return part.temperature;
+                else
+                {
+                    float alt = FlightGlobals.getAltitudeAtPos(part.rigidbody.worldCenterOfMass);
+                    return FlightGlobals.getExternalTemperature(alt, FlightGlobals.currentMainBody);
+                }
+            }
+                
             //return 20.0d;
         }
 
@@ -575,6 +584,12 @@ namespace ProcAirships
             {
                 float overpressure = Math.Abs((relativePressure - idealRelPressure)) - pressureTolerance;
 
+                Log.post("[" + part.vessel.vesselName + "] Checking for pressure damage");
+                Log.post("pressure deviation: " + (relativePressure - idealRelPressure));
+                Log.post("overpressure: " + overpressure);
+                Log.post("temperature: " + temperature);
+                Log.post("----------------------------------------------------------");
+
                 if (overpressure > 0)
                 {
                     float randomNumber = UnityEngine.Random.Range(0.0f, pressureTolerance);
@@ -583,8 +598,10 @@ namespace ProcAirships
                         if (Preferences.pressureDestruction)
                         {
                             part.explode();
-                            FlightLogger.eventLog.Add("envelope destroyed due to too high or low pressure");
+                            FlightLogger.eventLog.Add("Envelope destroyed due to too high or low pressure.");
+                            Log.post("Envelope destroyed due to too high or low pressure.", LogLevel.LOG_INFORMATION);
                         }
+                        Log.post("Envelope destroyed due to too high or low pressure. Destruction prevented by settings", LogLevel.LOG_DEBUG);
                     }
                 }
 
