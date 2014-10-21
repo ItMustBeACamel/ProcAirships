@@ -1,3 +1,6 @@
+Version 0.5.0.0
+-Feature: Support for the NEAR aerodynamic model
+
 Version 0.4.4.0
 -Rebuilt for KSP 0.25
 

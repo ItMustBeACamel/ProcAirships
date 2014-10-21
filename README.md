@@ -1,7 +1,7 @@
 Procedural Airships
 ===================
 
-ver. 0.4.4.0 - beta
+ver. 0.5.0.0 - beta
 
 This plugin adds procedural airship envelopes to Kerbal Space Program
 
