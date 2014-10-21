@@ -57,6 +57,7 @@
     <Compile Include="AirshipEnvelope.cs" />
     <Compile Include="Athmosphere.cs" />
     <Compile Include="AthmosphereModelFAR.cs" />
+    <Compile Include="AthmosphereModelNEAR.cs" />
     <Compile Include="AthmosphereModelStock.cs" />
     <Compile Include="Buoyancy.cs" />
     <Compile Include="BuoyancyStats.cs" />

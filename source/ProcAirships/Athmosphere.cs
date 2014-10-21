@@ -106,6 +106,7 @@ namespace ProcAirships
             {
 
                 bool isFARLoaded = AssemblyLoader.loadedAssemblies.Any(a => a.assembly.GetName().Name == "FerramAerospaceResearch");
+                bool isNEARLoaded = AssemblyLoader.loadedAssemblies.Any(a => a.assembly.GetName().Name == "NEAR");
 
                 //isFARLoaded = false;
 
@@ -121,9 +122,21 @@ namespace ProcAirships
                     if (!currentModel.init())
                         fallBackToStock();
                 }
+                else if (isNEARLoaded)
+                {
+                    Log.post("NEAR detected", LogLevel.LOG_INFORMATION);
+
+                    AssemblyLoader.LoadedAssembly NEAR = AssemblyLoader.loadedAssemblies.FirstOrDefault(a => a.assembly.GetName().Name == "NEAR");
+                    Log.post("NEAR Version: " + NEAR.assembly.GetName().Version.ToString(), LogLevel.LOG_INFORMATION);
+
+                    currentModel = new AthmosphereModelNEAR();
+                    if (!currentModel.init())
+                        fallBackToStock();
+
+                }
                 else
                 {
-                    Log.post("No FAR detected...", LogLevel.LOG_INFORMATION);
+                    Log.post("No FAR or NEAR detected...", LogLevel.LOG_INFORMATION);
 
                     fallBackToStock();
                 }
