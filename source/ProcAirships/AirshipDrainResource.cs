@@ -116,7 +116,7 @@ namespace ProcAirships
 
         public bool isControllable
         {
-            get { return part.isControllable && !Preferences.alwaysControllable; }
+            get { return part.isControllable && !ProcAirships.Instance.alwaysControllable; }
 
         }
 

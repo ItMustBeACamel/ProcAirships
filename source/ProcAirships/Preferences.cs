@@ -12,12 +12,12 @@ namespace ProcAirships
     public class Preferences
     {
 
-        public static float buoyancyMultiplicator = 3.0f;
+        //public static float buoyancyMultiplicator = 3.0f;
 
         public static bool showVolumeInfoInEditor       = false;
         public static bool showVolumeInfoInFlight       = false;
         public static bool showTemperatureInEditor      = false;
-        public static bool showTemperatureInFlight      = true;
+        //public static bool showTemperatureInFlight      = true;
         public static bool showAbsPressureInEditor      = false;
         public static bool showAbsPressureInFlight      = false;
         public static bool showBuoyancyInEditor         = false;
@@ -28,9 +28,9 @@ namespace ProcAirships
         public static bool showVesselMassInFlight       = false;
         public static bool showGravPullInEditor = false;
         public static bool showGravPullInFlight = false;
-        public static uint debugLevel = (uint)LogLevel.LOG_ALL;
-        public static bool pressureDestruction = true;
-        public static bool alwaysControllable = false;
+        public static uint debugLevel = (uint)LogLevel.LOG_INFORMATION;
+        //public static bool pressureDestruction = true;
+        //public static bool alwaysControllable = false;
 
     }
 
@@ -85,13 +85,13 @@ namespace ProcAirships
             
             //float.TryParse(config.GetValue("buoyancyMultiplicator", Preferences.buoyancyMultiplicator.ToString()), out Preferences.buoyancyMultiplicator);
 
-            config.TryGetFloat("buoyancyMultiplicator", ref Preferences.buoyancyMultiplicator);
+            //config.TryGetFloat("buoyancyMultiplicator", ref Preferences.buoyancyMultiplicator);
 
             config.TryGetBool("showVolumeInfoInEditor", ref Preferences.showVolumeInfoInEditor);
             config.TryGetBool("showVolumeInfoInFlight", ref Preferences.showVolumeInfoInFlight);
 
             config.TryGetBool("showTemperatureInEditor", ref Preferences.showTemperatureInEditor);
-            config.TryGetBool("showTemperatureInFlight", ref Preferences.showTemperatureInFlight);
+            //config.TryGetBool("showTemperatureInFlight", ref Preferences.showTemperatureInFlight);
 
             config.TryGetBool("showAbsPressureInEditor"   , ref Preferences.showAbsPressureInEditor);
             config.TryGetBool("showAbsPressureInFlight", ref Preferences.showAbsPressureInFlight);
@@ -110,8 +110,8 @@ namespace ProcAirships
 
             config.TryGetUInt("debugLevel", ref Preferences.debugLevel);
 
-            config.TryGetBool("pressureDestruction", ref Preferences.pressureDestruction);
-            config.TryGetBool("alwaysControllable", ref Preferences.alwaysControllable);
+            //config.TryGetBool("pressureDestruction", ref Preferences.pressureDestruction);
+            //config.TryGetBool("alwaysControllable", ref Preferences.alwaysControllable);
 
         }
 
@@ -119,12 +119,12 @@ namespace ProcAirships
         {
             PluginConfiguration config = PluginConfiguration.CreateForType<PrefLoader>();
           
-            config.SetVal("buoyancyMultiplicator", Preferences.buoyancyMultiplicator);
+            //config.SetVal("buoyancyMultiplicator", Preferences.buoyancyMultiplicator);
 
             config.SetVal("showVolumeInfoInEditor", Preferences.showVolumeInfoInEditor);
             config.SetVal("showVolumeInfoInFlight", Preferences.showVolumeInfoInFlight);
             config.SetVal("showTemperatureInEditor", Preferences.showTemperatureInEditor);
-            config.SetVal("showTemperatureInFlight", Preferences.showTemperatureInFlight);
+            //config.SetVal("showTemperatureInFlight", Preferences.showTemperatureInFlight);
             config.SetVal("showAbsPressureInEditor", Preferences.showAbsPressureInEditor);
             config.SetVal("showAbsPressureInFlight", Preferences.showAbsPressureInFlight);
             config.SetVal("showBuoyancyInEditor", Preferences.showBuoyancyInEditor);
@@ -136,8 +136,8 @@ namespace ProcAirships
             config.SetVal("showGravPullInEditor", Preferences.showGravPullInEditor);
             config.SetVal("showGravPullInFlight", Preferences.showGravPullInFlight);
             config.SetVal("debugLevel", Preferences.debugLevel);
-            config.SetVal("pressureDestruction", Preferences.pressureDestruction);
-            config.SetVal("alwaysControllable", Preferences.alwaysControllable);
+            //config.SetVal("pressureDestruction", Preferences.pressureDestruction);
+            //config.SetVal("alwaysControllable", Preferences.alwaysControllable);
 
             config.save();
       

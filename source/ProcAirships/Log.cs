@@ -10,10 +10,10 @@ namespace ProcAirships
 
     public enum LogLevel : uint
     {
-        LOG_INFORMATION = 1,
-        LOG_ERROR = 2,
-        LOG_WARNING = 3,
-        LOG_DEBUG = 4,
+        LOG_ERROR = 0,
+        LOG_WARNING = 1,
+        LOG_INFORMATION = 2,
+        LOG_DEBUG = 3,
         LOG_ALL = uint.MaxValue
     }
 
