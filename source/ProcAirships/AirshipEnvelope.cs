@@ -190,7 +190,7 @@ namespace ProcAirships
 
         public bool isControllable
         {
-            get { return part.isControllable && !Preferences.alwaysControllable; }
+            get { return part.isControllable && !ProcAirships.Instance.alwaysControllable; }
            
         }
 
@@ -595,7 +595,7 @@ namespace ProcAirships
                     float randomNumber = UnityEngine.Random.Range(0.0f, pressureTolerance);
                     if (randomNumber < overpressure)
                     {
-                        if (Preferences.pressureDestruction)
+                        if (ProcAirships.Instance.pressureDestruction)
                         {
                             part.explode();
                             FlightLogger.eventLog.Add("Envelope destroyed due to too high or low pressure.");
@@ -844,7 +844,7 @@ namespace ProcAirships
             field = Fields["temperature"];
             if (field != null)
             {
-                field.guiActive = Preferences.showTemperatureInFlight;
+                field.guiActive = ProcAirships.Instance.showTemperatureInFlight;
                 field.guiActiveEditor = Preferences.showTemperatureInEditor;
             }
 

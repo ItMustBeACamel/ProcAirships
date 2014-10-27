@@ -53,7 +53,7 @@ namespace ProcAirships
                 part.force_activate();
             }
 
-            buoyancyMultiplicator = Preferences.buoyancyMultiplicator;
+            buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
 
             Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
 
