@@ -33,11 +33,11 @@
   <ItemGroup>
     <Reference Include="Assembly-CSharp, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Kerbal Space Program\0.25_dev\KSP_Data\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>..\..\..\KSPLib\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="KSPAPIExtensions, Version=1.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="KSPAPIExtensions, Version=1.7.1.2, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\KSP\KSPAPIExtensionsDLL\1.7.1\KSPAPIExtensions.dll</HintPath>
+      <HintPath>..\..\..\KSPLib\KSPAPIExtensions.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\Kerbal Space Program\0.25_dev\KSP_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\..\..\KSPLib\UnityEngine.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
