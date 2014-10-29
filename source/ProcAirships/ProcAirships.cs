@@ -12,7 +12,7 @@ namespace ProcAirships
         private static ProcAirships instance = null;
 
         [KSPField(isPersistant=true)]
-        public float buoyancyMultiplicator = 3.0f;
+        public float buoyancyMultiplicator = 5.0f;
 
         [KSPField(isPersistant = true)]
         public bool pressureDestruction = true;

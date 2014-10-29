@@ -1,19 +1,29 @@
-#Procedural Airships
-## A ProceduralParts Extension
+# Procedural Airships
+## A ProceduralParts Expansion
 
-**Version 1.0**
+**Version 1.1**
 
 This plug-in adds procedural airship envelopes to Kerbal Space Program.
 
-###Features
+### Features
 + Envelope and ballonet simulation. Including two lifting gas options.
 + Supports FAR and NEAR
 + Ballast tanks
 
-###Installation
+### Installation
 
 1. Install [ProceduralParts](http://forum.kerbalspaceprogram.com/threads/70676 "ProceduralParts mod"). This is mandatory.
-2. Copy contents of the GameData folder, provided with this, into your KSPs GameData folder.
+2. Delete previously installed ProceduralAirships installations.
+3. Copy contents of the GameData folder, provided with this, into your KSPs GameData folder.
+
+
+### Mod recommendations
+
+* [Ferram Aerospace Research](http://forum.kerbalspaceprogram.com/threads/20451 "FAR") - I highly recommend this. Feels much more "floaty".
+* [Firespitter](http://forum.kerbalspaceprogram.com/threads/24551 "Firespitter") and/or [KAX](http://forum.kerbalspaceprogram.com/threads/76668 "KAX") - for prop engines
+* [RCS Build Aid](http://forum.kerbalspaceprogram.com/threads/35996 "RCS Build Aid") does not only aid in RCS thruster placement. It is also a great tool for airship engineers. Does your airship experience weird forces causing it to spin around uncontrollably? RCS Build Aid helps.
+* [Kerbal attachment System](http://forum.kerbalspaceprogram.com/threads/92514 "KAS") (KAS) contains anchors to keep your airship in place. 
+* [Hangar Extender](http://forum.kerbalspaceprogram.com/threads/65747 "Hangar Extender") - break the boundaries of your SPH to build huge hindenburg-like airships
 
 
 ###Additional Notes:
