@@ -14,7 +14,8 @@ This plug-in adds procedural airship envelopes to Kerbal Space Program.
 
 1. Install [ProceduralParts](http://forum.kerbalspaceprogram.com/threads/70676 "ProceduralParts mod"). This is mandatory.
 2. Delete previously installed ProceduralAirships installations.
-3. Copy contents of the GameData folder, provided with this, into your KSPs GameData folder.
+3. Copy contents of the GameData folder, provided with this package, into your KSPs GameData folder.
+4. Copy contents of the Ships folder, provided with this package, into your KSPs Ships folder.
 
 
 ### Mod recommendations
