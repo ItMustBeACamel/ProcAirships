@@ -1,3 +1,10 @@
+#####Version 1.1
+- Balancing: Changed default buoyancy multiplier to 5.0x
+- Feature: Input locks for the preferences window.
+- Feature: added example ship for Stock/NEAR and FAR
+- Bugfix: Version file was erroneous.
+- Bugfix: Harmless error message in log when using NEAR
+
 #####Version 1.0
 - Feature: New preferences window in KSC scene
 - Feature: per-savegame preferences

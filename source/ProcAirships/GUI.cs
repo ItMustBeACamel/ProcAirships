@@ -11,7 +11,7 @@ namespace ProcAirships
     class GUI: MonoBehaviour
     {
 
-
+        bool LockedKSC = false;
         private static ApplicationLauncherButton LauncherButton = null;
 
         private static bool showOptions = false;
@@ -85,12 +85,40 @@ namespace ProcAirships
         Rect optionsRect = new Rect(300, 300, 550, 300);
 
         void OnGUI()
-        {
+        {  
             UnityEngine.GUI.skin = HighLogic.Skin;
             if (HighLogic.LoadedScene == GameScenes.SPACECENTER && showOptions)
             {
                 optionsRect = GUILayout.Window(0, optionsRect, optionsFunc, "Procedural Airships Options");
             }
+        }
+
+        void Update()
+        {
+
+            if (HighLogic.LoadedScene == GameScenes.SPACECENTER && showOptions)
+            {
+                Vector2 mousePos = Input.mousePosition;
+                mousePos.y = Screen.height - mousePos.y;
+
+                if (optionsRect.Contains(mousePos))
+                {
+                    if (!LockedKSC)
+                    {
+                        InputLockManager.SetControlLock(ControlTypes.KSC_ALL, "ProcAirshipsLock");
+                        LockedKSC = true;
+                    }
+                }
+                else
+                {
+                    if (LockedKSC)
+                    {
+                        InputLockManager.RemoveControlLock("ProcAirshipsLock");
+                        LockedKSC = false;
+                    }
+                }
+            }
+
         }
 
         public void optionsFunc(int id)
