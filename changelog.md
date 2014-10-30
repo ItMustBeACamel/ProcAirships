@@ -1,9 +1,7 @@
-<<<<<<< HEAD:changelog.md
 =======
 ##### Version 1.1.1
 - Hotfix: Fixes a bug that prevents from starting/loading a game after returning to the main menu
 
->>>>>>> master:changelog.txt
 ##### Version 1.1
 - Balancing: Changed default buoyancy multiplier to 5.0x
 - Feature: Input locks for the preferences window.
