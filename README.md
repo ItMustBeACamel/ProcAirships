@@ -1,7 +1,7 @@
 # Procedural Airships
 ## A ProceduralParts Expansion
 
-**Version 1.1**
+**Version 1.1.1**
 
 This plug-in adds procedural airship envelopes to Kerbal Space Program.
 

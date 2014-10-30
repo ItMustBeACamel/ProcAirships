@@ -62,7 +62,7 @@ namespace ProcAirships
         public void OnAppLauncherDestroyed()
         {
             Debug.Log("deleting button");
-            ApplicationLauncher.Instance.RemoveModApplication(LauncherButton);
+            //ApplicationLauncher.Instance.RemoveModApplication(LauncherButton);
             LauncherButton = null;
         }
 
