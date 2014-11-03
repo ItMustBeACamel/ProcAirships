@@ -37,8 +37,12 @@ namespace ProcAirships
             instance = this;            
         }
 
-       
 
+        public override void OnAwake()
+        {
+            Log.post("ProcAirships Scenario onAwake", LogLevel.LOG_DEBUG);
+            base.OnAwake();
+        }
         
 
         

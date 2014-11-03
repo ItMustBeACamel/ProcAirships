@@ -53,7 +53,13 @@ namespace ProcAirships
                 part.force_activate();
             }
 
-            buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
+            if (null != ProcAirships.Instance)
+                buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
+            else
+            {
+                Log.post("Scenario ProcAirship not yet instantiated.");
+                buoyancyMultiplicator = 5;
+            }
 
             Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
 

@@ -116,7 +116,16 @@ namespace ProcAirships
 
         public bool isControllable
         {
-            get { return part.isControllable && !ProcAirships.Instance.alwaysControllable; }
+            get 
+            {
+                if (null != ProcAirships.Instance)
+                    return part.isControllable && !ProcAirships.Instance.alwaysControllable; 
+                else
+                {
+                    Log.post("Behavious ProcAirships not instantiated yet.", LogLevel.LOG_ERROR);
+                    return true;
+                }
+            }
 
         }
 
