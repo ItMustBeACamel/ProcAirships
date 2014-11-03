@@ -47,7 +47,7 @@ namespace ProcAirships
 
         [KSPField( isPersistant=true, guiActive=true, guiActiveEditor=true, guiName="lifting gas"),
             UI_ChooseOption(scene = UI_Scene.Editor, controlEnabled = true)]
-        public string liftingGas=""; // type of lifting gas // KSPField peristent
+        public string liftingGas=""; // type of lifting gas // KSPField persistent
 
 
         [KSPField]
@@ -190,8 +190,17 @@ namespace ProcAirships
 
         public bool isControllable
         {
-            get { return part.isControllable && !ProcAirships.Instance.alwaysControllable; }
-           
+            get
+            {
+                if (null != ProcAirships.Instance)
+                    return part.isControllable && !ProcAirships.Instance.alwaysControllable;
+                else
+                {
+                    Log.post("Behavious ProcAirships not instantiated yet.", LogLevel.LOG_ERROR);
+                    return true;
+                }
+            }
+
         }
 
         
@@ -595,6 +604,11 @@ namespace ProcAirships
                     float randomNumber = UnityEngine.Random.Range(0.0f, pressureTolerance);
                     if (randomNumber < overpressure)
                     {
+                        if (null ==ProcAirships.Instance)
+                        {
+                            Log.post("Behaviour ProcAirships not instantiated yet");
+                        }
+                        else
                         if (ProcAirships.Instance.pressureDestruction)
                         {
                             part.explode();
@@ -823,6 +837,7 @@ namespace ProcAirships
             field = Fields["envelopeVolume"];
             if (field != null)
             {
+                Log.post("setting up ui envelope Volume");
                 field.guiActive = Preferences.showVolumeInfoInFlight;
                 field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
             }
@@ -830,6 +845,7 @@ namespace ProcAirships
             field = Fields["envelopeVolumeNetUI"];
             if (field != null)
             {
+                Log.post("setting up ui envelope Volume Net");
                 field.guiActive = Preferences.showVolumeInfoInFlight;
                 field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
             }
@@ -837,6 +853,7 @@ namespace ProcAirships
             field = Fields["ballonetVolumeMax"];
             if (field != null)
             {
+                Log.post("setting up ui ballonet vol max");
                 field.guiActive = Preferences.showVolumeInfoInFlight;
                 field.guiActiveEditor = Preferences.showVolumeInfoInEditor;
             }
@@ -844,13 +861,20 @@ namespace ProcAirships
             field = Fields["temperature"];
             if (field != null)
             {
-                field.guiActive = ProcAirships.Instance.showTemperatureInFlight;
-                field.guiActiveEditor = Preferences.showTemperatureInEditor;
+                Log.post("setting up ui temperature");
+                if (null == ProcAirships.Instance)
+                    Log.post("behaviour ProcAirships not jet instantiated", LogLevel.LOG_ERROR);
+                else
+                {
+                    field.guiActive = ProcAirships.Instance.showTemperatureInFlight;
+                    field.guiActiveEditor = Preferences.showTemperatureInEditor;
+                }
             }
 
             field = Fields["absolutePressure"];
             if (field != null)
             {
+                Log.post("setting up ui abs pressure");
                 field.guiActive = Preferences.showAbsPressureInFlight;
                 field.guiActiveEditor = Preferences.showAbsPressureInEditor;
             }
