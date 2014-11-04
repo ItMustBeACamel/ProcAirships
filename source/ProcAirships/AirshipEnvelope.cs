@@ -203,6 +203,21 @@ namespace ProcAirships
 
         }
 
+        public float PressureTolerance
+        {
+            get { return pressureTolerance; }
+        }
+
+        public float RelPressure
+        {
+            get { return relativePressure; }
+        }
+
+        public float IdealRelPressure
+        {
+            get { return idealRelPressure; }
+        }
+
         
 
 #endregion
@@ -593,11 +608,11 @@ namespace ProcAirships
             {
                 float overpressure = Math.Abs((relativePressure - idealRelPressure)) - pressureTolerance;
 
-                Log.post("[" + part.vessel.vesselName + "] Checking for pressure damage");
-                Log.post("pressure deviation: " + (relativePressure - idealRelPressure));
-                Log.post("overpressure: " + overpressure);
-                Log.post("temperature: " + temperature);
-                Log.post("----------------------------------------------------------");
+                //Log.post("[" + part.vessel.vesselName + "] Checking for pressure damage");
+                //Log.post("pressure deviation: " + (relativePressure - idealRelPressure));
+                //Log.post("overpressure: " + overpressure);
+                //Log.post("temperature: " + temperature);
+                //Log.post("----------------------------------------------------------");
 
                 if (overpressure > 0)
                 {

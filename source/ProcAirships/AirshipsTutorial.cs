@@ -20,10 +20,15 @@ namespace ProcAirships
             instructorPrefabName = "Instructor_Gene";
         }
 
+        KFSMEvent onPressureAlert;
+
         protected override void OnTutorialSetup()
         {
             Log.post("AirshipsTutorial OnTutorialSetup", LogLevel.LOG_DEBUG);
+
+            ProcAirships.Instance.pressureDestruction = false;
            
+            
 
             TutorialPage page1 = new TutorialPage("page1");
             page1.windowTitle = "Airships Tutorial";
@@ -40,8 +45,8 @@ namespace ProcAirships
             page2.windowTitle = "Airships Tutorial";
             page2.OnDrawContent = () =>
             {
-                GUILayout.Label("Lets have a look at our airship. Its envelope is composed of three parts. Two pointy 'envelope caps', and one cylindrical envelope between those two caps.\n" +
-                    "It is important to understand that stacked Envelopes automatically form a connection between each other. Gas can flow freely between them. " +
+                GUILayout.Label("Lets have a look at our airship. Its envelope is composed of three parts. Two pointy 'envelope caps', and one cylindric envelope between those two caps.\n" +
+                    "It is important to understand that stacked envelopes automatically form a connection between each other. Gas can flow freely between them. " +
                     "So everything you do on one envelope part will affect connected envelopes.\n", GUILayout.ExpandHeight(true));
 
                 GUILayout.BeginHorizontal();
@@ -70,11 +75,19 @@ namespace ProcAirships
 
             TutorialPage page4 = new TutorialPage("page4");
             page4.windowTitle = "Airships Tutorial";
+           
+            page4.OnEnter = (KFSMState st) => 
+            {
+               
+            };
 
             page4.OnUpdate = () =>
             {
                 if (FlightGlobals.ActiveVessel.altitude >= 200.0)
                     Tutorial.GoToNextPage();
+
+
+               
             };
 
             page4.OnDrawContent = () =>
@@ -84,12 +97,22 @@ namespace ProcAirships
                     "buoyancy. But be careful! The ballonet direclty affects the pressure of the gas in the envelope. Please make sure you have selected the "+
                 "cylindrical envelope (not the caps) and carefully deflate the ballonet until the airship rises to an altitude of 200 meters.", GUILayout.ExpandHeight(true));
             };
+
+            page4.OnLeave = (KFSMState st) =>
+            {
+              
+            };
+
             this.Tutorial.AddPage(page4);
 
             TutorialPage page5 = new TutorialPage("page5");
             page5.windowTitle = "Airships Tutorial";
 
-            page5.OnEnter = (KFSMState st) => { instructor.PlayEmote(instructor.anim_true_thumbsUp); };
+            page5.OnEnter = (KFSMState st) => 
+            { 
+                instructor.PlayEmote(instructor.anim_true_thumbsUp); 
+
+            };
 
             page5.OnDrawContent = () =>
             {
@@ -168,12 +191,69 @@ namespace ProcAirships
 
                
             };
+
             this.Tutorial.AddPage(page9);
 
+            TutorialPage pressureAlertPage = new TutorialPage("pressureAlertPage");
+            pressureAlertPage.windowTitle = "OH NO!";
+
+            pressureAlertPage.OnEnter = (KFSMState lastSt) =>
+            {
+                instructor.PlayEmote(instructor.anim_false_disagreeA);
+                pressureAlertPage.onAdvanceConditionMet.GoToStateOnEvent = lastSt;
+            };
+
+            pressureAlertPage.SetAdvanceCondition((KFSMState currentState) =>
+            {
+                AirshipEnvelope envelope = FlightGlobals.ActiveVessel.rootPart.GetComponent<AirshipEnvelope>();
+
+                float overpressure = Math.Abs((envelope.RelPressure - envelope.IdealRelPressure)) - envelope.PressureTolerance;
+
+                if (overpressure > 0)
+                {
+                        return false;
+                }
+                return true;
+            });
+
+            pressureAlertPage.OnDrawContent = () =>
+            {
+                GUILayout.Label("Oh no! Envelope Pressure reaches critical range! Use the ballonets to bring it back to normal before everything explodes.\n"+
+                "Try to get the 'press. Status' bar in a position thats near to 0", GUILayout.ExpandHeight(true));
+            };
+
+            pressureAlertPage.OnLeave = (KFSMState st) =>
+            {
+                instructor.PlayEmote(instructor.anim_idle_sigh);
+            };
+
+            Tutorial.AddState(pressureAlertPage);
+
+            onPressureAlert = new KFSMEvent("PressureAlert");
+            onPressureAlert.updateMode = KFSMUpdateMode.LATEUPDATE;
+            onPressureAlert.OnCheckCondition = (KFSMState currentState) =>
+            {
+                AirshipEnvelope envelope = FlightGlobals.ActiveVessel.rootPart.GetComponent<AirshipEnvelope>();
+
+                float overpressure = Math.Abs((envelope.RelPressure - envelope.IdealRelPressure)) - envelope.PressureTolerance;
+
+                if (overpressure > 0)
+                {
+                    if (Tutorial.Started)
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            };
+
+            onPressureAlert.GoToStateOnEvent = pressureAlertPage;
+            Tutorial.AddEventExcluding(onPressureAlert, pressureAlertPage);
 
             this.Tutorial.StartTutorial(page1);
             
         }
+
 
         bool fiftyfifty()
         {
