@@ -55,6 +55,7 @@
     <Compile Include="AirshipDrain.cs" />
     <Compile Include="AirshipDrainResource.cs" />
     <Compile Include="AirshipEnvelope.cs" />
+    <Compile Include="AirshipsTutorial.cs" />
     <Compile Include="Athmosphere.cs" />
     <Compile Include="AthmosphereModelFAR.cs" />
     <Compile Include="AthmosphereModelNEAR.cs" />

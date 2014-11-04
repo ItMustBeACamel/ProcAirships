@@ -1,0 +1,6212 @@
+GAME
+{
+	version = 0.25.0
+	Title = Airship Flight (FAR)
+	Description = Learn how to fly an airship. (Version for FAR)
+	linkURL = 
+	linkCaption = 
+	Mode = SCENARIO_NON_RESUMABLE
+	scene = 7
+	flag = Squad/Flags/default
+	
+	PARAMETERS
+	{
+		preset = Normal
+		FLIGHT
+		{
+			CanQuickSave = False
+			CanQuickLoad = False
+			CanAutoSave = False
+			CanUseMap = True
+			CanSwitchVesselsNear = False
+			CanSwitchVesselsFar = False
+			CanTimeWarpHigh = False
+			CanTimeWarpLow = False
+			CanEVA = False
+			CanIVA = True
+			CanBoard = False
+			CanRestart = True
+			CanLeaveToEditor = False
+			CanLeaveToTrackingStation = False
+			CanLeaveToSpaceCenter = False
+			CanLeaveToMainMenu = True
+		}
+		EDITOR
+		{
+			CanSave = True
+			CanLoad = True
+			CanStartNew = True
+			CanLaunch = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = False
+			startUpMode = 0
+			craftFileToLoad = 
+		}
+		TRACKINGSTATION
+		{
+			CanFlyVessel = True
+			CanAbortVessel = True
+			CanLeaveToSpaceCenter = True
+			CanLeaveToMainMenu = False
+		}
+		SPACECENTER
+		{
+			CanGoInVAB = True
+			CanGoInSPH = True
+			CanGoInTrackingStation = True
+			CanLaunchAtPad = True
+			CanLaunchAtRunway = True
+			CanLeaveToMainMenu = True
+		}
+		DIFFICULTY
+		{
+			AutoHireCrews = True
+			MissingCrewsRespawn = True
+			BypassEntryPurchaseAfterResearch = True
+			AllowStockVessels = True
+			IndestructibleFacilities = False
+		}
+		CAREER
+		{
+			StartingFunds = 25000
+			StartingScience = 0
+			StartingReputation = 0
+			FundsGainMultiplier = 1
+			RepGainMultiplier = 1
+			ScienceGainMultiplier = 1
+			FundsLossMultiplier = 1
+			RepLossMultiplier = 1
+		}
+	}
+	
+	SCENARIO
+	{
+		name = ProcAirships
+		scene = 7, 6, 9, 5
+		buoyancyMultiplicator = 5
+		pressureDestruction = True
+		alwaysControllable = False
+		showTemperatureInFlight = True
+	}
+	
+	SCENARIO
+	{
+		name = AirshipsTutorial
+		scene = 7
+	}
+	
+	SCENARIO
+	{
+		name = ScenarioDestructibles
+		scene = 5, 7, 6, 9, 8
+		SpaceCenter/KSCAdminBuilding/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/KSCCrewBuilding/building
+		{
+			intact = True
+		}
+		SpaceCenter/FlagPole
+		{
+			intact = True
+		}
+		SpaceCenter/KSCLaunchPad/LaunchPadMedium/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCLaunchPad/LaunchPadMedium/ksp_pad_launchPad
+		{
+			intact = True
+		}
+		SpaceCenter/KSCLaunchPad/LaunchPadMedium/ksp_pad_sphereTank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCLaunchPad/LaunchPadMedium/ksp_pad_waterTower
+		{
+			intact = True
+		}
+		SpaceCenter/KSCLaunchPad/LaunchPadMedium/KSCFlagPoleLaunchPad
+		{
+			intact = True
+		}
+		SpaceCenter/KSCMissionControl/building
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/SmallLab
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/CentralBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/MainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/CornerLab
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/WindTunnel
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/Observatory
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRnDFacility/SideLab
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/model_runway_new_v43/runway_light_SE
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/model_runway_new_v43/runway_light_NE
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/model_runway_new_v43/runway_light_NW
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/model_runway_new_v43/runway_light_SW
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/End09
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/End27
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/Section1
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/Section2
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/Section3
+		{
+			intact = True
+		}
+		SpaceCenter/KSCRunway/Section4
+		{
+			intact = True
+		}
+		SpaceCenter/KSCSpacePlaneHangar/Tank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCSpacePlaneHangar/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCSpacePlaneHangar/ksp_pad_waterTower
+		{
+			intact = True
+		}
+		SpaceCenter/KSCSpacePlaneHangar/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/KSCTrackingStation/dish_array/dish_south
+		{
+			intact = True
+		}
+		SpaceCenter/KSCTrackingStation/dish_array/dish_north
+		{
+			intact = True
+		}
+		SpaceCenter/KSCTrackingStation/dish_array/dish_east
+		{
+			intact = True
+		}
+		SpaceCenter/KSCTrackingStation/MainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/KSCVehicleAssemblyBuilding/ksp_pad_cylTank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCVehicleAssemblyBuilding/Tank
+		{
+			intact = True
+		}
+		SpaceCenter/KSCVehicleAssemblyBuilding/mainBuilding
+		{
+			intact = True
+		}
+		SpaceCenter/KSCVehicleAssemblyBuilding/PodMemorial
+		{
+			intact = True
+		}
+	}
+	FLIGHTSTATE
+	{
+		version = 0.25.0
+		UT = 42.360000000001
+		activeVessel = 0
+		mapViewFiltering = -1026
+		
+		VESSEL
+		{
+			pid = 7b45f52a2b85494ab9cf9ec77d9e91ae
+			name = Tutorial Airship(FAR)
+			type = Ship
+			sit = LANDED
+			landed = True
+			landedAt = Runway
+			splashed = False
+			met = 34.1000000000006
+			lct = 5.19999999999998
+			root = 0
+			lat = -0.0486920660813643
+			lon = 285.27561945227
+			alt = 76.9606303140754
+			hgt = 7.807759
+			nrm = 0.0006994263,0.04515692,-0.9989797
+			rot = 0.0788976,-0.07888801,-0.7049627,0.7004139
+			CoM = -1.308076E-07,0.02917684,1.378362
+			stg = 1
+			prst = False
+			ref = 3489600414
+			ctrl = True
+			cPch = 
+			cHdg = 
+			cMod = 0
+			ORBIT
+			{
+				SMA = 300037.792428007
+				ECC = 1
+				INC = NaN
+				LPE = 34.7239135130317
+				LAN = 230.65518088591
+				MNA = 3.14159265358979
+				EPH = 39.3400000000005
+				REF = 1
+			}
+			PART
+			{
+				name = AirshipEnvelope
+				uid = 2137106465
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 0,0,0
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = top, 1
+				attN = bottom, 4
+				mass = 1.132052
+				temp = 19.39413
+				expt = 0.5
+				state = 1
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = AirshipEnvelope
+				modCost = 1765.091
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = PlainWhite
+					shapeName = Cylinder
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 12.5
+					length = 17
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 2.5
+					length = 5
+					fillet = 2.5
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 2.5
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = AirshipEnvelope
+					isEnabled = True
+					envelopeVolume = 2086.214
+					liftingGas = Combustrogen
+					ballonetPercentage = 60.71
+					ballonetTargetInflation = 80
+					liftingGasAmount = 88.94495
+					autofill = True
+					pressureControl = False
+					ventGas = False
+					ballonetVolume = 1013.23249330028
+					liftingGas_UIEditor
+					{
+						controlEnabled = True
+					}
+					ballonetPercentage_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						incrementLarge = 10
+						incrementSmall = 1
+						incrementSlide = 0.01
+					}
+					ballonetTargetInflation_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						incrementLarge = 10
+						incrementSmall = 1
+						incrementSlide = 0.01
+					}
+					liftingGasAmount_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1
+						incrementSmall = 0.1
+						incrementSlide = 0.001
+					}
+					autofill_UIEditor
+					{
+						controlEnabled = True
+					}
+					pressureControl_UIFlight
+					{
+						controlEnabled = True
+					}
+					ventGas_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ballonetMinusMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinus
+						{
+							actionGroup = None
+						}
+						ballonetPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						toggleVenting
+						{
+							actionGroup = None
+						}
+						startVenting
+						{
+							actionGroup = None
+						}
+						stopVenting
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinus
+						{
+							actionGroup = None
+						}
+						ventingRatePlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlusPlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						PControlOn
+						{
+							actionGroup = None
+						}
+						PControlOff
+						{
+							actionGroup = None
+						}
+						PControlToggle
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = Buoyancy
+					isEnabled = True
+					tankVolume = 1072.982
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = BuoyancyStats
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = AirshipCost
+					isEnabled = True
+					overallCost = 1745.126
+					envelopeVolume = 2086.214
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = AirshipEnvelopeCap
+				uid = 2956431330
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 0,13.5000200271606,-1.60932756898546E-06
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = bottom, 0
+				mass = 0.3825876
+				temp = 19.39413
+				expt = 0.5
+				state = 1
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = AirshipEnvelopeCap
+				modCost = 2878.715
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = PlainWhite
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 12.5
+					length = 10
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.25
+						incrementLarge = 1.25
+						incrementSmall = 0.25
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = AirshipEnvelope
+					isEnabled = True
+					envelopeVolume = 706.6013
+					liftingGas = Combustrogen
+					ballonetPercentage = 100
+					ballonetTargetInflation = 50
+					liftingGasAmount = 29.28691
+					autofill = True
+					pressureControl = False
+					ventGas = False
+					ballonetVolume = 353.300658701932
+					liftingGas_UIEditor
+					{
+						controlEnabled = True
+					}
+					ballonetPercentage_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						incrementLarge = 10
+						incrementSmall = 1
+						incrementSlide = 0.01
+					}
+					ballonetTargetInflation_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						incrementLarge = 10
+						incrementSmall = 1
+						incrementSlide = 0.01
+					}
+					liftingGasAmount_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1
+						incrementSmall = 0.1
+						incrementSlide = 0.001
+					}
+					autofill_UIEditor
+					{
+						controlEnabled = True
+					}
+					pressureControl_UIFlight
+					{
+						controlEnabled = True
+					}
+					ventGas_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ballonetMinusMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinusMinusMinus
+						{
+							actionGroup = Custom01
+						}
+						ballonetMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinus
+						{
+							actionGroup = None
+						}
+						ballonetPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlusPlus
+						{
+							actionGroup = Custom02
+						}
+						ballonetPlusPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						toggleVenting
+						{
+							actionGroup = None
+						}
+						startVenting
+						{
+							actionGroup = None
+						}
+						stopVenting
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinus
+						{
+							actionGroup = None
+						}
+						ventingRatePlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlusPlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						PControlOn
+						{
+							actionGroup = None
+						}
+						PControlOff
+						{
+							actionGroup = None
+						}
+						PControlToggle
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = Buoyancy
+					isEnabled = True
+					tankVolume = 353.3007
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = BuoyancyStats
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = AirshipCost
+					isEnabled = True
+					overallCost = 2871.953
+					envelopeVolume = 706.6013
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = R8winglet
+				uid = 2416023358
+				mid = 2550715638
+				launchID = 1
+				parent = 1
+				position = 5.4439058303833,13.5808000564575,-1.61895729888784E-06
+				rotation = -0.2257045,0.9741962,0,7.3757E-08
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 3
+				srfN = srfAttach, 1
+				mass = 0.01819668
+				temp = 19.39413
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = R8winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARControllableSurface
+					isEnabled = True
+					pitchaxis = True
+					yawaxis = False
+					rollaxis = False
+					isFlap = False
+					isSpoiler = False
+					flapDeflectionLevel = 2
+					maxdeflect = 30
+					maxdeflectFlap = 15
+					massMultiplier = 0.2
+					pitchaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					yawaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					rollaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					isFlap_UIEditor
+					{
+						controlEnabled = True
+					}
+					isSpoiler_UIEditor
+					{
+						controlEnabled = True
+					}
+					maxdeflect_UIEditor
+					{
+						controlEnabled = True
+						minValue = -15
+						maxValue = 30
+						stepIncrement = 0.5
+					}
+					maxdeflectFlap_UIEditor
+					{
+						controlEnabled = True
+						minValue = -30
+						maxValue = 85
+						stepIncrement = 0.5
+					}
+					massMultiplier_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0.1
+						maxValue = 2
+						stepIncrement = 0.01
+					}
+					EVENTS
+					{
+						DeflectMore
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect more
+							guiName = Deflect more
+							category = Deflect more
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						DeflectLess
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect less
+							guiName = Deflect less
+							category = Deflect less
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ActivateSpoiler
+						{
+							actionGroup = Brakes
+						}
+						IncreaseDeflect
+						{
+							actionGroup = None
+						}
+						DecreaseDeflect
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = R8winglet
+				uid = 4111481210
+				mid = 2550715638
+				launchID = 1
+				parent = 1
+				position = -5.44390296936035,13.5808000564575,-1.61895729888784E-06
+				rotation = -4.214686E-07,7.3757E-08,0.2257045,-0.9741962
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 2
+				srfN = srfAttach, 1
+				mass = 0.01819668
+				temp = 19.39413
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = R8winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARControllableSurface
+					isEnabled = True
+					pitchaxis = True
+					yawaxis = False
+					rollaxis = False
+					isFlap = False
+					isSpoiler = False
+					flapDeflectionLevel = 2
+					maxdeflect = 30
+					maxdeflectFlap = 15
+					massMultiplier = 0.2
+					pitchaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					yawaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					rollaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					isFlap_UIEditor
+					{
+						controlEnabled = True
+					}
+					isSpoiler_UIEditor
+					{
+						controlEnabled = True
+					}
+					maxdeflect_UIEditor
+					{
+						controlEnabled = True
+						minValue = -15
+						maxValue = 30
+						stepIncrement = 0.5
+					}
+					maxdeflectFlap_UIEditor
+					{
+						controlEnabled = True
+						minValue = -30
+						maxValue = 85
+						stepIncrement = 0.5
+					}
+					massMultiplier_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0.1
+						maxValue = 2
+						stepIncrement = 0.01
+					}
+					EVENTS
+					{
+						DeflectMore
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect more
+							guiName = Deflect more
+							category = Deflect more
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						DeflectLess
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect less
+							guiName = Deflect less
+							category = Deflect less
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ActivateSpoiler
+						{
+							actionGroup = Brakes
+						}
+						IncreaseDeflect
+						{
+							actionGroup = None
+						}
+						DecreaseDeflect
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = AirshipEnvelopeCap
+				uid = 481966983
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 0,-13.5000114440918,1.60932654580392E-06
+				rotation = 0,-8.429371E-08,-1,-1.776357E-15
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = bottom, 0
+				mass = 0.3825876
+				temp = 19.39832
+				expt = 0.5
+				state = 1
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = AirshipEnvelopeCap
+				modCost = 2878.715
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = PlainWhite
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 12.5
+					length = 10
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.25
+						incrementLarge = 1.25
+						incrementSmall = 0.25
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = AirshipEnvelope
+					isEnabled = True
+					envelopeVolume = 706.6013
+					liftingGas = Combustrogen
+					ballonetPercentage = 100
+					ballonetTargetInflation = 50
+					liftingGasAmount = 29.28691
+					autofill = True
+					pressureControl = False
+					ventGas = False
+					ballonetVolume = 353.300651005103
+					liftingGas_UIEditor
+					{
+						controlEnabled = True
+					}
+					ballonetPercentage_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						incrementLarge = 10
+						incrementSmall = 1
+						incrementSlide = 0.01
+					}
+					ballonetTargetInflation_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						incrementLarge = 10
+						incrementSmall = 1
+						incrementSlide = 0.01
+					}
+					liftingGasAmount_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1
+						incrementSmall = 0.1
+						incrementSlide = 0.001
+					}
+					autofill_UIEditor
+					{
+						controlEnabled = True
+					}
+					pressureControl_UIFlight
+					{
+						controlEnabled = True
+					}
+					ventGas_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+						ballonetMinusMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinusMinusMinus
+						{
+							actionGroup = Custom02
+						}
+						ballonetMinusMinus
+						{
+							actionGroup = None
+						}
+						ballonetMinus
+						{
+							actionGroup = None
+						}
+						ballonetPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlus
+						{
+							actionGroup = None
+						}
+						ballonetPlusPlusPlus
+						{
+							actionGroup = Custom01
+						}
+						ballonetPlusPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						toggleVenting
+						{
+							actionGroup = None
+						}
+						startVenting
+						{
+							actionGroup = None
+						}
+						stopVenting
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinusMinus
+						{
+							actionGroup = None
+						}
+						ventingRateMinus
+						{
+							actionGroup = None
+						}
+						ventingRatePlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlusPlus
+						{
+							actionGroup = None
+						}
+						ventingRatePlusPlusPlusPlus
+						{
+							actionGroup = None
+						}
+						PControlOn
+						{
+							actionGroup = None
+						}
+						PControlOff
+						{
+							actionGroup = None
+						}
+						PControlToggle
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = Buoyancy
+					isEnabled = True
+					tankVolume = 353.3007
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = BuoyancyStats
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = AirshipCost
+					isEnabled = True
+					overallCost = 2871.953
+					envelopeVolume = 706.6013
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = R8winglet
+				uid = 3234736421
+				mid = 2550715638
+				launchID = 1
+				parent = 4
+				position = 0,-13.8946304321289,-5.29024028778076
+				rotation = -0.159597,-0.6888607,0.159597,0.6888608
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 4
+				mass = 0.01819668
+				temp = 19.39367
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = R8winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARControllableSurface
+					isEnabled = True
+					pitchaxis = False
+					yawaxis = True
+					rollaxis = False
+					isFlap = False
+					isSpoiler = False
+					flapDeflectionLevel = 2
+					maxdeflect = 5
+					maxdeflectFlap = 15
+					massMultiplier = 0.2
+					pitchaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					yawaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					rollaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					isFlap_UIEditor
+					{
+						controlEnabled = True
+					}
+					isSpoiler_UIEditor
+					{
+						controlEnabled = True
+					}
+					maxdeflect_UIEditor
+					{
+						controlEnabled = True
+						minValue = -15
+						maxValue = 30
+						stepIncrement = 0.5
+					}
+					maxdeflectFlap_UIEditor
+					{
+						controlEnabled = True
+						minValue = -30
+						maxValue = 85
+						stepIncrement = 0.5
+					}
+					massMultiplier_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0.1
+						maxValue = 2
+						stepIncrement = 0.01
+					}
+					EVENTS
+					{
+						DeflectMore
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect more
+							guiName = Deflect more
+							category = Deflect more
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						DeflectLess
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect less
+							guiName = Deflect less
+							category = Deflect less
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ActivateSpoiler
+						{
+							actionGroup = Brakes
+						}
+						IncreaseDeflect
+						{
+							actionGroup = None
+						}
+						DecreaseDeflect
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = R8winglet
+				uid = 4168005765
+				mid = 2550715638
+				launchID = 1
+				parent = 4
+				position = -5.96046447753906E-08,-13.8946199417114,5.29024744033813
+				rotation = -0.1595972,-0.6888608,-0.1595973,-0.6888605
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 4
+				mass = 0.01819668
+				temp = 19.39458
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = R8winglet
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARControllableSurface
+					isEnabled = True
+					pitchaxis = False
+					yawaxis = True
+					rollaxis = False
+					isFlap = False
+					isSpoiler = False
+					flapDeflectionLevel = 2
+					maxdeflect = 5
+					maxdeflectFlap = 15
+					massMultiplier = 0.2
+					pitchaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					yawaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					rollaxis_UIEditor
+					{
+						controlEnabled = True
+					}
+					isFlap_UIEditor
+					{
+						controlEnabled = True
+					}
+					isSpoiler_UIEditor
+					{
+						controlEnabled = True
+					}
+					maxdeflect_UIEditor
+					{
+						controlEnabled = True
+						minValue = -15
+						maxValue = 30
+						stepIncrement = 0.5
+					}
+					maxdeflectFlap_UIEditor
+					{
+						controlEnabled = True
+						minValue = -30
+						maxValue = 85
+						stepIncrement = 0.5
+					}
+					massMultiplier_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0.1
+						maxValue = 2
+						stepIncrement = 0.01
+					}
+					EVENTS
+					{
+						DeflectMore
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect more
+							guiName = Deflect more
+							category = Deflect more
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						DeflectLess
+						{
+							active = False
+							guiActive = True
+							guiIcon = Deflect less
+							guiName = Deflect less
+							category = Deflect less
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ActivateSpoiler
+						{
+							actionGroup = Brakes
+						}
+						IncreaseDeflect
+						{
+							actionGroup = None
+						}
+						DecreaseDeflect
+						{
+							actionGroup = None
+						}
+					}
+				}
+			}
+			PART
+			{
+				name = tailfin
+				uid = 2716085496
+				mid = 2550715638
+				launchID = 1
+				parent = 4
+				position = 4.88163614273071,-13.5000114440918,1.60932654580392E-06
+				rotation = -2.528811E-07,6.322028E-08,0.2257045,-0.9741961
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 8
+				srfN = srfAttach, 4
+				mass = 0.1115265
+				temp = 19.39421
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = tailfin
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARWingAerodynamicModel
+					isEnabled = True
+					massMultiplier = 1
+					massMultiplier_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0.1
+						maxValue = 2
+						stepIncrement = 0.01
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = tailfin
+				uid = 1131877211
+				mid = 2550715638
+				launchID = 1
+				parent = 4
+				position = -4.88163614273071,-13.5000114440918,1.60932654580392E-06
+				rotation = -0.2257044,0.9741961,2.528811E-07,-1.369773E-07
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 7
+				srfN = srfAttach, 4
+				mass = 0.1115265
+				temp = 19.39411
+				expt = 0.1
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = tailfin
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARWingAerodynamicModel
+					isEnabled = True
+					massMultiplier = 1
+					massMultiplier_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0.1
+						maxValue = 2
+						stepIncrement = 0.01
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = smallHardpoint
+				uid = 4163497264
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 1.19209289550781E-07,7.4590950012207,6.50625276565552
+				rotation = -0.0003673309,0.7071069,-0.0004008588,0.7071068
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 0
+				mass = 0.02
+				temp = 19.50294
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = smallHardpoint
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = proceduralStructural
+				uid = 4030388671
+				mid = 2550715638
+				launchID = 1
+				parent = 9
+				position = 1.19209289550781E-07,7.45911073684692,7.33834838867188
+				rotation = 2.234651E-07,-1,-4.214685E-08,1.265616E-07
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				srfN = srfAttach, 9
+				attN = top, 11
+				attN = bottom, 14
+				mass = 0.06902914
+				temp = 19.52309
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralStructural
+				modCost = 0.01321218
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = WhiteSide
+					shapeName = Cylinder
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 1.125
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 1.380583
+					mass = 0.06902914
+					tankType = Structural
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = Mark1Cockpit
+				uid = 3489600414
+				mid = 2550715638
+				launchID = 1
+				parent = 10
+				position = 1.19209289550781E-07,8.19661045074463,7.33838605880737
+				rotation = -4.214685E-08,4.210704E-08,-7.452175E-08,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = bottom, 10
+				mass = 1.25
+				temp = 19.47535
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = Mark1Cockpit
+				modCost = 0
+				crew = Jebediah Kerman
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleCommand
+					isEnabled = True
+					controlSrcStatusText = Operational
+					EVENTS
+					{
+						MakeReference
+						{
+							active = True
+							guiActive = True
+							guiIcon = Control From Here
+							guiName = Control From Here
+							category = Control From Here
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						RenameVessel
+						{
+							active = True
+							guiActive = True
+							guiIcon = Rename Vessel
+							guiName = Rename Vessel
+							category = Rename Vessel
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleSAS
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleReactionWheel
+					isEnabled = True
+					stateString = Operational
+					WheelState = Active
+					EVENTS
+					{
+						OnToggle
+						{
+							active = True
+							guiActive = True
+							guiIcon = Toggle Torque
+							guiName = Toggle Torque
+							category = Toggle Torque
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						Activate
+						{
+							actionGroup = None
+						}
+						Deactivate
+						{
+							actionGroup = None
+						}
+						Toggle
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleScienceExperiment
+					isEnabled = True
+					Deployed = False
+					Inoperable = False
+					EVENTS
+					{
+						DeployExperiment
+						{
+							active = True
+							guiActive = True
+							guiIcon = Deploy
+							guiName = Crew Report
+							category = Deploy
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						CollectDataExternalEvent
+						{
+							active = False
+							guiActive = False
+							guiIcon = 
+							guiName = Take Data
+							category = 
+							guiActiveUnfocused = True
+							unfocusedRange = 1.5
+							externalToEVAOnly = True
+						}
+						ReviewDataEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Review Data
+							guiName = Review Report
+							category = Review Data
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						ResetExperiment
+						{
+							active = False
+							guiActive = True
+							guiIcon = Reset
+							guiName = Discard Crew Report
+							category = Reset
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						ResetExperimentExternal
+						{
+							active = False
+							guiActive = False
+							guiIcon = Reset
+							guiName = Discard Crew Report
+							category = Reset
+							guiActiveUnfocused = True
+							unfocusedRange = 1.5
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						DeployAction
+						{
+							actionGroup = None
+						}
+						ResetAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleScienceContainer
+					isEnabled = True
+					EVENTS
+					{
+						StoreDataExternalEvent
+						{
+							active = False
+							guiActive = False
+							guiIcon = 
+							guiName = Store Experiments (0)
+							category = 
+							guiActiveUnfocused = True
+							unfocusedRange = 1.3
+							externalToEVAOnly = True
+						}
+						CollectDataExternalEvent
+						{
+							active = False
+							guiActive = False
+							guiIcon = 
+							guiName = Take Data (0)
+							category = 
+							guiActiveUnfocused = True
+							unfocusedRange = 1.3
+							externalToEVAOnly = True
+						}
+						ReviewDataEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Review Data
+							guiName = Review Stored Data (0)
+							category = Review Data
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FlagDecal
+					isEnabled = True
+					flagDisplayed = True
+					EVENTS
+					{
+						ToggleFlag
+						{
+							active = True
+							guiActive = False
+							guiActiveEditor = True
+							guiIcon = ToggleFlag
+							guiName = ToggleFlag
+							category = ToggleFlag
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTripLogger
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+					Surfaced
+					{
+						at = Kerbin
+					}
+					Flew
+					{
+						at = Kerbin
+					}
+					FlewBy
+					{
+					}
+					Orbited
+					{
+					}
+					SubOrbited
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARControlSys
+					isEnabled = True
+					EVENTS
+					{
+						AerodynamicFailureStatus
+						{
+							active = True
+							guiActive = False
+							guiIcon = 
+							guiName = 
+							category = 
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 50
+					maxAmount = 50
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+				RESOURCE
+				{
+					name = MonoPropellant
+					amount = 7.5
+					maxAmount = 7.5
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = strutConnector
+				uid = 3372904753
+				mid = 2550715638
+				launchID = 1
+				parent = 11
+				position = -0.436230778694153,8.10966014862061,6.90215921401978
+				rotation = 2.684755E-05,0.3826836,0.0002636075,-0.9238799
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				cData = tgt: AirshipEnvelope_0; pos: -1.131585,0.2394867,0.027968; dir: -0.9780549,0.2069484,0.024102
+				sym = 13
+				srfN = srfAttach, 11
+				mass = 0.05
+				temp = 19.41155
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = strutConnector
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+			}
+			PART
+			{
+				name = strutConnector
+				uid = 2766901929
+				mid = 2550715638
+				launchID = 1
+				parent = 11
+				position = 0.436228156089783,8.10966014862061,6.90215921401978
+				rotation = -0.0002636075,0.9238798,-2.676325E-05,-0.3826837
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				cData = tgt: AirshipEnvelope_0; pos: -1.131235,0.2394001,-0.02792285; dir: -0.9780555,0.2069481,-0.02410216
+				sym = 12
+				srfN = srfAttach, 11
+				mass = 0.05
+				temp = 19.38885
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = strutConnector
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+			}
+			PART
+			{
+				name = proceduralNoseCone
+				uid = 681106896
+				mid = 2550715638
+				launchID = 1
+				parent = 10
+				position = -1.78813934326172E-07,6.58410215377808,7.33837461471558
+				rotation = -4.211513E-08,-4.214685E-08,-1,-5.962217E-08
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				srfN = None, -1
+				attN = bottom, 10
+				mass = 0.05299509
+				temp = 19.41258
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralNoseCone
+				modCost = 0.004226359
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = WhiteSide
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 1.25
+					length = 0.625
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.25
+						incrementLarge = 1.25
+						incrementSmall = 0.25
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.125
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.4416258
+					mass = 0.05299509
+					tankType = Structural
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = miniLandingLeg
+				uid = 1267087180
+				mid = 2550715638
+				launchID = 1
+				parent = 10
+				position = -0.650684714317322,7.58847284317017,7.38979434967041
+				rotation = 0.7071067,-0.0009458484,0.0009458506,-0.7071062
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 16
+				srfN = srfAttach, 10
+				mass = 0.015
+				temp = 19.3901
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = miniLandingLeg
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleLandingLeg
+					isEnabled = True
+					StartDeployed = True
+					savedAnimationTime = 1
+					savedAnimationSpeed = 0
+					savedLegState = 3
+					savedLocalPosition = (-0.0005659348, -8.41192E-06, 0.005492495)
+					suspensionLocked = False
+					StartDeployed_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+						LowerLeg
+						{
+							active = False
+							guiActive = True
+							guiIcon = Lower Legs
+							guiName = Lower Legs
+							category = Lower Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RaiseLeg
+						{
+							active = True
+							guiActive = True
+							guiIcon = Raise Legs
+							guiName = Raise Legs
+							category = Raise Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RepairLeg
+						{
+							active = False
+							guiActive = False
+							guiIcon = Repair Leg
+							guiName = Repair Leg
+							category = Repair Leg
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						LockSuspension
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Lock Suspension
+							guiName = Lock Suspension
+							category = Lock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						UnLockSuspension
+						{
+							active = False
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = UnLock Suspension
+							guiName = UnLock Suspension
+							category = UnLock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = Gear
+						}
+						ToggleSuspensionLockAction
+						{
+							actionGroup = None
+						}
+						RaiseAction
+						{
+							actionGroup = None
+						}
+						LowerAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = miniLandingLeg
+				uid = 935467419
+				mid = 2550715638
+				launchID = 1
+				parent = 10
+				position = 0.650679230690002,7.58847284317017,7.38979625701904
+				rotation = -0.0009458644,0.7071062,-0.7071066,0.0009457924
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 15
+				srfN = srfAttach, 10
+				mass = 0.015
+				temp = 19.36754
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = miniLandingLeg
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleLandingLeg
+					isEnabled = True
+					StartDeployed = True
+					savedAnimationTime = 1
+					savedAnimationSpeed = 0
+					savedLegState = 3
+					savedLocalPosition = (-0.0005634868, 7.696238E-06, 0.005512395)
+					suspensionLocked = False
+					StartDeployed_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+						LowerLeg
+						{
+							active = False
+							guiActive = True
+							guiIcon = Lower Legs
+							guiName = Lower Legs
+							category = Lower Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RaiseLeg
+						{
+							active = True
+							guiActive = True
+							guiIcon = Raise Legs
+							guiName = Raise Legs
+							category = Raise Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RepairLeg
+						{
+							active = False
+							guiActive = False
+							guiIcon = Repair Leg
+							guiName = Repair Leg
+							category = Repair Leg
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						LockSuspension
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Lock Suspension
+							guiName = Lock Suspension
+							category = Lock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						UnLockSuspension
+						{
+							active = False
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = UnLock Suspension
+							guiName = UnLock Suspension
+							category = UnLock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = Gear
+						}
+						ToggleSuspensionLockAction
+						{
+							actionGroup = None
+						}
+						RaiseAction
+						{
+							actionGroup = None
+						}
+						LowerAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = proceduralTankLiquid
+				uid = 354620652
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = -6.87500095367432,0.000291466742055491,-3.47455397786689E-11
+				rotation = -0.0001673019,-0.7071069,0.0001624972,-0.7071069
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 21
+				srfN = srfAttach, 0
+				attN = top, 18
+				attN = bottom, 19
+				mass = 0.2761165
+				temp = 19.49626
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralTankLiquid
+				modCost = 976.8977
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = Stockalike
+					shapeName = Cylinder
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 2.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 2.761165
+					mass = 0.2761165
+					tankType = LiquidFuel
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 220.89
+					maxAmount = 220.889999389648
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = proceduralTankLiquid
+				uid = 11354330
+				mid = 2550715638
+				launchID = 1
+				parent = 17
+				position = -6.87448120117188,1.62529945373535,1.02966678241501E-05
+				rotation = 0,0,0,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 22
+				srfN = None, -1
+				attN = None, -1
+				attN = bottom, 17
+				mass = 0.07066013
+				temp = 19.42221
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralTankLiquid
+				modCost = 249.997
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = Saturn
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.7066013
+					mass = 0.07066013
+					tankType = LiquidFuel
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 56.53
+					maxAmount = 56.5299987792969
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = proceduralTankLiquid
+				uid = 1362043993
+				mid = 2550715638
+				launchID = 1
+				parent = 17
+				position = -6.87553024291992,-1.62472343444824,-9.34306262934115E-06
+				rotation = -9.830134E-12,-8.429371E-08,-1,-4.115904E-10
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 23
+				srfN = None, -1
+				attN = None, -1
+				attN = bottom, 17
+				mass = 0.07066013
+				temp = 19.40257
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralTankLiquid
+				modCost = 249.997
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = Saturn
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.7066013
+					mass = 0.07066013
+					tankType = LiquidFuel
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 56.53
+					maxAmount = 56.5299987792969
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = fuelLine
+				uid = 2687326770
+				mid = 2550715638
+				launchID = 1
+				parent = 17
+				position = -6.5590763092041,-0.814956486225128,-0.539050042629242
+				rotation = 0.0007719407,0.8577285,-0.0002211867,-0.5141029
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				cData = tgt: AirshipEnvelope_0; pos: -0.5575592,-0.4690945,-0.147381; dir: -0.7500465,-0.6309743,-0.1982466; rot: -0.08715849,-0.008025947,0.9961622,-2.302696E-08
+				sym = 24
+				srfN = srfAttach, 17
+				mass = 0.05
+				temp = 19.38115
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = fuelLine
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+			}
+			PART
+			{
+				name = proceduralTankLiquid
+				uid = 2966679992
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 6.875,0.000291585951345041,-3.47597506333841E-11
+				rotation = 0.000167323,-0.7071069,0.0001624972,0.7071069
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 17
+				srfN = srfAttach, 0
+				attN = top, 22
+				attN = bottom, 23
+				mass = 0.2761165
+				temp = 19.49626
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralTankLiquid
+				modCost = 976.8977
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = Stockalike
+					shapeName = Cylinder
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 2.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 2.761165
+					mass = 0.2761165
+					tankType = LiquidFuel
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 220.89
+					maxAmount = 220.889999389648
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = proceduralTankLiquid
+				uid = 62658589
+				mid = 2550715638
+				launchID = 1
+				parent = 21
+				position = 6.87447595596313,1.62530040740967,1.02966678241501E-05
+				rotation = 4.214685E-08,2.5021E-12,2.832359E-07,1
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 18
+				srfN = None, -1
+				attN = None, -1
+				attN = bottom, 21
+				mass = 0.07066013
+				temp = 19.42221
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralTankLiquid
+				modCost = 249.997
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = Saturn
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.7066013
+					mass = 0.07066013
+					tankType = LiquidFuel
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 56.53
+					maxAmount = 56.5299987792969
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = proceduralTankLiquid
+				uid = 2942343019
+				mid = 2550715638
+				launchID = 1
+				parent = 21
+				position = 6.87552499771118,-1.62472343444824,-9.34306262934115E-06
+				rotation = 2.5021E-12,-4.214685E-08,1,-2.832359E-07
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 19
+				srfN = None, -1
+				attN = None, -1
+				attN = bottom, 21
+				mass = 0.07066013
+				temp = 19.40257
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralTankLiquid
+				modCost = 249.997
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = Saturn
+					shapeName = Smooth Cone
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.7066013
+					mass = 0.07066013
+					tankType = LiquidFuel
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = LiquidFuel
+					amount = 56.53
+					maxAmount = 56.5299987792969
+					flowState = True
+					isTweakable = True
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = fuelLine
+				uid = 1920632204
+				mid = 2550715638
+				launchID = 1
+				parent = 21
+				position = 6.55907392501831,-0.814958810806274,-0.539059579372406
+				rotation = 0.000220976,0.5141029,-0.0007720251,-0.8577285
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				cData = tgt: AirshipEnvelope_0; pos: -0.5523794,-0.4647716,0.1460267; dir: -0.7500468,-0.6309747,0.1982469; rot: -0.9961948,0.0002340397,0.08715549,-3.622211E-08
+				sym = 20
+				srfN = srfAttach, 21
+				mass = 0.05
+				temp = 19.38115
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = fuelLine
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+			}
+			PART
+			{
+				name = trussPiece3x
+				uid = 3904165932
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = -7.63700294494629,-2.26772618293762,1.1414703130722
+				rotation = 0.5215363,-0.4775292,0.4779003,0.5211312
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 29
+				srfN = srfAttach, 0
+				attN = None, -1
+				attN = None, -1
+				mass = 0.375
+				temp = 19.46207
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = trussPiece3x
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = proceduralStructural
+				uid = 611918472
+				mid = 2550715638
+				launchID = 1
+				parent = 25
+				position = -9.63105201721191,-2.26930904388428,1.31594133377075
+				rotation = -0.0002621956,0.7372772,0.0002865143,0.6755908
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 30
+				srfN = srfAttach, 25
+				attN = top, 28
+				attN = bottom, 27
+				mass = 0.03067962
+				temp = 19.45791
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralStructural
+				modCost = 0.005872078
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = WhiteSide
+					shapeName = Cylinder
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 0.5
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.6135923
+					mass = 0.03067962
+					tankType = Structural
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = JetEngine
+				uid = 1912285774
+				mid = 2550715638
+				launchID = 1
+				parent = 26
+				position = -9.63012504577637,-3.49217915534973,1.31587088108063
+				rotation = 1.73645E-05,0.04361881,0.0003881581,0.9990486
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 31
+				srfN = None, -1
+				attN = top, 26
+				mass = 1
+				temp = 19.4035
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = JetEngine
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleEngines
+					isEnabled = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
+					engineShutdown = False
+					currentThrottle = 0
+					thrustPercentage = 10
+					manuallyOverridden = False
+					thrustPercentage_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 0.5
+					}
+					EVENTS
+					{
+						Activate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Activate Engine
+							guiName = Activate Engine
+							category = Activate Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Shutdown
+						{
+							active = False
+							guiActive = True
+							guiIcon = Shutdown Engine
+							guiName = Shutdown Engine
+							category = Shutdown Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = None
+						}
+						ShutdownAction
+						{
+							actionGroup = None
+						}
+						ActivateAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAnimateHeat
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleGimbal
+					isEnabled = True
+					gimbalLock = True
+					EVENTS
+					{
+						LockGimbal
+						{
+							active = False
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Lock Gimbal
+							guiName = Lock Gimbal
+							category = Lock Gimbal
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						FreeGimbal
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Free Gimbal
+							guiName = Free Gimbal
+							category = Free Gimbal
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAlternator
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTestSubject
+					isEnabled = True
+					EVENTS
+					{
+						RunTestEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Run Test
+							guiName = Run Test
+							category = Run Test
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 0.0140867927111685
+					maxAmount = 0.0799999982118607
+					flowState = True
+					isTweakable = False
+					hideFlow = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = CircularIntake
+				uid = 2237334835
+				mid = 2550715638
+				launchID = 1
+				parent = 26
+				position = -9.6312427520752,-2.01931715011597,1.31596028804779
+				rotation = 1.73645E-05,0.04361881,0.0003881581,0.9990486
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 32
+				srfN = None, -1
+				attN = bottom01, 26
+				mass = 0.01
+				temp = 19.38066
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = CircularIntake
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleResourceIntake
+					isEnabled = True
+					intakeEnabled = True
+					EVENTS
+					{
+						Deactivate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Close Intake
+							guiName = Close Intake
+							category = Close Intake
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Activate
+						{
+							active = False
+							guiActive = True
+							guiIcon = Open Intake
+							guiName = Open Intake
+							category = Open Intake
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = IntakeAir
+					amount = 0.2
+					maxAmount = 0.2
+					flowState = True
+					isTweakable = False
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = trussPiece3x
+				uid = 3087468562
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 7.63700246810913,-2.26772618293762,1.14146077632904
+				rotation = 0.5215363,0.4775292,-0.4779003,0.5211312
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 25
+				srfN = srfAttach, 0
+				attN = None, -1
+				attN = None, -1
+				mass = 0.375
+				temp = 19.46208
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = trussPiece3x
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = proceduralStructural
+				uid = 272090059
+				mid = 2550715638
+				launchID = 1
+				parent = 29
+				position = 9.63105964660645,-2.26930999755859,1.31594133377075
+				rotation = 0.0002621113,0.7372773,0.0002865565,-0.6755906
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 26
+				srfN = srfAttach, 29
+				attN = top, 32
+				attN = bottom, 31
+				mass = 0.03067962
+				temp = 19.45791
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = proceduralStructural
+				modCost = 0.005872078
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ProceduralPart
+					isEnabled = True
+					textureSet = WhiteSide
+					shapeName = Cylinder
+					textureSet_UIEditor
+					{
+						controlEnabled = True
+					}
+					shapeName_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCylinder
+					isEnabled = True
+					diameter = 1.25
+					length = 0.5
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeCone
+					isEnabled = True
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapePill
+					isEnabled = True
+					diameter = 1.25
+					length = 1
+					fillet = 0.25
+					diameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					fillet_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 1
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ProceduralShapeBezierCone
+					isEnabled = True
+					selectedShape = Round #1
+					topDiameter = 0.625
+					bottomDiameter = 1.25
+					length = 1
+					selectedShape_UIEditor
+					{
+						controlEnabled = True
+					}
+					topDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					bottomDiameter_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0
+						incrementLarge = 1.25
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					length_UIEditor
+					{
+						controlEnabled = True
+						minValue = 0.01
+						incrementLarge = 1
+						incrementSmall = 0.125
+						incrementSlide = 0.001
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = TankContentSwitcher
+					isEnabled = True
+					tankVolume = 0.6135923
+					mass = 0.03067962
+					tankType = Structural
+					tankType_UIEditor
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = JetEngine
+				uid = 2667269170
+				mid = 2550715638
+				launchID = 1
+				parent = 30
+				position = 9.6301212310791,-3.49218440055847,1.31586134433746
+				rotation = 1.765953E-05,-0.0436189,-0.0003884742,0.9990485
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 27
+				srfN = None, -1
+				attN = top, 30
+				mass = 1
+				temp = 19.4035
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = JetEngine
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleEngines
+					isEnabled = True
+					staged = False
+					flameout = False
+					EngineIgnited = False
+					engineShutdown = False
+					currentThrottle = 0
+					thrustPercentage = 10
+					manuallyOverridden = False
+					thrustPercentage_UIFlight
+					{
+						controlEnabled = True
+						minValue = 0
+						maxValue = 100
+						stepIncrement = 0.5
+					}
+					EVENTS
+					{
+						Activate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Activate Engine
+							guiName = Activate Engine
+							category = Activate Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Shutdown
+						{
+							active = False
+							guiActive = True
+							guiIcon = Shutdown Engine
+							guiName = Shutdown Engine
+							category = Shutdown Engine
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = None
+						}
+						ShutdownAction
+						{
+							actionGroup = None
+						}
+						ActivateAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAnimateHeat
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleGimbal
+					isEnabled = True
+					gimbalLock = True
+					EVENTS
+					{
+						LockGimbal
+						{
+							active = False
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Lock Gimbal
+							guiName = Lock Gimbal
+							category = Lock Gimbal
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						FreeGimbal
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Free Gimbal
+							guiName = Free Gimbal
+							category = Free Gimbal
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = ModuleAlternator
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = ModuleTestSubject
+					isEnabled = True
+					EVENTS
+					{
+						RunTestEvent
+						{
+							active = False
+							guiActive = True
+							guiIcon = Run Test
+							guiName = Run Test
+							category = Run Test
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = ElectricCharge
+					amount = 0.0140867927111685
+					maxAmount = 0.0799999982118607
+					flowState = True
+					isTweakable = False
+					hideFlow = True
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = CircularIntake
+				uid = 2424807714
+				mid = 2550715638
+				launchID = 1
+				parent = 30
+				position = 9.63124084472656,-2.01931810379028,1.31595075130463
+				rotation = 1.765953E-05,-0.0436189,-0.0003884742,0.9990485
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 0
+				sym = 28
+				srfN = None, -1
+				attN = bottom01, 30
+				mass = 0.01
+				temp = 19.38066
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = CircularIntake
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleResourceIntake
+					isEnabled = True
+					intakeEnabled = True
+					EVENTS
+					{
+						Deactivate
+						{
+							active = True
+							guiActive = True
+							guiIcon = Close Intake
+							guiName = Close Intake
+							category = Close Intake
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+						Activate
+						{
+							active = False
+							guiActive = True
+							guiIcon = Open Intake
+							guiName = Open Intake
+							category = Open Intake
+							guiActiveUnfocused = False
+							unfocusedRange = 2
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ToggleAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+				RESOURCE
+				{
+					name = IntakeAir
+					amount = 0.2
+					maxAmount = 0.2
+					flowState = True
+					isTweakable = False
+					hideFlow = False
+					flowMode = Both
+				}
+			}
+			PART
+			{
+				name = miniLandingLeg
+				uid = 2171750976
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = -1.63091826438904,-8.45675754547119,6.08673143386841
+				rotation = 0.4304593,-0.4304593,0.5609858,-0.5609858
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 34
+				srfN = srfAttach, 0
+				mass = 0.015
+				temp = 19.39465
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = miniLandingLeg
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleLandingLeg
+					isEnabled = True
+					StartDeployed = True
+					savedAnimationTime = 1
+					savedAnimationSpeed = 0
+					savedLegState = 3
+					savedLocalPosition = (-0.0005570229, -2.000276E-06, 0.006000869)
+					suspensionLocked = False
+					StartDeployed_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+						LowerLeg
+						{
+							active = False
+							guiActive = True
+							guiIcon = Lower Legs
+							guiName = Lower Legs
+							category = Lower Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RaiseLeg
+						{
+							active = True
+							guiActive = True
+							guiIcon = Raise Legs
+							guiName = Raise Legs
+							category = Raise Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RepairLeg
+						{
+							active = False
+							guiActive = False
+							guiIcon = Repair Leg
+							guiName = Repair Leg
+							category = Repair Leg
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						LockSuspension
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Lock Suspension
+							guiName = Lock Suspension
+							category = Lock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						UnLockSuspension
+						{
+							active = False
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = UnLock Suspension
+							guiName = UnLock Suspension
+							category = UnLock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = Gear
+						}
+						ToggleSuspensionLockAction
+						{
+							actionGroup = None
+						}
+						RaiseAction
+						{
+							actionGroup = None
+						}
+						LowerAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = miniLandingLeg
+				uid = 6171935
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 1.63093304634094,-8.45675659179688,6.08672761917114
+				rotation = -0.5609858,0.5609857,-0.4304593,0.4304594
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 33
+				srfN = srfAttach, 0
+				mass = 0.015
+				temp = 19.39465
+				expt = 0
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = miniLandingLeg
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleLandingLeg
+					isEnabled = True
+					StartDeployed = True
+					savedAnimationTime = 1
+					savedAnimationSpeed = 0
+					savedLegState = 3
+					savedLocalPosition = (-0.0005566999, -7.882408E-07, 0.005999264)
+					suspensionLocked = False
+					StartDeployed_UIFlight
+					{
+						controlEnabled = True
+					}
+					EVENTS
+					{
+						LowerLeg
+						{
+							active = False
+							guiActive = True
+							guiIcon = Lower Legs
+							guiName = Lower Legs
+							category = Lower Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RaiseLeg
+						{
+							active = True
+							guiActive = True
+							guiIcon = Raise Legs
+							guiName = Raise Legs
+							category = Raise Legs
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						RepairLeg
+						{
+							active = False
+							guiActive = False
+							guiIcon = Repair Leg
+							guiName = Repair Leg
+							category = Repair Leg
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						LockSuspension
+						{
+							active = True
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = Lock Suspension
+							guiName = Lock Suspension
+							category = Lock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						UnLockSuspension
+						{
+							active = False
+							guiActive = True
+							guiActiveEditor = True
+							guiIcon = UnLock Suspension
+							guiName = UnLock Suspension
+							category = UnLock Suspension
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						OnAction
+						{
+							actionGroup = Gear
+						}
+						ToggleSuspensionLockAction
+						{
+							actionGroup = None
+						}
+						RaiseAction
+						{
+							actionGroup = None
+						}
+						LowerAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				uid = 1278468932
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = -1.61761748790741,-5.40857399755623E-07,-6.03704166412354
+				rotation = -2.667896E-05,0.9914451,-0.0002313441,-0.1305262
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 36
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 19.39362
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			PART
+			{
+				name = solarPanels5
+				uid = 2189152803
+				mid = 2550715638
+				launchID = 1
+				parent = 0
+				position = 1.61761999130249,-5.40857399755623E-07,-6.03704166412354
+				rotation = 2.667896E-05,0.9914451,-0.0002313441,0.1305262
+				mirror = 1,1,1
+				istg = 0
+				dstg = 0
+				sqor = -1
+				sidx = -1
+				attm = 1
+				sym = 35
+				srfN = srfAttach, 0
+				mass = 0.005
+				temp = 19.39362
+				expt = 0.5
+				state = 0
+				connected = True
+				attached = True
+				flag = Squad/Flags/default
+				rTrf = solarPanels5
+				modCost = 0
+				EVENTS
+				{
+				}
+				ACTIONS
+				{
+				}
+				MODULE
+				{
+					name = ModuleDeployableSolarPanel
+					isEnabled = True
+					currentRotation = (0, 0, 0, 1)
+					stateString = EXTENDED
+					storedAnimationTime = 0
+					storedAnimationSpeed = 0
+					EVENTS
+					{
+						Extend
+						{
+							active = False
+							guiActive = True
+							guiIcon = Extend Panels
+							guiName = Extend Panels
+							category = Extend Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+						Retract
+						{
+							active = False
+							guiActive = True
+							guiIcon = Retract Panels
+							guiName = Retract Panels
+							category = Retract Panels
+							guiActiveUnfocused = True
+							unfocusedRange = 4
+							externalToEVAOnly = True
+						}
+					}
+					ACTIONS
+					{
+						ExtendPanelsAction
+						{
+							actionGroup = None
+						}
+						ExtendAction
+						{
+							actionGroup = None
+						}
+						RetractAction
+						{
+							actionGroup = None
+						}
+					}
+				}
+				MODULE
+				{
+					name = FARBasicDragModel
+					isEnabled = True
+					EVENTS
+					{
+					}
+					ACTIONS
+					{
+					}
+				}
+			}
+			ACTIONGROUPS
+			{
+				Stage = False, 0
+				Gear = True, 0
+				Light = False, 0
+				RCS = False, 0
+				SAS = False, 0
+				Brakes = False, 0
+				Abort = False, 0
+				Custom01 = False, 0
+				Custom02 = False, 0
+				Custom03 = False, 0
+				Custom04 = False, 0
+				Custom05 = False, 0
+				Custom06 = False, 0
+				Custom07 = False, 0
+				Custom08 = False, 0
+				Custom09 = False, 0
+				Custom10 = False, 0
+			}
+			DISCOVERY
+			{
+				state = -1
+				lastObservedTime = 0
+				lifetime = Infinity
+				refTime = Infinity
+				size = 2
+			}
+			FLIGHTPLAN
+			{
+			}
+			CTRLSTATE
+			{
+				pitch = 0
+				yaw = 0
+				roll = 0
+				trimPitch = 0
+				trimYaw = 0
+				trimRoll = 0
+				mainThrottle = 0
+			}
+		}
+		
+		
+		
+		
+	}
+	ROSTER
+	{
+		KERBAL
+		{
+			name = Jebediah Kerman
+			type = Crew
+			brave = 0.5
+			dumb = 0.5
+			badS = True
+			state = Assigned
+			ToD = 0
+			idx = 0
+		}
+		KERBAL
+		{
+			name = Bill Kerman
+			type = Crew
+			brave = 0.5
+			dumb = 0.8
+			badS = False
+			state = Available
+			ToD = 0
+			idx = -1
+		}
+		KERBAL
+		{
+			name = Bob Kerman
+			type = Crew
+			brave = 0.3
+			dumb = 0.1
+			badS = False
+			state = Available
+			ToD = 0
+			idx = -1
+		}
+	}
+	
+}

@@ -1,3 +1,6 @@
+##### Version 1.2
+- Feature: In-Game tutorials for stock/NEAR and FAR explaining the basics of airship piloting
+
 ##### Version 1.1.1
 - Hotfix: Fixes a bug that prevents from starting/loading a game after returning to the main menu
 

@@ -1,15 +1,18 @@
 {
-  "NAME": "Procedural Airships",
-  "URL": "https://raw.githubusercontent.com/ItMustBeACamel/ProcAirships/master/GameData/ProcAirships/ProcAirships.version",
-  "VERSION": {
-    "MAJOR": 1,
-    "MINOR": 1,
-    "PATCH": 1,
-    "BUILD": 0
-  },
-  "KSP_VERSION": {
-    "MAJOR": 0,
-    "MINOR": 25,
-    "PATCH": 0
-  }
+	"NAME":"Procedural Airships",
+	"URL":"http://ksp-avc.cybutek.net/version.php?id=77",
+	"DOWNLOAD":"https://github.com/ItMustBeACamel/ProcAirships/releases/tag/1.2"
+	,"VERSION":
+	{
+		"MAJOR":1,
+		"MINOR":2,
+		"PATCH":0,
+		"BUILD":0
+	},
+	"KSP_VERSION":
+	{
+		"MAJOR":0,
+		"MINOR":25,
+		"PATCH":0
+	}
 }

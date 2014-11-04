@@ -1,13 +1,14 @@
 # Procedural Airships
 ## A ProceduralParts Expansion
 
-**Version 1.1.1**
+**Version 1.2**
 
 This plug-in adds procedural airship envelopes to Kerbal Space Program.
 
 ### Features
 + Envelope and ballonet simulation. Including two lifting gas options.
 + Supports FAR and NEAR
++ In-game tutorial
 + Ballast tanks
 
 ### Installation
@@ -16,6 +17,7 @@ This plug-in adds procedural airship envelopes to Kerbal Space Program.
 2. Delete previously installed ProceduralAirships installations.
 3. Copy contents of the GameData folder, provided with this package, into your KSPs GameData folder.
 4. Copy contents of the Ships folder, provided with this package, into your KSPs Ships folder.
+4. Copy contents of the saves folder, provided with this package, into your KSPs saves folder.
 
 
 ### Mod recommendations

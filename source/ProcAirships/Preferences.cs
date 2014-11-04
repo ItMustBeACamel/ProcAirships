@@ -72,7 +72,7 @@ namespace ProcAirships
     }
 
 
-    [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
+    [KSPAddon(KSPAddon.Startup.MainMenu, false)]
     class PrefLoader : MonoBehaviour
     {
         public void Awake()
