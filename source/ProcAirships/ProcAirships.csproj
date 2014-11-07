@@ -64,6 +64,7 @@
     <Compile Include="BuoyancyStats.cs" />
     <Compile Include="COBMarker.cs" />
     <Compile Include="EditorController.cs" />
+    <Compile Include="EditorGUI.cs" />
     <Compile Include="GUI.cs" />
     <Compile Include="IAthmosphereModel.cs" />
     <Compile Include="ProcAirships.cs" />

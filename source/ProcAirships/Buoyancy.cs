@@ -144,7 +144,9 @@ namespace ProcAirships
             else
                 buoyantForce = Vector3.zero;
 
-            Vector3 GravForce = Vector3.down * 9.8f * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
+            double geeForce = Athmosphere.fetch().CurrentBody.GeeASL;
+
+            Vector3 GravForce = Vector3.down * (float)geeForce * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
 
             guiGravPull = GravForce.magnitude;
 
@@ -162,9 +164,10 @@ namespace ProcAirships
         {
             if (util.editorActive())
             {
+                double geeForce = Athmosphere.fetch().CurrentBody.GeeASL;
                 //float airDensity = (float)athmosphere.getAirDensity();
                 float airDensity = (float)Athmosphere.fetch().getAirDensity(part.rigidbody.worldCenterOfMass);
-                return (-Vector3.down * 9.8f * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
+                return (-Vector3.down * (float)geeForce * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
             }
             else
             {
