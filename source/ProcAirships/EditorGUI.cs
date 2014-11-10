@@ -64,7 +64,7 @@ namespace ProcAirships
             currentBody = GUILayout.SelectionGrid(currentBody, bodyNames, 3);
             
             GUILayout.BeginHorizontal();
-            altitude = (float)Math.Truncate(GUILayout.VerticalSlider(altitude, 10000, 0, GUILayout.ExpandHeight(true)));
+            altitude = (float)Math.Truncate(GUILayout.VerticalSlider(altitude, (float)(availableBodies[currentBody].atmosphereScaleHeight * 2000), 0, GUILayout.ExpandHeight(true)));
 
             GUILayout.BeginVertical();
             if (GUILayout.Button("Launch Pad"))
@@ -74,7 +74,10 @@ namespace ProcAirships
                 altitude = (float)Athmosphere.sphAltitude;
 
             GUILayout.FlexibleSpace();
-            GUILayout.Label(String.Format("altitude: {0:N}m", altitude));
+            
+            GUILayout.Label(String.Format("Altitude: {0:N}m", altitude));
+            GUILayout.Label(String.Format("Density: {0:N}", Athmosphere.fetch().getAirDensity(altitude)));
+            GUILayout.Label(String.Format("Temperature: {0:N}°C", FlightGlobals.getExternalTemperature(altitude, availableBodies[currentBody])));
 
             GUILayout.EndVertical();
 

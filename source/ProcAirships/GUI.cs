@@ -102,7 +102,7 @@ namespace ProcAirships
             if (HighLogic.LoadedScene == GameScenes.SPACECENTER && showOptions)
             {
                 UnityEngine.GUI.skin = HighLogic.Skin;
-                optionsRect = GUILayout.Window(0, optionsRect, optionsFunc, "Procedural Airships Options");
+                optionsRect = GUILayout.Window(4345670, optionsRect, optionsFunc, "Procedural Airships Options");
             }
 
             
