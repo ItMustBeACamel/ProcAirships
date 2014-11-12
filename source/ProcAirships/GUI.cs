@@ -55,7 +55,7 @@ namespace ProcAirships
             {
                 Debug.Log("adding button");
                 LauncherButton = ApplicationLauncher.Instance.AddModApplication(ShowOptions, HideOptions, doNothing, doNothing, doNothing, doNothing,
-                    ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.SPH,
+                    ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB,
                     (Texture)GameDatabase.Instance.GetTexture("ProcAirships/Textures/launcher", false));
 
             }
