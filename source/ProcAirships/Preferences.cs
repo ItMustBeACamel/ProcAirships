@@ -75,9 +75,19 @@ namespace ProcAirships
     [KSPAddon(KSPAddon.Startup.MainMenu, false)]
     class PrefLoader : MonoBehaviour
     {
+        private PrefLoader instance = null;
+
+        public PrefLoader Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+
         public void Awake()
         {
-
+            instance = this;
             PluginConfiguration config = PluginConfiguration.CreateForType<PrefLoader>();
  
             config.load();
@@ -115,10 +125,10 @@ namespace ProcAirships
 
         }
 
-        void OnDestroy()
+        public static void SavePreferences()
         {
             PluginConfiguration config = PluginConfiguration.CreateForType<PrefLoader>();
-          
+
             //config.SetVal("buoyancyMultiplicator", Preferences.buoyancyMultiplicator);
 
             config.SetVal("showVolumeInfoInEditor", Preferences.showVolumeInfoInEditor);
@@ -140,8 +150,6 @@ namespace ProcAirships
             //config.SetVal("alwaysControllable", Preferences.alwaysControllable);
 
             config.save();
-      
         }
-
     }
 }
