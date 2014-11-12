@@ -187,6 +187,9 @@ namespace ProcAirships
                 }
             } 
             GUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Save Debug Settings", GUILayout.ExpandWidth(true)))
+                PrefLoader.SavePreferences();
             
             // Do stuff before windows dragging
             UnityEngine.GUI.DragWindow();

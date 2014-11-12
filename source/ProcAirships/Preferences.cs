@@ -72,7 +72,7 @@ namespace ProcAirships
     }
 
 
-    [KSPAddon(KSPAddon.Startup.MainMenu, false)]
+    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     class PrefLoader : MonoBehaviour
     {
         private PrefLoader instance = null;
