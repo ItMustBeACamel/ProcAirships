@@ -137,6 +137,8 @@ namespace ProcAirships
             UI_Toggle(controlEnabled=true, scene=UI_Scene.Flight)]
         private bool ventGas = false;
 
+        private bool firstUpdate = false;
+
 #region Properties
 
         public float EnvelopeVolume
@@ -400,7 +402,7 @@ namespace ProcAirships
         {
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
-            setupUI(); 
+            //setupUI(); 
 
 
             if (!util.editorActive())
@@ -420,13 +422,27 @@ namespace ProcAirships
         {
 
             if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            {
+                if (!firstUpdate)
+                {
+                    firstUpdate = true;
+                    setupUI();
+                }
+                
                 updateEnvelope();
+
+            }
 
             //Log.post("world position: " + part.rigidbody.worldCenterOfMass.ToString());
         }
 
         public override void OnFixedUpdate()
         {
+            if(!firstUpdate)
+            {
+                firstUpdate = true;
+                setupUI();
+            }
             updateEnvelope();
 
         }

@@ -24,7 +24,7 @@ namespace ProcAirships
         [KSPField(guiActive = true, guiActiveEditor=true, guiName = "Grav Pull", guiUnits = "kN", guiFormat = "F2")]
         public float guiGravPull = 0;
 
-        private float buoyancyMultiplicator = 1.0f;
+        //private float buoyancyMultiplicator = 1.0f;
 
         public override void OnActive()
         {
@@ -53,15 +53,15 @@ namespace ProcAirships
                 part.force_activate();
             }
 
-            if (null != ProcAirships.Instance)
-                buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
-            else
-            {
-                Log.post("Scenario ProcAirship not yet instantiated.");
-                buoyancyMultiplicator = 5;
-            }
+            //if (null != ProcAirships.Instance)
+            //    buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
+            //else
+            //{
+            //    Log.post("Scenario ProcAirship not yet instantiated.");
+            //    buoyancyMultiplicator = 5;
+            //}
 
-            Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
+            //Log.post("Buoyancy Multiplicator: " + buoyancyMultiplicator, LogLevel.LOG_INFORMATION);
 
             setupUI();
         }
@@ -162,6 +162,7 @@ namespace ProcAirships
 
         public Vector3 getBuoyancyForce()
         {
+            float buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
             if (util.editorActive())
             {
                 double geeForce = Athmosphere.fetch().CurrentBody.GeeASL;
