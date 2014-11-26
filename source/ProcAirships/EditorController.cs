@@ -10,6 +10,8 @@ namespace ProcAirships
     class EditorController : MonoBehaviour
     {
 
+        public static float altitude;
+
         private GameObject CoL;
         private GameObject CoB;
         private GameObject CoBdir;

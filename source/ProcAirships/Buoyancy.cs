@@ -130,7 +130,7 @@ namespace ProcAirships
             else
                 buoyantForce = Vector3.zero;
 
-            Vector3 GravForce = -FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
+            Vector3 GravForce = -FlightGlobals.getGeeForceAtPosition(part.rigidbody.worldCenterOfMass) * (part.mass + part.GetResourceMass());
 
             guiGravPull = GravForce.magnitude;
 
@@ -144,7 +144,16 @@ namespace ProcAirships
             else
                 buoyantForce = Vector3.zero;
 
-            Vector3 GravForce = Vector3.down * 9.8f * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
+
+            double r = Athmosphere.fetch().CurrentBody.Radius;
+            double h = EditorController.altitude;
+            double mu = Athmosphere.fetch().CurrentBody.gravParameter;
+
+            double geeForce = mu / Math.Pow(r + h, 2);
+
+            //double geeForce = Athmosphere.fetch().CurrentBody.GeeASL;
+
+            Vector3 GravForce = Vector3.down * (float)geeForce * (part.mass + part.GetResourceMass());//this.vessel.GetTotalMass();
 
             guiGravPull = GravForce.magnitude;
 
@@ -163,9 +172,10 @@ namespace ProcAirships
             float buoyancyMultiplicator = ProcAirships.Instance.buoyancyMultiplicator;
             if (util.editorActive())
             {
+                double geeForce = Athmosphere.fetch().CurrentBody.GeeASL;
                 //float airDensity = (float)athmosphere.getAirDensity();
                 float airDensity = (float)Athmosphere.fetch().getAirDensity(part.rigidbody.worldCenterOfMass);
-                return (-Vector3.down * 9.8f * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
+                return (-Vector3.down * (float)geeForce * airDensity * tankVolume) * buoyancyMultiplicator / 1000.0f;
             }
             else
             {

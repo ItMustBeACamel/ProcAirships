@@ -53,7 +53,8 @@ namespace ProcAirships
                 }
             }
 
-            vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass); 
+            //vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass);
+            vesselNetBuoyancy = (float)(vesselBuoyancy - Athmosphere.fetch().CurrentBody.GeeASL * vesselMass);
         }
 
         public override void OnFixedUpdate()
