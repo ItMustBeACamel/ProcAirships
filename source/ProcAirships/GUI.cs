@@ -57,7 +57,7 @@ namespace ProcAirships
                 LauncherButton = ApplicationLauncher.Instance.AddModApplication(ShowOptions, HideOptions, doNothing, doNothing, doNothing, doNothing,
                     ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB,
                     (Texture)GameDatabase.Instance.GetTexture("ProcAirships/Textures/launcher", false));
-
+                
             }
         }
 
@@ -72,7 +72,9 @@ namespace ProcAirships
         {
             if(util.editorActive())
             {
-                EditorGUI.showEditorGUI = true;
+                //EditorGUI.showEditorGUI = true;
+                if (null == UI.EditorUIManager.Instance) return;
+                UI.EditorUIManager.Instance.ShowEditorWindow();
             }
             else
                 showOptions = true;
@@ -82,7 +84,9 @@ namespace ProcAirships
         {
             if (util.editorActive())
             {
-                EditorGUI.showEditorGUI = false;
+                //EditorGUI.showEditorGUI = false;
+                if (null == UI.EditorUIManager.Instance) return;
+                UI.EditorUIManager.Instance.HideEditorWindow();
             }
             else
                 showOptions = false;
