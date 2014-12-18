@@ -97,8 +97,12 @@ namespace ProcAirships
             {
                 Log.postException("Could not add Change delegate", e);
             }
-            
-            //EZValueChangedDelegate
+
+            if (util.vabActive())
+                altitude = (float)Athmosphere.vabAltitude;
+
+            if (util.sphActive())
+                altitude = (float)Athmosphere.sphAltitude;
 
             
         }

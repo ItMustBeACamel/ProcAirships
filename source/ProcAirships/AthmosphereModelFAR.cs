@@ -9,8 +9,8 @@ namespace ProcAirships
 {
     class AthmosphereModelFAR : IAthmosphereModel
     {
-        private delegate double getAirDensityAltFunc(CelestialBody body, double altitude);
-        private delegate double getAirDensityPosFunc(CelestialBody body, Vector3 worldPosition);
+        private delegate double getAirDensityAltFunc(CelestialBody body, double altitude, bool oceanSmoothing);
+        private delegate double getAirDensityPosFunc(CelestialBody body, Vector3 worldPosition, bool oceanSmoothing);
         //private delegate void updateCurrentActivelBodyFunc(CelestialBody body);
 
         private getAirDensityAltFunc getAirDensityAlt;
@@ -52,10 +52,10 @@ namespace ProcAirships
             {
 
                 getAirDensityAlt = (getAirDensityAltFunc)Delegate.CreateDelegate(typeof(getAirDensityAltFunc), null,
-                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(double) }));
+                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(double), typeof(bool) }));
 
                 getAirDensityPos = (getAirDensityPosFunc)Delegate.CreateDelegate(typeof(getAirDensityPosFunc), null,
-                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(Vector3) }));
+                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(Vector3), typeof(bool) }));
 
                 //updateCurrentActiveBody = (updateCurrentActivelBodyFunc)Delegate.CreateDelegate(typeof(updateCurrentActivelBodyFunc), null,
                 //    aeroUtilType.GetMethod("UpdateCurrentActiveBody", new Type[] { typeof(CelestialBody)}));
@@ -76,7 +76,7 @@ namespace ProcAirships
 
         public double getAirDensity(double altitude, CelestialBody body)
         {
-            return getAirDensityAlt(body, altitude);
+            return getAirDensityAlt(body, altitude, true);
         }
 
         public double getAirDensity(UnityEngine.Vector3 worldPosition, CelestialBody body)

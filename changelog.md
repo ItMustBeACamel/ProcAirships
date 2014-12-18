@@ -1,3 +1,10 @@
+##### Version 1.3
+- Feature: Compatibility with KSP version 0.90
+- Feature: Compatibility with FAR 0.14.5+
+- Feature: Editor UI
+- Feature: Save button for preferences window
+- Bugfix: Removed some semicolons in the cfgs which was not only unnecessary but also prevented the cost calculation from working as intended
+
 ##### Version 1.2
 - Feature: In-Game tutorials for stock/NEAR and FAR explaining the basics of airship piloting
 

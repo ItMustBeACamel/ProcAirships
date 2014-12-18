@@ -139,11 +139,8 @@ namespace ProcAirships.UI
 
             OnBodyGridChange(this, new ChangeEventArgs<int>(bodyGrid.Selection));
 
-            if (util.vabActive())
-                altSlider.Value = (float)Athmosphere.vabAltitude;
-
-            if (util.sphActive())
-                altSlider.Value = (float)Athmosphere.sphAltitude;
+          
+            altSlider.Value = EditorController.altitude;
 
             UpdateAltitudeDisplay();
         }
