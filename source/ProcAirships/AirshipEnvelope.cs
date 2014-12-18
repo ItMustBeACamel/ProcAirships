@@ -31,7 +31,7 @@ using KSPAPIExtensions.PartMessage;
 namespace ProcAirships
 {
     [Serializable]
-    public class AirshipEnvelope : PartModule
+    public class AirshipEnvelope : PartModule, IPartMassModifier
     {
 
         [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = false, guiName = "envelope vol.", guiUnits = "m³", guiFormat = "F3")]
@@ -992,5 +992,10 @@ namespace ProcAirships
 
         }
 
+
+        public float GetModuleMass(float defaultMass)
+        {
+            return part.mass - defaultMass;
+        }
     } // class
 }
