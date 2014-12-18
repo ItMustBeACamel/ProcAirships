@@ -54,7 +54,7 @@ namespace ProcAirships
             if (ApplicationLauncher.Ready && !LauncherButton)
             {
                 Debug.Log("adding button");
-                LauncherButton = ApplicationLauncher.Instance.AddModApplication(ShowOptions, HideOptions, doNothing, doNothing, doNothing, doNothing,
+                LauncherButton = ApplicationLauncher.Instance.AddModApplication(ToggleUI, ToggleUI, doNothing, doNothing, doNothing, doNothing,
                     ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB,
                     (Texture)GameDatabase.Instance.GetTexture("ProcAirships/Textures/launcher", false));
                 
@@ -65,6 +65,18 @@ namespace ProcAirships
         {
             Debug.Log("deleting button");
             LauncherButton = null;
+        }
+
+        public static void ToggleUI()
+        {
+            if (util.editorActive())
+            {
+                if (null == UI.EditorUIManager.Instance) return;
+                UI.EditorUIManager.Instance.ToggleEditorWindow();
+            }
+            else
+                showOptions = !showOptions;
+
         }
 
 

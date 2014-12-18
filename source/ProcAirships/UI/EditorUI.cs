@@ -58,6 +58,7 @@ namespace ProcAirships.UI
 
             UpdateAltitudeDisplay();
             UpdateAtmosphere();
+            EditorController.altitude = Presets[e.Index].altitude;
         }
 
         public void OnPresetRemove(object sender, CancelSelectEventArgs<int> e)
@@ -74,18 +75,23 @@ namespace ProcAirships.UI
         {
             altSlider.Value = (float)Math.Truncate(e.Value);
 
-            double r = availableBodies[bodyGrid.Selection].Radius;
-            double h = e.Value;
-            double mu = availableBodies[bodyGrid.Selection].gravParameter;
-
-            
-            double gh = mu / Math.Pow(r+h, 2);
-
-            labInfo.Caption = "" + gh;
-
             UpdateAltitudeDisplay();
             UpdateAtmosphere();
             EditorController.altitude = e.Value;
+        }
+
+        protected override void OnPreDraw()
+        {       
+            labNetBuoyancy.Caption = String.Format("net. Buoyancy: {0:N}kN", EditorController.NetBuoyancy);        
+        }
+
+        protected override void OnPostDraw()
+        {
+            int autoFillCount = EditorController.AutoFillCounter;
+
+            if (autoFillCount > 0)
+                GUILayout.Label(" WARNING: Autofill on " + autoFillCount + " parts.");
+            
         }
 
 #endregion
@@ -124,7 +130,7 @@ namespace ProcAirships.UI
 
             labAltitude = new Label(layoutGroupPresets);
 
-            labInfo = new Label(Surface);
+            labNetBuoyancy = new Label(Surface);
 
 
             // init everything
@@ -167,7 +173,7 @@ namespace ProcAirships.UI
         private void UpdateAtmosphere()
         {
             Athmosphere.fetch().ForceBody = availableBodies[bodyGrid.Selection];
-            Athmosphere.fetch().EditorAltitude = altSlider.Value;
+            //Athmosphere.fetch().EditorAltitude = altSlider.Value;
         }
 
         #endregion
@@ -178,7 +184,8 @@ namespace ProcAirships.UI
         Label labAltitude;
         Slider altSlider;
         SelectionGrid bodyGrid;
-        Label labInfo;
+        Label labNetBuoyancy;
+        
 
         List<CelestialBody> availableBodies = new List<CelestialBody>();
         List<EditorPreset> Presets;

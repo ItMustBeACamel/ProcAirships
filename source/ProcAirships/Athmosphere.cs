@@ -35,17 +35,8 @@ namespace ProcAirships
 
                 if (util.editorActive())
                 {
-                    density = currentModel.getAirDensity(worldPosition.y + editorAltitude, currentBody);
-                    //if (util.vabActive())
-                    //{
-                    //    density = currentModel.getAirDensity(worldPosition.y + vabAltitude, currentBody);
-                    //    //Log.post(worldPosition.y + vabAltitude);
-                    //}
-                    //else
-                    //{
-                    //    density = currentModel.getAirDensity(worldPosition.y + sphAltitude, currentBody);
-                    //    //Log.post(worldPosition.y + sphAltitude);
-                    //}
+                    //density = currentModel.getAirDensity(worldPosition.y + EditorController.altitude, currentBody);
+                    throw new InvalidOperationException("Do not use in editor!");
                 }
                 else
                     density = currentModel.getAirDensity(worldPosition, currentBody);
@@ -87,7 +78,8 @@ namespace ProcAirships
                     //    return currentModel.getAirPressure(worldPosition.y + vabAltitude, currentBody);
                     //else
                     //    return currentModel.getAirPressure(worldPosition.y + sphAltitude, currentBody);
-                    return currentModel.getAirPressure(worldPosition.y + editorAltitude, currentBody);
+                    //return currentModel.getAirPressure(worldPosition.y + EditorController.altitude, currentBody);
+                    throw new InvalidOperationException("Do not use in editor!");
                 }
                 else
                     return currentModel.getAirPressure(worldPosition, currentBody);
@@ -205,11 +197,11 @@ namespace ProcAirships
             get { return currentBody; }
         }
 
-        public double EditorAltitude
-        {
-            get { return editorAltitude; }
-            set { editorAltitude = value; }
-        }
+        //public double EditorAltitude
+        //{
+        //    get { return editorAltitude; }
+        //    set { editorAltitude = value; }
+        //}
 
         private static Athmosphere instance = null;
         
@@ -221,7 +213,7 @@ namespace ProcAirships
         private CelestialBody lastBody = null;
         private CelestialBody forceBody = null;
 
-        private double editorAltitude = 0.0;
+        //private double editorAltitude = 0.0;
         
     }
 }

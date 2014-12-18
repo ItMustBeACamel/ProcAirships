@@ -220,6 +220,11 @@ namespace ProcAirships
             get { return idealRelPressure; }
         }
 
+        public bool AutoFill
+        {
+            get { return autofill; }
+        }
+
         
 
 #endregion
@@ -421,7 +426,7 @@ namespace ProcAirships
         void Update()
         {
 
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            if (HighLogic.LoadedScene == GameScenes.EDITOR)
             {
                 if (!firstUpdate)
                 {
@@ -481,7 +486,8 @@ namespace ProcAirships
 
         double getTemperature()
         {
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            if(util.editorActive())
+            //if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
             {
                 return 20.0d;
             }
@@ -701,7 +707,10 @@ namespace ProcAirships
 
             //absolutePressure = (float)getAbsolutePressure();
             //relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
-            relativePressure = (float)(absolutePressure - Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass));
+            double airPressure = util.editorActive() ? Athmosphere.fetch().getAirPressure(EditorController.altitude) :
+                Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass);
+
+            relativePressure = (float)(absolutePressure - airPressure);
 
             pStatus = (relativePressure-idealRelPressure).Clamp(-pressureTolerance, pressureTolerance);
 
@@ -731,7 +740,7 @@ namespace ProcAirships
         void autoFill()
         {
             //liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
-            liftingGasAmount = (float)getGasAmount(Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass) + idealRelPressure);
+            liftingGasAmount = (float)getGasAmount(Athmosphere.fetch().getAirPressure(EditorController.altitude) + idealRelPressure);
         }
 
      

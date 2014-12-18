@@ -23,7 +23,8 @@ namespace ProcAirships
 
         public static bool editorActive()
         {
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            
+            if (HighLogic.LoadedSceneIsEditor)
                 return true;
             else
                 return false;   
@@ -31,7 +32,8 @@ namespace ProcAirships
 
         public static bool vabActive()
         {
-            if (HighLogic.LoadedScene == GameScenes.EDITOR)
+            if (EditorFacility.VAB == EditorDriver.editorFacility)
+            //if (HighLogic.LoadedScene == GameScenes.EDITOR)
                 return true;
             else
                 return false;
@@ -39,7 +41,8 @@ namespace ProcAirships
 
         public static bool sphActive()
         {
-            if (HighLogic.LoadedScene == GameScenes.SPH)
+            if (EditorFacility.SPH == EditorDriver.editorFacility)
+            //if (HighLogic.LoadedScene == GameScenes.EDITOR) // TODO differenciate between SPH and VAB
                 return true;
             else
                 return false;
@@ -97,5 +100,15 @@ namespace ProcAirships
 
 
         public const double GasConstant = 8.3144621d;
+
+        public static double GetGeeAcc(double r, double alt, double mu)
+        {
+            return GetGeeAcc(r + alt, mu);
+        }
+
+        public static double GetGeeAcc(double r, double mu)
+        {
+            return mu / Math.Pow(r, 2);
+        }
     }
 }

@@ -118,9 +118,51 @@ namespace ProcAirships
                 CoB.SetActive(CoL.activeSelf);
                 CoBdir.SetActive(CoL.activeSelf);
                 markerVisibilityChanged = false;
-
             }
 
+            autofillCounter = 0;
+
+            if (null != EditorLogic.fetch.ship.Parts)
+            {
+
+                foreach(Part p in EditorLogic.fetch.ship.Parts)
+                {
+                    AirshipEnvelope env = p.GetComponent<AirshipEnvelope>();
+                    if (null != env)
+                        if (env.AutoFill)
+                            ++autofillCounter;       
+                }
+
+            
+                foreach (Part p in EditorLogic.fetch.ship.Parts)
+                {
+                    if (null == p)
+                        continue;
+                    BuoyancyStats stats = p.GetComponent<BuoyancyStats>();
+                    if (null != stats)
+                    {
+                        netBuoyancy = stats.vesselNetBuoyancy;
+                        break;
+                    }
+                }
+            }
+            else
+                Log.post("null == EditorLogic.fetch.ship.Parts", LogLevel.LOG_ERROR);
+
+        }
+
+
+        private static int autofillCounter = 0;
+        public static int AutoFillCounter
+        {
+            get
+            { return autofillCounter; }
+        }
+
+        private static float netBuoyancy;
+        public static float NetBuoyancy
+        {
+            get{ return netBuoyancy; }
         }
 
     }

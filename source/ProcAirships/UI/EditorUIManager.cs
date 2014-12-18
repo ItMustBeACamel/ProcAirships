@@ -12,6 +12,13 @@ namespace ProcAirships.UI
         static EditorUIManager instance=null;
 
         EditorUI editorUI = null;
+        public EditorUI EditorUIWindow
+        {
+            get
+            {
+                return editorUI;
+            }
+        }
 
 
         public static EditorUIManager Instance
@@ -53,10 +60,21 @@ namespace ProcAirships.UI
             {
                 editorUI = AddWindow<EditorUI>();
                 editorUI.Position = new Vector2(300.0f, 300.0f);
+                editorUI.Height = 500.0f;
             }
 
             editorUI.Visible = false;
 
+        }
+
+        public void ToggleEditorWindow()
+        {
+            if (null == editorUI)
+                ShowEditorWindow();
+            else
+            {
+                editorUI.Visible = !editorUI.Visible;
+            }
         }
 
     }

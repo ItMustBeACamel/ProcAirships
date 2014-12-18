@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ProcAirships
 {
-    [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.FLIGHT, GameScenes.EDITOR, GameScenes.SPH, GameScenes.SPACECENTER)]
+    [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.FLIGHT, GameScenes.EDITOR, GameScenes.SPACECENTER)]
     class ProcAirships : ScenarioModule
     {
         private static ProcAirships instance = null;
