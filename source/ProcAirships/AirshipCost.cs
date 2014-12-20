@@ -129,7 +129,7 @@ namespace ProcAirships
     
         // interface
 
-        public float GetModuleCost()
+        public float GetModuleCost(float stdCost)
         {
             //if (util.editorActive())
             //{

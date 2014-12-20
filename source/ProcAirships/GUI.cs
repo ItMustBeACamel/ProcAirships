@@ -15,6 +15,7 @@ namespace ProcAirships
         private static ApplicationLauncherButton LauncherButton = null;
 
         private static bool showOptions = false;
+        
 
         private SortedDictionary<LogLevel, String> LogLevelNames = null;
 
@@ -53,28 +54,54 @@ namespace ProcAirships
             if (ApplicationLauncher.Ready && !LauncherButton)
             {
                 Debug.Log("adding button");
-                LauncherButton = ApplicationLauncher.Instance.AddModApplication(ShowOptions, HideOptions, doNothing, doNothing, doNothing, doNothing, ApplicationLauncher.AppScenes.SPACECENTER,
+                LauncherButton = ApplicationLauncher.Instance.AddModApplication(ToggleUI, ToggleUI, doNothing, doNothing, doNothing, doNothing,
+                    ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB,
                     (Texture)GameDatabase.Instance.GetTexture("ProcAirships/Textures/launcher", false));
-
+                
             }
         }
 
         public void OnAppLauncherDestroyed()
         {
             Debug.Log("deleting button");
-            //ApplicationLauncher.Instance.RemoveModApplication(LauncherButton);
             LauncherButton = null;
+        }
+
+        public static void ToggleUI()
+        {
+            if (util.editorActive())
+            {
+                if (null == UI.EditorUIManager.Instance) return;
+                UI.EditorUIManager.Instance.ToggleEditorWindow();
+            }
+            else
+                showOptions = !showOptions;
+
         }
 
 
         public static void ShowOptions()
         {
-            showOptions = true;
+            if(util.editorActive())
+            {
+                //EditorGUI.showEditorGUI = true;
+                if (null == UI.EditorUIManager.Instance) return;
+                UI.EditorUIManager.Instance.ShowEditorWindow();
+            }
+            else
+                showOptions = true;
         }
 
         public static void HideOptions()
         {
-            showOptions = false;
+            if (util.editorActive())
+            {
+                //EditorGUI.showEditorGUI = false;
+                if (null == UI.EditorUIManager.Instance) return;
+                UI.EditorUIManager.Instance.HideEditorWindow();
+            }
+            else
+                showOptions = false;
         }
 
         public static void doNothing()
@@ -83,14 +110,20 @@ namespace ProcAirships
         }
 
         Rect optionsRect = new Rect(300, 300, 550, 300);
+      
 
         void OnGUI()
         {  
-            UnityEngine.GUI.skin = HighLogic.Skin;
+            
             if (HighLogic.LoadedScene == GameScenes.SPACECENTER && showOptions)
             {
-                optionsRect = GUILayout.Window(0, optionsRect, optionsFunc, "Procedural Airships Options");
+                UnityEngine.GUI.skin = HighLogic.Skin;
+                optionsRect = GUILayout.Window(4345670, optionsRect, optionsFunc, "Procedural Airships Options");
             }
+
+            
+
+
         }
 
         void Update()
@@ -187,6 +220,9 @@ namespace ProcAirships
                 }
             } 
             GUILayout.EndHorizontal();
+
+            if (GUILayout.Button("Save Debug Settings", GUILayout.ExpandWidth(true)))
+                PrefLoader.SavePreferences();
             
             // Do stuff before windows dragging
             UnityEngine.GUI.DragWindow();

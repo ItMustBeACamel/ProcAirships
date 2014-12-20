@@ -9,8 +9,8 @@ namespace ProcAirships
 {
     class AthmosphereModelFAR : IAthmosphereModel
     {
-        private delegate double getAirDensityAltFunc(CelestialBody body, double altitude);
-        private delegate double getAirDensityPosFunc(CelestialBody body, Vector3 worldPosition);
+        private delegate double getAirDensityAltFunc(CelestialBody body, double altitude, bool oceanSmoothing);
+        private delegate double getAirDensityPosFunc(CelestialBody body, Vector3 worldPosition, bool oceanSmoothing);
         //private delegate void updateCurrentActivelBodyFunc(CelestialBody body);
 
         private getAirDensityAltFunc getAirDensityAlt;
@@ -52,10 +52,10 @@ namespace ProcAirships
             {
 
                 getAirDensityAlt = (getAirDensityAltFunc)Delegate.CreateDelegate(typeof(getAirDensityAltFunc), null,
-                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(double) }));
+                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(double), typeof(bool) }));
 
                 getAirDensityPos = (getAirDensityPosFunc)Delegate.CreateDelegate(typeof(getAirDensityPosFunc), null,
-                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(Vector3) }));
+                    aeroUtilType.GetMethod("GetCurrentDensity", new Type[] { typeof(CelestialBody), typeof(Vector3), typeof(bool) }));
 
                 //updateCurrentActiveBody = (updateCurrentActivelBodyFunc)Delegate.CreateDelegate(typeof(updateCurrentActivelBodyFunc), null,
                 //    aeroUtilType.GetMethod("UpdateCurrentActiveBody", new Type[] { typeof(CelestialBody)}));
@@ -76,64 +76,24 @@ namespace ProcAirships
 
         public double getAirDensity(double altitude, CelestialBody body)
         {
-            //return ferram4.FARAeroUtil.GetCurrentDensity(body, altitude);
-
-            return getAirDensityAlt(body, altitude);
+            return getAirDensityAlt(body, altitude, true);
         }
 
         public double getAirDensity(UnityEngine.Vector3 worldPosition, CelestialBody body)
         {
-  
-            //return getAirDensityPos(body, worldPosition);
             // FAR uses a bugged function so this is the workaround until its fixed
             return getAirDensity(FlightGlobals.getAltitudeAtPos(worldPosition, body), body);
         }
 
-        // FAR does not seem to have a function for this so I copied this out of it's AeroUtil class
+       
         public double getAirPressure(double altitude, CelestialBody body)
         {
-            /*
-            //ferram4.FARAeroUtil.UpdateCurrentActiveBody(body);
-            updateCurrentActiveBody(body);
-
-            if (altitude > body.maxAtmosphereAltitude)
-                return 0;
-
-            //double temp = Math.Max(0.1, ferram4.FARAeroUtil.currentBodyTemp + FlightGlobals.getExternalTemperature((float)altitude, body));
-            double currentBodyAtmPressureOffset = (double)aeroUtilType.GetField("currentBodyAtmPressureOffset").GetValue(null);
-            
-
-            double pressure = FlightGlobals.getStaticPressure(altitude, body);
-            if (pressure > 0)
-                //pressure = (pressure - ferram4.FARAeroUtil.currentBodyAtmPressureOffset);
-                pressure = (pressure - currentBodyAtmPressureOffset);
-
-            return pressure;
-             * 
-             */
-
             return FlightGlobals.getStaticPressure(altitude, body);
         }
 
-        // FAR does not seem to have a function for this so I copied this out of it's AeroUtil class
+      
         public double getAirPressure(UnityEngine.Vector3 worldPosition, CelestialBody body)
         {
-            /*
-            //ferram4.FARAeroUtil.UpdateCurrentActiveBody(body);
-            updateCurrentActiveBody(body);
-
-            //double temp = Math.Max(0.1, ferram4.FARAeroUtil.currentBodyTemp + FlightGlobals.getExternalTemperature(worldPosition));
-
-            double currentBodyAtmPressureOffset = (double)aeroUtilType.GetField("currentBodyAtmPressureOffset").GetValue(null);
-            
-
-            double pressure = FlightGlobals.getStaticPressure(worldPosition, body);
-            if (pressure > 0)
-                //pressure = (pressure - ferram4.FARAeroUtil.currentBodyAtmPressureOffset);
-                pressure = (pressure - currentBodyAtmPressureOffset);
-
-            return pressure;
-             */
             return FlightGlobals.getStaticPressure(worldPosition, body);
         }
 

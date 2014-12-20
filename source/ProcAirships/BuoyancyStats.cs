@@ -34,7 +34,8 @@ namespace ProcAirships
 
         void Update()
         {
-            if (!(HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH))
+            if(!util.editorActive())
+            //if (!(HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH))
                 return;
             vesselBuoyancy = 0;
             vesselMass = 0;
@@ -53,7 +54,15 @@ namespace ProcAirships
                 }
             }
 
-            vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass); 
+            //vesselNetBuoyancy = (float)(vesselBuoyancy - 9.8f * vesselMass);
+            //vesselNetBuoyancy = (float)(vesselBuoyancy - Athmosphere.fetch().CurrentBody.GeeASL * vesselMass);
+            vesselNetBuoyancy = (float)(vesselBuoyancy - 
+                (util.GetGeeAcc(
+                    Athmosphere.fetch().CurrentBody.Radius,
+                    EditorController.altitude,
+                    Athmosphere.fetch().CurrentBody.gravParameter)* vesselMass)
+                );
+
         }
 
         public override void OnFixedUpdate()

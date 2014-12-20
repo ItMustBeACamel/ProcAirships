@@ -31,7 +31,7 @@ using KSPAPIExtensions.PartMessage;
 namespace ProcAirships
 {
     [Serializable]
-    public class AirshipEnvelope : PartModule
+    public class AirshipEnvelope : PartModule, IPartMassModifier
     {
 
         [KSPField(isPersistant = true, guiActive = false, guiActiveEditor = false, guiName = "envelope vol.", guiUnits = "m³", guiFormat = "F3")]
@@ -137,6 +137,8 @@ namespace ProcAirships
             UI_Toggle(controlEnabled=true, scene=UI_Scene.Flight)]
         private bool ventGas = false;
 
+        private bool firstUpdate = false;
+
 #region Properties
 
         public float EnvelopeVolume
@@ -216,6 +218,11 @@ namespace ProcAirships
         public float IdealRelPressure
         {
             get { return idealRelPressure; }
+        }
+
+        public bool AutoFill
+        {
+            get { return autofill; }
         }
 
         
@@ -400,7 +407,7 @@ namespace ProcAirships
         {
             Log.post(this.ClassName + " OnStart-callback: " + state.ToString());
 
-            setupUI(); 
+            //setupUI(); 
 
 
             if (!util.editorActive())
@@ -419,14 +426,28 @@ namespace ProcAirships
         void Update()
         {
 
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            if (HighLogic.LoadedScene == GameScenes.EDITOR)
+            {
+                if (!firstUpdate)
+                {
+                    firstUpdate = true;
+                    setupUI();
+                }
+                
                 updateEnvelope();
+
+            }
 
             //Log.post("world position: " + part.rigidbody.worldCenterOfMass.ToString());
         }
 
         public override void OnFixedUpdate()
         {
+            if(!firstUpdate)
+            {
+                firstUpdate = true;
+                setupUI();
+            }
             updateEnvelope();
 
         }
@@ -465,7 +486,8 @@ namespace ProcAirships
 
         double getTemperature()
         {
-            if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
+            if(util.editorActive())
+            //if (HighLogic.LoadedScene == GameScenes.EDITOR || HighLogic.LoadedScene == GameScenes.SPH)
             {
                 return 20.0d;
             }
@@ -685,7 +707,10 @@ namespace ProcAirships
 
             //absolutePressure = (float)getAbsolutePressure();
             //relativePressure = (float)(absolutePressure - athmosphere.getAirPressure());
-            relativePressure = (float)(absolutePressure - Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass));
+            double airPressure = util.editorActive() ? Athmosphere.fetch().getAirPressure(EditorController.altitude) :
+                Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass);
+
+            relativePressure = (float)(absolutePressure - airPressure);
 
             pStatus = (relativePressure-idealRelPressure).Clamp(-pressureTolerance, pressureTolerance);
 
@@ -715,7 +740,7 @@ namespace ProcAirships
         void autoFill()
         {
             //liftingGasAmount = (float)getGasAmount(athmosphere.getAirPressure() + idealRelPressure);
-            liftingGasAmount = (float)getGasAmount(Athmosphere.fetch().getAirPressure(part.rigidbody.worldCenterOfMass) + idealRelPressure);
+            liftingGasAmount = (float)getGasAmount(Athmosphere.fetch().getAirPressure(EditorController.altitude) + idealRelPressure);
         }
 
      
@@ -967,5 +992,10 @@ namespace ProcAirships
 
         }
 
+
+        public float GetModuleMass(float defaultMass)
+        {
+            return part.mass - defaultMass;
+        }
     } // class
 }

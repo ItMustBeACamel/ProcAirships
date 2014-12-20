@@ -35,17 +35,8 @@ namespace ProcAirships
 
                 if (util.editorActive())
                 {
-
-                    if (util.vabActive())
-                    {
-                        density = currentModel.getAirDensity(worldPosition.y + vabAltitude, currentBody);
-                        //Log.post(worldPosition.y + vabAltitude);
-                    }
-                    else
-                    {
-                        density = currentModel.getAirDensity(worldPosition.y + sphAltitude, currentBody);
-                        //Log.post(worldPosition.y + sphAltitude);
-                    }
+                    //density = currentModel.getAirDensity(worldPosition.y + EditorController.altitude, currentBody);
+                    throw new InvalidOperationException("Do not use in editor!");
                 }
                 else
                     density = currentModel.getAirDensity(worldPosition, currentBody);
@@ -83,10 +74,12 @@ namespace ProcAirships
 
                 if (util.editorActive())
                 {
-                    if (util.vabActive())
-                        return currentModel.getAirPressure(worldPosition.y + vabAltitude, currentBody);
-                    else
-                        return currentModel.getAirPressure(worldPosition.y + sphAltitude, currentBody);
+                    //if (util.vabActive())
+                    //    return currentModel.getAirPressure(worldPosition.y + vabAltitude, currentBody);
+                    //else
+                    //    return currentModel.getAirPressure(worldPosition.y + sphAltitude, currentBody);
+                    //return currentModel.getAirPressure(worldPosition.y + EditorController.altitude, currentBody);
+                    throw new InvalidOperationException("Do not use in editor!");
                 }
                 else
                     return currentModel.getAirPressure(worldPosition, currentBody);
@@ -161,6 +154,8 @@ namespace ProcAirships
                     currentBody = forceBody;
                 else
                     currentBody = FlightGlobals.Bodies[1];
+
+                
             }
             else
             {
@@ -187,6 +182,27 @@ namespace ProcAirships
             return instance;
         }
 
+        public CelestialBody ForceBody
+        {
+            get { return forceBody; }
+            set 
+            {
+                forceBody = value;
+                updateBody();
+            }
+        }
+
+        public CelestialBody CurrentBody
+        {
+            get { return currentBody; }
+        }
+
+        //public double EditorAltitude
+        //{
+        //    get { return editorAltitude; }
+        //    set { editorAltitude = value; }
+        //}
+
         private static Athmosphere instance = null;
         
         public const double vabAltitude = 72.0;
@@ -196,6 +212,8 @@ namespace ProcAirships
         private CelestialBody currentBody = null;
         private CelestialBody lastBody = null;
         private CelestialBody forceBody = null;
+
+        //private double editorAltitude = 0.0;
         
     }
 }
