@@ -225,6 +225,14 @@ namespace ProcAirships
             get { return autofill; }
         }
 
+        public float Overpressure
+        {
+            get
+            {
+                return Math.Abs((relativePressure - idealRelPressure)) - pressureTolerance;
+            }
+        }
+
         
 
 #endregion
@@ -628,7 +636,7 @@ namespace ProcAirships
             damageTimer += TimeWarp.fixedDeltaTime;
             if (damageTimer >= 1.0f)
             {
-                float overpressure = Math.Abs((relativePressure - idealRelPressure)) - pressureTolerance;
+                float overpressure = Overpressure;//Math.Abs((relativePressure - idealRelPressure)) - pressureTolerance;
 
                 //Log.post("[" + part.vessel.vesselName + "] Checking for pressure damage");
                 //Log.post("pressure deviation: " + (relativePressure - idealRelPressure));
@@ -663,7 +671,7 @@ namespace ProcAirships
         private void updateEnvelope()
         {
 
-            if(!updateFlag)
+            if(!updateFlag) // do this once per update cycle, and before any envelopes gets updated
             {
                 List<AirshipEnvelope> connectedEnvelopes = getConnectedEnvelopes();
 

@@ -88,9 +88,13 @@ namespace ProcAirships.UI
         protected override void OnPostDraw()
         {
             int autoFillCount = EditorController.AutoFillCounter;
+            int overpressureCount = EditorController.OverpressureCounter;
 
             if (autoFillCount > 0)
                 GUILayout.Label(" WARNING: Autofill on " + autoFillCount + " parts.");
+
+            if (overpressureCount > 0)
+                GUILayout.Label(" PRESSURE WARNING on " + overpressureCount + " parts.");
             
         }
 

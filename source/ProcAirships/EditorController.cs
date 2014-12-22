@@ -125,6 +125,7 @@ namespace ProcAirships
             }
 
             autofillCounter = 0;
+            overpressureCounter = 0;
 
             if (null != EditorLogic.fetch.ship.Parts)
             {
@@ -133,8 +134,13 @@ namespace ProcAirships
                 {
                     AirshipEnvelope env = p.GetComponent<AirshipEnvelope>();
                     if (null != env)
+                    {
                         if (env.AutoFill)
-                            ++autofillCounter;       
+                            ++autofillCounter;
+
+                        if (env.Overpressure > 0.0f)
+                            ++overpressureCounter;
+                    }
                 }
 
             
@@ -161,6 +167,13 @@ namespace ProcAirships
         {
             get
             { return autofillCounter; }
+        }
+
+        private static int overpressureCounter = 0;
+        public static int OverpressureCounter
+        {
+            get
+            { return overpressureCounter; }
         }
 
         private static float netBuoyancy;
