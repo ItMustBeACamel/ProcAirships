@@ -233,6 +233,14 @@ namespace ProcAirships
             }
         }
 
+        public bool PressureControl
+        {
+            get
+            {
+                return this.pressureControl;
+            }
+        }
+
         
 
 #endregion
@@ -464,7 +472,7 @@ namespace ProcAirships
         {
             updateFlag = false;
 
-            if (pressureControl && !util.editorActive() && isControllable)
+            if ((pressureControl && !util.editorActive() && isControllable) || (pressureControl && util.editorActive() && !autofill))
             {
                 if (relativePressure > idealRelPressure)
                 {
@@ -724,7 +732,7 @@ namespace ProcAirships
 
             part.mass = (dryMassPerQubicMeter * envelopeVolume) + (liftingGasAmount / 1000.0f);
 
-            if (autofill && util.editorActive())
+            if (util.editorActive() && (autofill || EditorController.AutoFill))
                 autoFill();
 
             if(ventGas && isControllable)
