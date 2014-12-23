@@ -410,7 +410,7 @@ namespace ProcAirships
                 Log.post("no valid lifting gas selected. Set to default", LogLevel.LOG_WARNING);
                 if (liftingGasOptions.Count > 0)
                 {
-                    liftingGas = liftingGasOptions.First<LiftingGas>().displayName;
+                    liftingGas = liftingGasOptions.First<LiftingGas>(lgo => !lgo.deprecated).displayName;
                     Log.post("liftinggas set to: " + liftingGas, LogLevel.LOG_INFORMATION);
                 }
                 else
@@ -845,7 +845,10 @@ namespace ProcAirships
                 if (uiChooser != null)
                 {
                     Log.post("setting up UI for LiftingGasOptions");
-                    uiChooser.options = liftingGasOptions.Select<LiftingGas, string>(a => a.displayName).ToArray();
+                    //uiChooser.options = liftingGasOptions.Select<LiftingGas, string>(a => a.displayName).ToArray();
+                    uiChooser.options = (from lgo in liftingGasOptions
+                                         where lgo.deprecated == false
+                                         select lgo.displayName).ToArray();
                 }
             }
 
@@ -968,6 +971,8 @@ namespace ProcAirships
             [SerializeField]
             public float cost;
 
+            public bool deprecated = false;
+
             public void Load(ConfigNode node)
             {
                 //ConfigNode.LoadObjectFromConfig(this, node);
@@ -994,6 +999,9 @@ namespace ProcAirships
 
                 if (!node.TryGetValue("cost", out cost))
                     Log.post("Could not read cost from ConfigNode", LogLevel.LOG_ERROR);
+
+                if (!node.TryGetValue("deprecated", out deprecated))
+                    Log.post("Could not read deprecated from ConfigNode", LogLevel.LOG_WARNING);
 
             }
             public void Save(ConfigNode node)
