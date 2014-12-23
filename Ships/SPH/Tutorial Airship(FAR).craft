@@ -210,7 +210,7 @@ PART
 		name = AirshipEnvelope
 		isEnabled = True
 		envelopeVolume = 2086.214
-		liftingGas = Combustrogen
+		liftingGas = Hydrogen
 		ballonetPercentage = 60.71
 		ballonetTargetInflation = 80
 		liftingGasAmount = 88.95561
@@ -495,7 +495,7 @@ PART
 		name = AirshipEnvelope
 		isEnabled = True
 		envelopeVolume = 706.6013
-		liftingGas = Combustrogen
+		liftingGas = Hydrogen
 		ballonetPercentage = 100
 		ballonetTargetInflation = 50
 		liftingGasAmount = 29.28157
@@ -782,7 +782,7 @@ PART
 		name = AirshipEnvelope
 		isEnabled = True
 		envelopeVolume = 706.6013
-		liftingGas = Combustrogen
+		liftingGas = Hydrogen
 		ballonetPercentage = 100
 		ballonetTargetInflation = 50
 		liftingGasAmount = 29.28157

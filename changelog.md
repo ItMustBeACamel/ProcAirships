@@ -1,3 +1,7 @@
+##### Version 1.4
+- Change: Combustrogen is now called Hydrogen
+- Change: Liftium is now called Helium
+
 ##### Version 1.3
 - Feature: Compatibility with KSP version 0.90
 - Feature: Compatibility with FAR 0.14.5+

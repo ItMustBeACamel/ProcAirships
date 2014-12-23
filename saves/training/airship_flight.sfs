@@ -508,7 +508,7 @@ GAME
 					name = AirshipEnvelope
 					isEnabled = True
 					envelopeVolume = 2086.214
-					liftingGas = Combustrogen
+					liftingGas = Hydrogen
 					ballonetPercentage = 63.54
 					ballonetTargetInflation = 80
 					liftingGasAmount = 84.99348
@@ -791,7 +791,7 @@ GAME
 					name = AirshipEnvelope
 					isEnabled = True
 					envelopeVolume = 706.6013
-					liftingGas = Combustrogen
+					liftingGas = Hydrogen
 					ballonetPercentage = 100
 					ballonetTargetInflation = 48
 					liftingGasAmount = 30.44542
@@ -1192,7 +1192,7 @@ GAME
 					name = AirshipEnvelope
 					isEnabled = True
 					envelopeVolume = 706.6013
-					liftingGas = Combustrogen
+					liftingGas = Hydrogen
 					ballonetPercentage = 100
 					ballonetTargetInflation = 52
 					liftingGasAmount = 28.10346
